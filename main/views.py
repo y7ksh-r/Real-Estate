@@ -73,7 +73,14 @@ def filter_obj(request):
     return render(request, 'prop_filtter.html', {'properties': properties,'cities':cities})
 def prop_view(request,pid):
    property = Property.objects.get(id=pid)
-   return render(request, 'prop_view.html', {'prop': property})
+   t_photos=Photo.objects.filter(property=pid)
+   photos=Photo.objects.filter(property=pid)[:4]
+   total=len(t_photos)
+   total=total-3
+   return render(request, 'prop_view.html', {'prop': property,'photos':photos,'remaining':total})
 def abt_us(request,pid):
 
     return render(request, 'contactus.html')
+def more_img(request,pid):
+    photos=Photo.objects.filter(property=pid)
+    return render(request,'allphotos.html',{'photos':photos})

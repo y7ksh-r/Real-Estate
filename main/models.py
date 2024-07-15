@@ -37,7 +37,7 @@ class Property(models.Model):
 
 class Photo(models.Model):
     property = models.ForeignKey(Property, on_delete=models.CASCADE, related_name='photos')
-    image = models.ImageField(upload_to='photos/%Y/%m/%d/')
+    image = models.ImageField(upload_to='photos/',default="")
 
     def __str__(self):
         return f'Photo for {self.property.title}'

@@ -24,9 +24,11 @@
         <div class="property-gallery">
             <h2>More Images</h2>
             <div class="gallery-images">
-                <img src="image1.jpg" alt="Property Image 1">
-                <img src="image2.jpg" alt="Property Image 2">
-                <img src="image3.jpg" alt="Property Image 3">
+                {%for img in photos%}
+                <img src="/media/{{img.image}}" alt="Property Image 1">
+                {%endfor%}
+                <a href="/main/moreimages/{{prop.id}}">{{remaining}}More</a>
+               
 
             </div>
             <div class="google-map">

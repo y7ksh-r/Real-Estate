@@ -7,6 +7,9 @@ urlpatterns = [
     path('Propertyfilter/',views.filter_obj,name='filteroption'),
     path('Propertyfilter/ajax/load-projects/', views.load_projects, name='ajax_load_projects'),
     path('prop_view/<int:pid>', views.prop_view, name='prop_view'),
-    path('contactus/<int:pid>', views.abt_us, name='prop_view')
+    path('contactus/<int:pid>', views.abt_us, name='contact_us'),
+    path('moreimages/<int:pid>', views.more_img, name='more_img'),
+
+
 
     ]    
