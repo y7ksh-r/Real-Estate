@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Basic Home UI</title>
+   
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+
+    <script src="{%static 'js/filter.js'%}"></script>
+    <div class="navbar">
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#services">Services</a>
+        <a href="#contact">Contact</a>
+    </div>
+
+    <div class="container">
+        <div class="search-bar">
+            <input type="text" placeholder="Search...">
+            <button>Search</button>
+        </div>
+    <form method="get" action="{% url 'filteroption'%}">
+            
+        <div class="filters">
+            <select id="city" name="city">
+                <option value="">Select City</option>
+                {% for city in cities %}
+                    <option value="{{ city }}">{{ city }}</option>
+                {% endfor %}
+            </select>
+
+            <select id="project"name="project">
+                <option value="">Select Project</option>
+            </select>
+
+            <select id="price_range"name="price_range">
+                <option value="">Select Price</option>
+                <option value="10">10-20 lakh</option>
+                <option value="20">20-30 lakh</option>
+                <option value="30">30-50 lakh</option>
+                <option value="50">50-70 lakh</option>
+                <option value="70">70-90 lakh</option>
+                <option value="1">Above 1Cr</option>
+            </select>
+
+            <button>Filter</button>
+        </form>
+
+        </div>
+
+        <div class="projects">
+            <div class="property-list">
+                <h2>ALL</h2>
+                {% for property in properties %}
+                    <div class="property">
+                        <a href="prop_view/{{property.id}}" ><h2>{{ property.title }}</h2></a>
+                        <p>{{ property.description }}</p>
+                        <p><strong>Price:</strong> Rs.{{ property.price }}</p>
+                        <p><strong>Location:</strong> {{ property.address }}, {{ property.city.name }}, {{ property.state }} {{ property.zip_code }}</p>
+                        <p><strong>Type:</strong> {{ property.get_property_type_display }}</p>
+                        <p><strong>Bedrooms:</strong> {{ property.bedrooms }}</p>
+                        <p><strong>Bathrooms:</strong> {{ property.bathrooms }}</p>
+                        <div><label for="Carpet Area">Carpet Area</label>
+                        <button value="{{property.title}}" id="{{property.id}}">View</button></div>
+                {% endfor %}
+            </div>
+        </div>
+        <div>
+            <h2>Ready To Move</h2>
+            {% for property in rtm %}
+            <div class="property">
+                <a href="prop_view/{{property.id}}" ><h2>{{ property.title }}</h2></a>
+                <p>{{ property.description }}</p>
+                <p><strong>Price:</strong> Rs.{{ property.price }}</p>
+                <p><strong>Location:</strong> {{ property.address }}, {{ property.city.name }}, {{ property.state }} {{ property.zip_code }}</p>
+                <p><strong>Type:</strong> {{ property.get_property_type_display }}</p>
+                <p><strong>Bedrooms:</strong> {{ property.bedrooms }}</p>
+                <p><strong>Bathrooms:</strong> {{ property.bathrooms }}</p>
+                <p><strong>Square Feet:</strong> {{ property.square_feet }}</p>
+            </div>
+        {% endfor %}
+        </div>
+        <div>
+            <div>
+                <h2>Under Construtions</h2>
+                {% for property in uc %}
+                <div class="property">
+                    <a href="prop_view/{{property.id}}" ><h2>{{ property.title }}</h2></a>
+                    <p>{{ property.description }}</p>
+                    <p><strong>Price:</strong> Rs.{{ property.price }}</p>
+                    <p><strong>Location:</strong> {{ property.address }}, {{ property.city.name }}, {{ property.state }} {{ property.zip_code }}</p>
+                    <p><strong>Type:</strong> {{ property.get_property_type_display }}</p>
+                    <p><strong>Bedrooms:</strong> {{ property.bedrooms }}</p>
+                    <p><strong>Bathrooms:</strong> {{ property.bathrooms }}</p>
+                    <p><strong>Square Feet:</strong> {{ property.square_feet }}</p>
+                </div>
+            {% endfor %}
+            </div>
+        </div>
+        <div>
+            <div>
+                <h2> Cost Efficient</h2>
+                {% for property in ce %}
+                <div class="property">
+                    <a href="prop_view/{{property.id}}" ><h2>{{ property.title }}</h2></a>
+                    <p>{{ property.description }}</p>
+                    <p><strong>Price:</strong> Rs.{{ property.price }}</p>
+                    <p><strong>Location:</strong> {{ property.address }}, {{ property.city.name }}, {{ property.state }} {{ property.zip_code }}</p>
+                    <p><strong>Type:</strong> {{ property.get_property_type_display }}</p>
+                    <p><strong>Bedrooms:</strong> {{ property.bedrooms }}</p>
+                    <p><strong>Bathrooms:</strong> {{ property.bathrooms }}</p>
+                    <p><strong>Square Feet:</strong> {{ property.square_feet }}</p>
+                </div>
+            {% endfor %}
+            </div>
+        </div>
+    </div>
+    <script>
+    </script>
+</body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Basic Home UI</title>
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <div class="navbar">
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#services">Services</a>
+        <a href="#contact">Contact</a>
+    </div>
+    {% block head %}
+    {% endblock%}
+
+</head>
+<body><script src="{%static 'js/filter.js'%}"></script>
+
+    <div class="container">
+        <div class="search-bar">
+            <input type="text" placeholder="Search...">
+            <button>Search</button>
+        </div>
+    <form method="get" action="{% url 'filteroption'%}">
+            
+        <div class="filters">
+            <select id="city" name="city">
+                <option value="">Select City</option>
+                {% for city in cities %}
+                    <option value="{{ city }}">{{ city }}</option>
+                {% endfor %}
+            </select>
+
+            <select id="project">
+                <option value="">Select Project</option>
+            </select>
+
+            <select id="size">
+                <option value="">Select Price</option>
+                <option value="10">10-20 lakh</option>
+                <option value="20">20-30 lakh</option>
+                <option value="30">30-50 lakh</option>
+                <option value="50">50-70 lakh</option>
+                <option value="70">70-90 lakh</option>
+                <option value="1">Above 1Cr</option>
+            </select>
+
+            <button>Filter</button>
+        </form>
+
+        </div>
+
+        
+      {% block body %}
+       {% endblock %}     
+    </body>
+</html>
