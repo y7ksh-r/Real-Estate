@@ -1,6 +1,9 @@
 from django.shortcuts import render,redirect
 from django.http import JsonResponse,HttpResponse
 from .models import*
+from django.db.models import F, ExpressionWrapper, FloatField
+from django.db.models.functions import Abs
+
 # Create your views here.
 def home(request):
     list_proj=Property.objects.all()[:8]
@@ -77,7 +80,29 @@ def prop_view(request,pid):
    photos=Photo.objects.filter(property=pid)[:4]
    total=len(t_photos)
    total=total-3
-   return render(request, 'prop_view.html', {'prop': property,'photos':photos,'remaining':total})
+   similar_price_property = Property.objects.annotate(
+        price_difference=ExpressionWrapper(
+            Abs(F('price') - property.price), output_field=FloatField()
+        )
+    ).exclude(id=property.id).order_by('price_difference').first()
+   similar_price_city_property = Property.objects.filter(city=property.city).annotate(
+        price_difference=ExpressionWrapper(
+            Abs(F('price') - property.price), output_field=FloatField()
+        )
+    ).exclude(id=property.id).order_by('price_difference').first()
+
+    # Find another property from the same developer with the closest price
+   similar_price_developer_property = Property.objects.filter(devloper=property.devloper).annotate(
+        price_difference=ExpressionWrapper(
+            Abs(F('price') - property.price), output_field=FloatField()
+        )
+    ).exclude(id=property.id).order_by('price_difference').first()
+   similar_size_property = Property.objects.filter(bedrooms=property.bedrooms).annotate(
+        price_difference=ExpressionWrapper(
+            Abs(F('price') - property.price), output_field=FloatField()
+        )
+    ).exclude(id=property.id).order_by('price_difference').first()
+   return render(request, 'prop_view.html', {'prop': property,'photos':photos,'remaining':total,"sp":similar_price_property,"sc":similar_price_city_property,'sd':similar_price_developer_property,'ss':similar_size_property})
 def abt_us(request,pid):
 
     return render(request, 'contactus.html')

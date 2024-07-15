@@ -34,7 +34,43 @@
             <div class="google-map">
                 <iframe src="{{prop.map_url}}"width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
               </div>
+        </div>           
+         <div><h2>More like this</h2>
         </div>
+        <div style="display: flex">
+
+            
+
+            <div>
+                <h1>Similar price</h1>
+                <a href="/main/prop_view/{{sp.id}}"><img src="/media/{{sp.main_img}}" alt="Property Image 1"></a>
+                <p><strong>name:</strong> {{sp.title}}</p>
+                <p><strong>Price:</strong>{{sp.price}}</p>
+                
+            </div>
+            <div>
+                <h1>Similar Size</h1>
+                <a href="/main/prop_view/{{ss.id}}"></a><img src="/media/{{ss.main_img}}" alt="Property Image 1">
+                <p><strong>name:</strong> {{ss.title}}</p>
+                <p><strong>Price:</strong>{{ss.price}}</p>
+                
+            </div>
+            <div>
+                <h1>More from {{prop.city}}</h1>
+                <a href="/main/prop_view/{{sc.id}}"><img src="/media/{{sc.main_img}}" alt="Property Image 1"></a>
+                <p><strong>name:</strong> {{sc.title}}</p>
+                <p><strong>Price:</strong>{{sc.price}}</p>
+                
+            </div>
+            <div>
+                <h1>More from {{prop.devloper}}</h1>
+                <a href="/main/prop_view/{{sd.id}}"><img src="/media/{{sd.main_img}}" alt="Property Image 1"></a>
+                <p><strong>name:</strong> {{sd.title}}</p>
+                <p><strong>Price:</strong>{{sd.price}}</p>
+                
+            </div>
+        </div>
+
     </div>
 </body>
 </html>
