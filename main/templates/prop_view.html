@@ -20,6 +20,16 @@
             <p><strong>Bathrooms:</strong> {{prop.bathrooms}}</p>
             <p><strong>Square Footage:</strong> 2,500 sq ft</p>
             <p><strong>Description:</strong>{{prop.description}}</p>
+            <button onclick="document.querySelector('.container').style.display='flex'">Inquiry</button>
+           <div> {% if messages %}
+        
+            {% for message in messages %}
+               <li style="color: brown;">
+                    {{ message }}
+                </li>
+            {% endfor %}
+        </ul>
+    {% endif %}</div>
         </div>
         <div class="property-gallery">
             <h2>More Images</h2>
@@ -72,5 +82,85 @@
         </div>
 
     </div>
+    
+    <style>/* Overlay background */
+        .container {
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 1; /* Sit on top */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgb(0,0,0); /* Fallback color */
+            background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+            justify-content: center; /* Center the form horizontally */
+            align-items: center; /* Center the form vertically */
+        }
+        
+        /* Center the form */
+        form {
+            background-color: #fefefe;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 400px; /* Max width for the form */
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            position: relative; /* For the close button positioning */
+        }
+        
+        /* Form group styling */
+        .form-group {
+            margin-bottom: 15px;
+        }
+        
+        /* Close button */
+        .close {
+            position: absolute;
+            top: 10px;
+            right: 25px;
+            color: #aaa;
+            font-size: 28px;
+            font-weight: bold;
+        }
+        
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        </style>
+    
+        <div class="container">
+
+            <form action="/main/contactus/" method="POST">
+                {% csrf_token %}<div class="form-group">
+                    <input type="hidden"id="property" name="property" value="{{prop.title}}">
+                    <label  for="Property_name">{{prop.title}}</label>
+                  
+                </div>
+    
+                <div class="form-group">
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Phone Number:</label>
+                    <input type="tel" id="phone" name="phone" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <button  type="submit">Submit</button>
+            </form>
+        </div>
+        <span class="close" onclick="document.querySelector('.container').style.display='none'">&times;</span>
+        <button onclick="document.querySelector('.container').style.display='flex'">Open Contact Form</button>
+    
+ 
 </body>
 </html>

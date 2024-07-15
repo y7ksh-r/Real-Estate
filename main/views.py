@@ -3,7 +3,7 @@ from django.http import JsonResponse,HttpResponse
 from .models import*
 from django.db.models import F, ExpressionWrapper, FloatField
 from django.db.models.functions import Abs
-
+from django.contrib import messages
 # Create your views here.
 def home(request):
     list_proj=Property.objects.all()[:8]
@@ -103,9 +103,16 @@ def prop_view(request,pid):
         )
     ).exclude(id=property.id).order_by('price_difference').first()
    return render(request, 'prop_view.html', {'prop': property,'photos':photos,'remaining':total,"sp":similar_price_property,"sc":similar_price_city_property,'sd':similar_price_developer_property,'ss':similar_size_property})
-def abt_us(request,pid):
+def abt_us(request):
+    property=request.POST.get("property")
+    name=request.POST.get("name")
+    phone=request.POST.get("phone")
+    email=request.POST.get("email")
+    inquiry = inq(name=name, contactno=phone, email=email,property=property)
+    inquiry.save()
 
-    return render(request, 'contactus.html')
+
+    return redirect("/main")
 def more_img(request,pid):
     photos=Photo.objects.filter(property=pid)
-    return render(request,'allphotos.html',{'photos':photos})
+    return render("main/prop_view/{{property.id}}")

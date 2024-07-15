@@ -41,3 +41,11 @@ class Photo(models.Model):
 
     def __str__(self):
         return f'Photo for {self.property.title}'
+class inq(models.Model):
+    property=models.CharField(null=True,max_length=100)   
+    name=models.CharField(max_length=100)
+    contactno=models.PositiveIntegerField()
+    email=models.EmailField(max_length=100)
+    date=models.DateTimeField(auto_now_add=True)
+    def __str__(self):
+        return f'{self.name} for {self.property}'
