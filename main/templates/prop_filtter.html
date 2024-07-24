@@ -1,21 +1,34 @@
 {%extends 'basic.html'%}
 {%block body%}
+{% load static tailwind_tags %}
+{% tailwind_css %}
 {%load static%}
 
 
-<div class="projects">
-    <div class="property-list">
+<div class="projects m-2">
+    <h2 class="font-semibold text-xl underline my-3 ">RESULTS </h2>
+    <div class="flex flex-col justify-center space-y-2 overflow-y-scroll">
         {% for property in properties %}
-            <div class="property">
-                <a href="/main/prop_view/{{property.id}}"><h2>{{ property.title }}</h2></a>
-                <p>{{ property.description }}</p>
-                <p><strong>Price:</strong> Rs.{{ property.price }}</p>
-                <p><strong>Location:</strong> {{ property.address }}, {{ property.city.name }}, {{ property.state }} {{ property.zip_code }}</p>
-                <p><strong>Type:</strong> {{ property.get_property_type_display }}</p>
-                <p><strong>Bedrooms:</strong> {{ property.bedrooms }}</p>
-                <p><strong>Bathrooms:</strong> {{ property.bathrooms }}</p>
-                <p><strong>Square Feet:</strong> {{ property.square_feet }}</p>
+        <a href="/main/prop_view/{{property.id}}">
+            <div class="property w-[100vw] h-[90vw] shadow-xl rounded-lg p-1 border flex flex-col">
+                <div class="display h-[70%] w-full overflow-hidden rounded-lg">
+                    <img src="/media/{{property.main_img}}" alt="Beautiful Family Home"
+                        class="object-cover object-center w-full h-full">
+                </div>
+                <div class="description bg-white space-y-2 mx-2 ">
+                    <h2 class="font-semibold text-xl">{{ property.title }}</h2>
+                    <div class="flex gap-x-5 font-semibold text-gray-800 text-xl">
+                        <p>₹ {{ property.price }}</p>
+                        <p>|</p>
+                        <p>{{ property.bedrooms }}BHK</p>
+                    </div>
+                    <p> {{ property.city }}
+- {{property.zip_code }}</p>
+
+                </div>
             </div>
+        </a>
+
         {% endfor %}
     </div>
 </div>

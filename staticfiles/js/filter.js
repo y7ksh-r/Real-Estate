@@ -8,14 +8,14 @@ $(document).ready(function () {
                     'city_id': cityId
                 },
                 success: function (data) {
-                    $('#project').html('<option value="">Select Project</option>');
+                    $('#project').html('<option value="">Project</option>');
                     $.each(data, function (key, value) {
                         $('#project').append('<option value="' + value.title + '">' + value.title + '</option>');
                     });
                 }
             });
         } else {
-            $('#project').html('<option value="">Select Project</option>');
+            $('#project').html('<option value="">Project</option>');
         }
     });
     });

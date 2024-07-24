@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    {% load static tailwind_tags %}
     {% load static %}
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Basic Home UI</title>
-    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+    <!-- <link rel="stylesheet" href="{% static 'css/main.css' %}"> -->
+    {% tailwind_css %}
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <div class="navbar">
+    <div class="navbar hidden flex flex-col bg-white shadow-lg rounded-lg p-4 absolute mt-9 w-1/2 h-full space-y-4" id="menu">
         <a href="#home">Home</a>
         <a href="#about">About</a>
         <a href="#services">Services</a>
@@ -17,41 +19,83 @@
     {% endblock%}
 
 </head>
-<body><script src="{%static 'js/filter.js'%}"></script>
+<body ><script src="{%static 'js/filter.js'%}"></script>
+
 
     <div class="container">
-        <div class="search-bar">
-            <input type="text" placeholder="Search...">
-            <button>Search</button>
+        <div class="navbar flex m-2">
+            <div class="hamburger mr-16 " id="hamburger">
+                <svg class="w-8 h-8 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16">
+                    </path>
+                </svg>
+            </div>
+            <div class="search-bar flex justify-center space-x-6">
+                <input type="text" placeholder="Search..." class="rounded-lg h-8 ">
+                <button
+                    class="bg-yellow-400 h-8 w-fit px-2 rounded-lg text-white font-semibold hover:bg-yellow-500 active:border border-black">Search</button>
+            </div>
         </div>
-    <form method="get" action="{% url 'filteroption'%}">
+        <script>
+            document.addEventListener("DOMContentLoaded", function() {
+                const hamburger = document.getElementById('hamburger');
+                const menu = document.getElementById('menu');
             
-        <div class="filters">
-            <select id="city" name="city">
-                <option value="">Select City</option>
-                {% for city in cities %}
-                    <option value="{{ city }}">{{ city }}</option>
-                {% endfor %}
-            </select>
+                hamburger.addEventListener('click', function() {
+                    if (menu.classList.contains('hidden')) {
+                        menu.classList.remove('hidden');
+                        menu.classList.remove('fade-out');
+                        menu.classList.add('fade-in');
+                    } else {
+                        menu.classList.remove('fade-in');
+                        menu.classList.add('fade-out');
+                        setTimeout(() => {
+                            menu.classList.add('hidden');
+                        }, 300); // Match the duration of the fade-out animation
+                    }
+                });
+            });
+        </script>
+        <form method="get" action="{% url 'filteroption'%}">
 
-            <select id="project">
-                <option value="">Select Project</option>
-            </select>
+            <div class="filters m-2 flex justify-center space-x-2 items-center">
+                <select id="city" name="city" class="rounded-lg h-10 w-20 border border-yellow-400 overflow-hidden text-gray-700">
+                    
+                    <option value="" class="">City</option>
+                    {% for city in cities %}
+                    <option value="{{ city }}" >{{ city }}</option>
+                    {% endfor %}
+                
+                </select>
 
-            <select id="size">
-                <option value="">Select Price</option>
-                <option value="10">10-20 lakh</option>
-                <option value="20">20-30 lakh</option>
-                <option value="30">30-50 lakh</option>
-                <option value="50">50-70 lakh</option>
-                <option value="70">70-90 lakh</option>
-                <option value="1">Above 1Cr</option>
-            </select>
+                <select id="project" name="project"class="rounded-lg h-10 border-yellow-400 overflow-hidden text-gray-700">
+                    <option value="">Project</option>
+                </select>
 
-            <button>Filter</button>
+                <select id="price_range" name="price_range" class="rounded-lg h-10 w-[6rem] border-yellow-400 overflow-hidden text-gray-700">
+                    <option value="">Price</option>
+                    <option value="10">10-20 lakh</option>
+                    <option value="20">20-30 lakh</option>
+                    <option value="30">30-50 lakh</option>
+                    <option value="50">50-70 lakh</option>
+                    <option value="70">70-90 lakh</option>
+                    <option value="1">Above 1Cr</option>
+                </select>
+
+                <button class="bg-yellow-400 h-8 w-fit px-2 rounded-lg text-white font-semibold hover:bg-yellow-500 active:border border-black">
+                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="20px" height="20px" viewBox="0 0 256 256" xml:space="preserve">
+
+                        <defs>
+                        </defs>
+                        <g style="stroke: none; stroke-width: 0; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: none; fill-rule: nonzero; opacity: 1;" transform="translate(1.4065934065934016 1.4065934065934016) scale(2.81 2.81)" >
+                            <path d="M 52.537 80.466 V 45.192 L 84.53 2.999 C 85.464 1.768 84.586 0 83.041 0 H 6.959 C 5.414 0 4.536 1.768 5.47 2.999 l 31.994 42.192 v 43.441 c 0 1.064 1.163 1.719 2.073 1.167 l 11.758 -7.127 C 52.065 82.205 52.537 81.368 52.537 80.466 z" style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: rgb(255, 255, 255); fill-rule: nonzero; opacity: 1;" transform=" matrix(1 0 0 1 0 0) " stroke-linecap="round" />
+                        </g>
+                        </svg> 
+                </button>
         </form>
 
-        </div>
+    </div>
 
         
       {% block body %}

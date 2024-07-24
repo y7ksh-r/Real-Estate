@@ -115,4 +115,4 @@ def abt_us(request):
     return redirect("/main")
 def more_img(request,pid):
     photos=Photo.objects.filter(property=pid)
-    return render("main/prop_view/{{property.id}}")
+    return render(request,'allphotos.html',{'photos':photos})
