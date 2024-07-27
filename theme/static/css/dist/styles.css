@@ -783,6 +783,10 @@ select {
   }
 }
 
+.invisible {
+  visibility: hidden;
+}
+
 .static {
   position: static;
 }
@@ -807,6 +811,10 @@ select {
   grid-column: span 2 / span 2;
 }
 
+.m-1 {
+  margin: 0.25rem;
+}
+
 .m-2 {
   margin: 0.5rem;
 }
@@ -814,6 +822,11 @@ select {
 .mx-2 {
   margin-left: 0.5rem;
   margin-right: 0.5rem;
+}
+
+.mx-\[5vw\] {
+  margin-left: 5vw;
+  margin-right: 5vw;
 }
 
 .mx-auto {
@@ -835,12 +848,24 @@ select {
   margin-top: 2rem !important;
 }
 
+.mb-4 {
+  margin-bottom: 1rem;
+}
+
+.mr-\[10vw\] {
+  margin-right: 10vw;
+}
+
 .mt-12 {
   margin-top: 3rem;
 }
 
 .mt-3 {
   margin-top: 0.75rem;
+}
+
+.mt-36 {
+  margin-top: 9rem;
 }
 
 .mt-9 {
@@ -879,6 +904,10 @@ select {
   height: 2.25rem;
 }
 
+.h-\[20rem\] {
+  height: 20rem;
+}
+
 .h-\[70\%\] {
   height: 70%;
 }
@@ -893,18 +922,6 @@ select {
 
 .h-screen {
   height: 100vh;
-}
-
-.h-28 {
-  height: 7rem;
-}
-
-.\!h-28 {
-  height: 7rem !important;
-}
-
-.h-6 {
-  height: 1.5rem;
 }
 
 .w-1\/2 {
@@ -929,6 +946,10 @@ select {
 
 .w-\[80vw\] {
   width: 80vw;
+}
+
+.w-\[90vw\] {
+  width: 90vw;
 }
 
 .w-fit {
@@ -1022,6 +1043,10 @@ select {
   border-radius: 1rem;
 }
 
+.rounded-3xl {
+  border-radius: 1.5rem;
+}
+
 .rounded-lg {
   border-radius: 0.5rem;
 }
@@ -1071,6 +1096,11 @@ select {
   border-color: rgb(255 255 255 / var(--tw-border-opacity));
 }
 
+.bg-black {
+  --tw-bg-opacity: 1;
+  background-color: rgb(0 0 0 / var(--tw-bg-opacity));
+}
+
 .bg-gray-50 {
   --tw-bg-opacity: 1;
   background-color: rgb(249 250 251 / var(--tw-bg-opacity));
@@ -1095,9 +1125,24 @@ select {
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
 }
 
-.bg-gray-900 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(17 24 39 / var(--tw-bg-opacity));
+.bg-opacity-20 {
+  --tw-bg-opacity: 0.2;
+}
+
+.bg-\[url\(\'\/media\/icons\/bgimage1\.jpg\'\)\] {
+  background-image: url('/media/icons/bgimage1.jpg');
+}
+
+.bg-\[url\(\'\/media\/icons\/bgimage\.jpg\'\)\] {
+  background-image: url('/media/icons/bgimage.jpg');
+}
+
+.bg-cover {
+  background-size: cover;
+}
+
+.bg-no-repeat {
+  background-repeat: no-repeat;
 }
 
 .object-cover {
@@ -1124,10 +1169,6 @@ select {
 
 .p-4 {
   padding: 1rem;
-}
-
-.p-0 {
-  padding: 0px;
 }
 
 .px-2 {
