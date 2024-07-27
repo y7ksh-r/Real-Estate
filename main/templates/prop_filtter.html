@@ -7,23 +7,22 @@
 
 <div class="projects m-2">
     <h2 class="font-semibold text-xl underline my-3 ">RESULTS </h2>
-    <div class="flex flex-col justify-center space-y-2 overflow-y-scroll">
+    <div class="flex flex-col lg:grid lg:grid-cols-3 justify-center space-y-2 overflow-y-scroll">
         {% for property in properties %}
         <a href="/main/prop_view/{{property.id}}">
-            <div class="property w-[100vw] h-[90vw] shadow-xl rounded-lg p-1 border flex flex-col">
+            <div class="property w-[80vw] h-[90vw] lg:w-[30vw] lg:h-[25vw] rounded-lg p-1 border flex flex-col bg-white">
                 <div class="display h-[70%] w-full overflow-hidden rounded-lg">
                     <img src="/media/{{property.main_img}}" alt="Beautiful Family Home"
                         class="object-cover object-center w-full h-full">
                 </div>
-                <div class="description bg-white space-y-2 mx-2 ">
+                <div class="description space-y-2 mx-2">
                     <h2 class="font-semibold text-xl">{{ property.title }}</h2>
                     <div class="flex gap-x-5 font-semibold text-gray-800 text-xl">
                         <p>₹ {{ property.price }}</p>
                         <p>|</p>
                         <p>{{ property.bedrooms }}BHK</p>
                     </div>
-                    <p> {{ property.city }}
-- {{property.zip_code }}</p>
+                    <p> {{ property.city }}- {{property.zip_code }}</p>
 
                 </div>
             </div>

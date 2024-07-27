@@ -21,22 +21,45 @@
 </head>
 <body ><script src="{%static 'js/filter.js'%}"></script>
 
+    <div class="navbar-lg lg:hidden hidden flex flex-col bg-orange-400 text-white font-medium shadow-lg rounded-lg p-4  absolute mt-12 lg:m-0 lg:w-fit w-1/2 h-full space-y-4  lg:font-semibold "
+    id="menu">
+    <a href="#home" class="border-b p-3 lg:border-none lg:text-lg hover:bg-orange-500 rounded-xl  hover:text-black">Home</a>
+    <a href="#about" class="border-b p-3 lg:border-none lg:text-lg hover:bg-orange-500 rounded-xl   hover:text-black">About</a>
+    <a href="#services" class="border-b p-3 lg:border-none lg:text-lg hover:bg-orange-500 rounded-xl  hover:text-black">Services</a>
+    <a href="#contact" class="border-b p-3 lg:border-none  lg:text-lg hover:bg-orange-500 rounded-xl  hover:text-black">Contact</a>
+</div>
 
-    <div class="container">
-        <div class="navbar flex m-2">
-            <div class="hamburger mr-16 " id="hamburger">
-                <svg class="w-8 h-8 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                    xmlns="http://www.w3.org/2000/svg">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16">
-                    </path>
-                </svg>
-            </div>
-            <div class="search-bar flex justify-center space-x-6">
-                <input type="text" placeholder="Search..." class="rounded-lg h-8 ">
-                <button
-                    class="bg-yellow-400 h-8 w-fit px-2 rounded-lg text-white font-semibold hover:bg-yellow-500 active:border border-black">Search</button>
-            </div>
+    <div class="navbar flex justify-between bg-orange-400 p-2 w-screen items-center fixed lg:sticky top-0">
+        <div class="navbar-lg hidden flex flex-col lg:bg-transparent shadow-lg lg:shadow-none rounded-lg p-4 lg:static absolute mt-12 lg:m-0 lg:w-fit lg:space-x-6 w-1/2 h-full space-y-4 lg:block lg:text-white lg:font-semibold  ">
+            <a href="#home" class="border-b p-3 lg:border-none lg:text-lg hover:bg-orange-500 rounded-xl  hover:text-black duration-300">Home</a>
+            <a href="#about" class="border-b p-3 lg:border-none lg:text-lg hover:bg-orange-500 rounded-xl   hover:text-black duration-300">About</a>
+            <a href="#services" class="border-b p-3 lg:border-none lg:text-lg hover:bg-orange-500 rounded-xl  hover:text-black duration-300">Services</a>
+            <a href="#contact" class="border-b p-3 lg:border-none  lg:text-lg hover:bg-orange-500 rounded-xl  hover:text-black duration-300">Contact</a>
         </div>
+        <div class="hamburger lg:hidden " id="hamburger">
+            <svg class="w-8 h-8 text-white duration-300 cursor-pointer" fill="none" stroke="currentColor"
+                viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M4 6h16M4 12h16M4 18h16">
+                </path>
+            </svg>
+        </div>
+        <div class="search-bar flex justify-center">
+            <input disabled type="text" placeholder="" id="animated-input"
+                class="rounded-s-full h-8 lg:w-[30vw] border-none placeholder:text-black">
+            <button disabled
+                class="bg-white h-8 w-fit px-2 rounded-e-full font-semibold border-black text-orange-500 hover:text-white hover:bg-red-500 duration-300">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search"
+                    viewBox="0 0 16 16">
+                    <path
+                        d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0" />
+                </svg>
+            </button>
+
+        </div>
+        <div class="company-logo">
+            <img src="/media/icons/image.png" alt="harsh" class="h-9 lg:h-16">
+        </div>
+    </div>
         <script>
             document.addEventListener("DOMContentLoaded", function() {
                 const hamburger = document.getElementById('hamburger');
@@ -57,45 +80,54 @@
                 });
             });
         </script>
+
+       <div class="!pt-16 lg:!pt-0 lg:!mt-6 filters flex justify-center items-center w-screen pb-4 bg-orange-400 lg:bg-white ">
         <form method="get" action="{% url 'filteroption'%}">
+            <select id="city" name="city"
+                class="rounded-lg h-10 w-20 border-2 border-red-500  overflow-y-scroll text-gray-700">
 
-            <div class="filters m-2 flex justify-center space-x-2 items-center">
-                <select id="city" name="city" class="rounded-lg h-10 w-20 border border-yellow-400 overflow-hidden text-gray-700">
-                    
-                    <option value="" class="">City</option>
-                    {% for city in cities %}
-                    <option value="{{ city }}" >{{ city }}</option>
-                    {% endfor %}
-                
-                </select>
+                <option value="" class="text-sm">City</option>
+                {% for city in cities %}
+                <option value="{{ city }}" class="text-sm">{{ city }}</option>
+                {% endfor %}
 
-                <select id="project" name="project"class="rounded-lg h-10 border-yellow-400 overflow-hidden text-gray-700">
-                    <option value="">Project</option>
-                </select>
+            </select>
 
-                <select id="price_range" name="price_range" class="rounded-lg h-10 w-[6rem] border-yellow-400 overflow-hidden text-gray-700">
-                    <option value="">Price</option>
-                    <option value="10">10-20 lakh</option>
-                    <option value="20">20-30 lakh</option>
-                    <option value="30">30-50 lakh</option>
-                    <option value="50">50-70 lakh</option>
-                    <option value="70">70-90 lakh</option>
-                    <option value="1">Above 1Cr</option>
-                </select>
+            <select id="project" name="project"
+                class="rounded-lg h-10 border-2 border-red-500 overflow-y-scroll text-gray-700">
+                <option value="" class="text-sm">Project</option>
+            </select>
 
-                <button class="bg-yellow-400 h-8 w-fit px-2 rounded-lg text-white font-semibold hover:bg-yellow-500 active:border border-black">
-                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="20px" height="20px" viewBox="0 0 256 256" xml:space="preserve">
+            <select id="price_range" name="price_range"
+                class="rounded-lg h-10 w-[6rem] border-2 border-red-500  overflow-y-scroll text-gray-700">
+                <option value="" class="text-sm">Price</option>
+                <option value="10" class="text-sm">10-20 lakh</option>
+                <option value="20" class="text-sm">20-30 lakh</option>
+                <option value="30" class="text-sm">30-50 lakh</option>
+                <option value="50" class="text-sm">50-70 lakh</option>
+                <option value="70" class="text-sm">70-90 lakh</option>
+                <option value="1" class="text-sm">Above 1Cr</option>
+            </select>
 
-                        <defs>
-                        </defs>
-                        <g style="stroke: none; stroke-width: 0; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: none; fill-rule: nonzero; opacity: 1;" transform="translate(1.4065934065934016 1.4065934065934016) scale(2.81 2.81)" >
-                            <path d="M 52.537 80.466 V 45.192 L 84.53 2.999 C 85.464 1.768 84.586 0 83.041 0 H 6.959 C 5.414 0 4.536 1.768 5.47 2.999 l 31.994 42.192 v 43.441 c 0 1.064 1.163 1.719 2.073 1.167 l 11.758 -7.127 C 52.065 82.205 52.537 81.368 52.537 80.466 z" style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: rgb(255, 255, 255); fill-rule: nonzero; opacity: 1;" transform=" matrix(1 0 0 1 0 0) " stroke-linecap="round" />
-                        </g>
-                        </svg> 
-                </button>
+            <button
+                class="bg-orange-400 h-10 w-fit translate-y-[2px] px-2 rounded-lg text-white font-semibold hover:bg-red-500 border-2 lg:border-red-500 border-white duration-300">
+                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1"
+                    width="20px" height="20px" viewBox="0 0 256 256" xml:space="preserve">
+
+                    <defs>
+                    </defs>
+                    <g style="stroke: none; stroke-width: 0; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: none; fill-rule: nonzero; opacity: 1;"
+                        transform="translate(1.4065934065934016 1.4065934065934016) scale(2.81 2.81)">
+                        <path
+                            d="M 52.537 80.466 V 45.192 L 84.53 2.999 C 85.464 1.768 84.586 0 83.041 0 H 6.959 C 5.414 0 4.536 1.768 5.47 2.999 l 31.994 42.192 v 43.441 c 0 1.064 1.163 1.719 2.073 1.167 l 11.758 -7.127 C 52.065 82.205 52.537 81.368 52.537 80.466 z"
+                            style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: rgb(255, 255, 255); fill-rule: nonzero; opacity: 1;"
+                            transform=" matrix(1 0 0 1 0 0) " stroke-linecap="round" />
+                    </g>
+                </svg>
+            </button>
         </form>
-
     </div>
+
 
         
       {% block body %}

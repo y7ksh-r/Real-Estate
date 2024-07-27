@@ -53,12 +53,12 @@
     </style>
 </head>
 
-<body class="">
+<body class="bg-gray-900">
     <!-- <link rel="stylesheet" href="{% static 'css/main.css' %}"> -->
 
     <script src="{%static 'js/filter.js'%}"></script>
 
-    <div class="navbar-lg lg:hidden hidden flex flex-col bg-white shadow-lg rounded-lg p-4  absolute mt-12 lg:m-0 lg:w-fit w-1/2 h-full space-y-4  lg:font-semibold "
+    <div class="navbar-lg lg:hidden hidden flex flex-col bg-orange-400 text-white font-medium shadow-lg rounded-lg p-4  absolute mt-12 lg:m-0 lg:w-fit w-1/2 h-full space-y-4  lg:font-semibold "
     id="menu">
     <a href="#home" class="border-b p-3 lg:border-none lg:text-lg hover:bg-orange-500 rounded-xl  hover:text-black">Home</a>
     <a href="#about" class="border-b p-3 lg:border-none lg:text-lg hover:bg-orange-500 rounded-xl   hover:text-black">About</a>
@@ -66,12 +66,12 @@
     <a href="#contact" class="border-b p-3 lg:border-none  lg:text-lg hover:bg-orange-500 rounded-xl  hover:text-black">Contact</a>
 </div>
 
-    <div class="navbar flex justify-between bg-orange-500 p-2 w-screen items-center fixed lg:sticky top-0">
-        <div class="navbar-lg hidden flex flex-col bg-white lg:bg-transparent shadow-lg lg:shadow-none rounded-lg p-4 lg:static absolute mt-12 lg:m-0 lg:w-fit lg:space-x-6 w-1/2 h-full space-y-4 lg:block lg:text-white lg:font-semibold ">
-            <a href="#home" class="border-b p-3 lg:border-none lg:text-lg hover:bg-orange-500 rounded-xl  hover:text-black">Home</a>
-            <a href="#about" class="border-b p-3 lg:border-none lg:text-lg hover:bg-orange-500 rounded-xl   hover:text-black">About</a>
-            <a href="#services" class="border-b p-3 lg:border-none lg:text-lg hover:bg-orange-500 rounded-xl  hover:text-black">Services</a>
-            <a href="#contact" class="border-b p-3 lg:border-none  lg:text-lg hover:bg-orange-500 rounded-xl  hover:text-black">Contact</a>
+    <div class="navbar flex justify-between bg-orange-400 p-2 w-screen items-center fixed lg:sticky top-0">
+        <div class="navbar-lg hidden flex flex-col lg:bg-transparent shadow-lg lg:shadow-none rounded-lg p-4 lg:static absolute mt-12 lg:m-0 lg:w-fit lg:space-x-6 w-1/2 h-full space-y-4 lg:block lg:text-white lg:font-semibold  ">
+            <a href="#home" class="border-b p-3 lg:border-none lg:text-lg hover:bg-orange-500 rounded-xl  hover:text-black duration-300">Home</a>
+            <a href="#about" class="border-b p-3 lg:border-none lg:text-lg hover:bg-orange-500 rounded-xl   hover:text-black duration-300">About</a>
+            <a href="#services" class="border-b p-3 lg:border-none lg:text-lg hover:bg-orange-500 rounded-xl  hover:text-black duration-300">Services</a>
+            <a href="#contact" class="border-b p-3 lg:border-none  lg:text-lg hover:bg-orange-500 rounded-xl  hover:text-black duration-300">Contact</a>
         </div>
         <div class="hamburger lg:hidden " id="hamburger">
             <svg class="w-8 h-8 text-white duration-300 cursor-pointer" fill="none" stroke="currentColor"
@@ -94,7 +94,7 @@
 
         </div>
         <div class="company-logo">
-            <img src="/media/icons/image.png" alt="harsh" class="h-9 lg:h-16">
+            <img src="/media/icons/image1.png" alt="harsh" class="h-8 lg:h-16">
         </div>
     </div>
     <script>
@@ -205,36 +205,37 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
     </script>
-    <div class="!mt-16 lg:!mt-6 filters flex justify-center items-center w-screen mb-4 ">
+    
+    <div class="!pt-16 lg:!pt-0 lg:!mt-6 filters flex justify-center items-center w-screen pb-4 bg-orange-400 lg:bg-white ">
         <form method="get" action="{% url 'filteroption'%}">
             <select id="city" name="city"
-                class="rounded-lg h-10 w-20 border border-orange-400 overflow-y-scroll text-gray-700">
+                class="rounded-lg h-10 w-20 border-2 border-red-500  overflow-y-scroll text-gray-700">
 
-                <option value="" class="">City</option>
+                <option value="" class="text-sm">City</option>
                 {% for city in cities %}
-                <option value="{{ city }}">{{ city }}</option>
+                <option value="{{ city }}" class="text-sm">{{ city }}</option>
                 {% endfor %}
 
             </select>
 
             <select id="project" name="project"
-                class="rounded-lg h-10 border-orange-400 overflow-y-scroll text-gray-700">
-                <option value="">Project</option>
+                class="rounded-lg h-10 border-2 border-red-500 overflow-y-scroll text-gray-700">
+                <option value="" class="text-sm">Project</option>
             </select>
 
             <select id="price_range" name="price_range"
-                class="rounded-lg h-10 w-[6rem] border-orange-400 overflow-y-scroll text-gray-700">
-                <option value="">Price</option>
-                <option value="10">10-20 lakh</option>
-                <option value="20">20-30 lakh</option>
-                <option value="30">30-50 lakh</option>
-                <option value="50">50-70 lakh</option>
-                <option value="70">70-90 lakh</option>
-                <option value="1">Above 1Cr</option>
+                class="rounded-lg h-10 w-[6rem] border-2 border-red-500  overflow-y-scroll text-gray-700">
+                <option value="" class="text-sm">Price</option>
+                <option value="10" class="text-sm">10-20 lakh</option>
+                <option value="20" class="text-sm">20-30 lakh</option>
+                <option value="30" class="text-sm">30-50 lakh</option>
+                <option value="50" class="text-sm">50-70 lakh</option>
+                <option value="70" class="text-sm">70-90 lakh</option>
+                <option value="1" class="text-sm">Above 1Cr</option>
             </select>
 
             <button
-                class="bg-orange-400 h-8 w-fit px-2 rounded-lg text-white font-semibold hover:bg-orange-500 active:border border-black">
+                class="bg-orange-400 p-2 rounded-lg text-white font-semibold hover:bg-red-500 border-2 lg:border-red-500 border-white duration-300">
                 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1"
                     width="20px" height="20px" viewBox="0 0 256 256" xml:space="preserve">
 
@@ -255,7 +256,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     </div>
-    <div class="slideshow w-screen h-1/3 lg:h-[30vw] overflow-hidden lg:relative" id="slideshow">
+    <div class="slideshow w-screen h-1/3 lg:h-[30vw] relative" id="slideshow">
         {% for property in properties %}
         <a href="/main/prop_view/{{property.id}}">
             <div class="property w-[100vw] h-[90vw] rounded-lg p-1 border flex flex-col bg-white">
@@ -263,7 +264,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     <img src="/media/{{property.main_img}}" alt="Beautiful Family Home"
                         class="object-cover object-center w-full h-full lg:object-contain">
                 </div>
-                <div class="description space-y-2 mx-2 lg:absolute lg:bg-white lg:p-10 !lg:rounded-2xl " id="description-{{ forloop.counter }}">
+                <div class="description space-y-2 lg:space-y-4 mx-2 lg:translate-x-28 lg:translate-y-36 lg:absolute lg:bg-white lg:p-10 lg:py-16 lg:rounded-xl " id="description-{{ forloop.counter }}">
                     <h2 class="font-semibold text-xl lg:text-3xl">{{ property.title }}</h2>
                     <div class="flex gap-x-5 font-semibold text-gray-800 text-xl lg:text-2xl">
                         <p>₹ {{ property.price }}</p>
@@ -271,18 +272,19 @@ document.addEventListener('DOMContentLoaded', () => {
                         <p>{{ property.bedrooms }}BHK</p>
                     </div>
                     <p class="lg:text-xl"> {{ property.city }}- {{property.zip_code }}</p>
+                    <button class="bg-red-500 text-white p-2 px-3 font-bold !mt-8 rounded-2xl hover:bg-red-600 hidden lg:block">View Details </button>
                 </div>
             </div>
         </a>
         {% endfor %}
     </div>
     
-    <div class="projects m-2 space-y-2">
+    <div class="projects m-2 space-y-2 lg:space-y-4">
         <h2 class="font-semibold text-xl underline ">ALL ></h2>
-        <div class="flex space-x-2 overflow-x-scroll pb-2">
+        <div class="flex space-x-2 overflow-x-scroll lg:space-x-4 pb-2">
             {% for property in properties %}
             <a href="/main/prop_view/{{property.id}}">
-                <div class="property w-[80vw] h-[90vw] rounded-lg p-1 border flex flex-col bg-white">
+                <div class="property w-[80vw] h-[90vw] lg:w-[25vw] lg:h-[20vw] rounded-lg p-1 border flex flex-col bg-white">
                     <div class="display h-[70%] w-full overflow-hidden rounded-lg">
                         <img src="/media/{{property.main_img}}" alt="Beautiful Family Home"
                             class="object-cover object-center w-full h-full">
@@ -305,10 +307,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
         <h2 class="font-semibold text-xl underline bg-transparent ">READY TO MOVE ></h2>
-        <div class="flex space-x-2 overflow-x-scroll pb-2">
+        <div class="flex space-x-2 overflow-x-scroll lg:space-x-4 pb-2">
             {% for property in rtm %}
             <a href="/main/prop_view/{{property.id}}">
-                <div class="property w-[80vw] h-[90vw] rounded-lg p-1 border flex flex-col bg-white">
+                <div class="property w-[80vw] h-[90vw] lg:w-[25vw] lg:h-[20vw] rounded-lg p-1 border flex flex-col bg-white">
                     <div class="display h-[70%] w-full overflow-hidden rounded-lg">
                         <img src="/media/{{property.main_img}}" alt="Beautiful Family Home"
                             class="object-cover object-center w-full h-full">
@@ -330,10 +332,10 @@ document.addEventListener('DOMContentLoaded', () => {
         </div>
 
         <h2 class="font-semibold text-xl underline">UNDER CONSTRUCTION ></h2>
-        <div class="flex space-x-2 overflow-x-scroll pb-2">
+        <div class="flex space-x-2 overflow-x-scroll lg:space-x-4 pb-2">
             {% for property in properties %}
             <a href="/main/prop_view/{{property.id}}">
-                <div class="property w-[80vw] h-[90vw] rounded-lg p-1 border flex flex-col bg-white">
+                <div class="property w-[80vw] h-[90vw] lg:w-[25vw] lg:h-[20vw] rounded-lg p-1 border flex flex-col bg-white">
                     <div class="display h-[70%] w-full overflow-hidden rounded-lg">
                         <img src="/media/{{property.main_img}}" alt="Beautiful Family Home"
                             class="object-cover object-center w-full h-full">
@@ -355,10 +357,10 @@ document.addEventListener('DOMContentLoaded', () => {
         </div>
 
         <h2 class="font-semibold text-xl underline ">COST EFFICIENT></h2>
-        <div class="flex space-x-2 overflow-x-scroll pb-2">
+        <div class="flex space-x-2 lg:space-x-4 overflow-x-scroll pb-2">
             {% for property in ce %}
             <a href="/main/prop_view/{{property.id}}">
-                <div class="property w-[80vw] h-[90vw] rounded-lg p-1 border flex flex-col bg-white">
+                <div class="property w-[80vw] h-[90vw] lg:w-[25vw] lg:h-[20vw] rounded-lg p-1 border flex flex-col bg-white">
                     <div class="display h-[70%] w-full overflow-hidden rounded-lg">
                         <img src="/media/{{property.main_img}}" alt="Beautiful Family Home"
                             class="object-cover object-center w-full h-full">

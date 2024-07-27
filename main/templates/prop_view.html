@@ -1,106 +1,188 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     {% load static tailwind_tags %}
     {%load static%}
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Real Estate Property</title>
-    <link rel="stylesheet" href="{%static 'css/prop_view.css' %}">
     {% tailwind_css %}
 </head>
+
 <body>
-    <div class="property-container">
-        <h1 class="property-title">{{prop.title}}</h1>
-        <div class="property-image">
-            <img src="/media/{{prop.main_img}}" alt="Beautiful Family Home">
+    <div class="property-container m-2">
+        <div class="property-image rounded-lg">
+            <img src="/media/{{prop.main_img}}" alt="Beautiful Family Home" class="rounded-lg">
         </div>
         <div class="property-details">
-            <p><strong>Location:</strong> {{prop.address}}</p>
-            <p><strong>Price:</strong>{{prop.price}}</p>
-            <p><strong>Bedrooms:</strong>{{prop.bedrooms}}</p>
-            <p><strong>Bathrooms:</strong> {{prop.bathrooms}}</p>
-            <p><strong>Square Footage:</strong> 2,500 sq ft</p>
-            <p><strong>Description:</strong>{{prop.description}}</p>
-            <button onclick="document.querySelector('.container').style.display='flex'">Inquiry</button>
-           <div> {% if messages %}
-        
-            {% for message in messages %}
-               <li style="color: brown;">
+            <h1 class="property-title text-2xl font-semibold my-4">{{prop.title}}</h1>
+            <div class="details-elements grid grid-cols-2 bg-white shadow-md rounded-lg">
+                <div>
+                    <p><strong>Location:</strong><br>{{prop.address}}</p>
+                </div>
+                <div>
+                    <p><strong>Price:</strong><br>{{prop.price}}</p>
+                </div>
+                <div>
+                    <p><strong>Bedrooms:</strong><br>{{prop.bedrooms}}</p>
+                </div>
+                <div>
+                    <p><strong>Carpet Area:</strong> <br> 2,500 sq ft</p>
+                </div>
+                <div class="col-span-2">
+                    <p><strong>Description:</strong><br>{{prop.description}}</p>
+                </div>
+                <div><button onclick="document.querySelector('.container').style.display='flex'"
+                        class="bg-red-500 text-white p-1 px-2 rounded-lg font-semibold my-4">Inquiry</button></div>
+            </div>
+            <div> {% if messages %}
+
+                {% for message in messages %}
+                <li style="color: brown;">
                     {{ message }}
                 </li>
-            {% endfor %}
-        </ul>
-    {% endif %}</div>
-        </div>
-        <div class="property-gallery">
-            <h2>More Images</h2>
-            <div class="gallery-images">
-                {%for img in photos%}
-                <img src="/media/{{img.image}}" alt="Property Image 1">
-                {%endfor%}
-                <a href="/main/moreimages/{{prop.id}}">{{remaining}}More</a>
-               
-
-            </div>
-            <div class="google-map">
-                <iframe src="{{prop.map_url}}"width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-              </div>
-        </div>           
-         <div><h2>More like this</h2>
-        </div>
-        <div style="display: flex">
-
-            
-
-            <div>
-                <h1>Similar price</h1>
-                <a href="/main/prop_view/{{sp.id}}"><img src="/media/{{sp.main_img}}" alt="Property Image 1"></a>
-                <p><strong>name:</strong> {{sp.title}}</p>
-                <p><strong>Price:</strong>{{sp.price}}</p>
-                
-            </div>
-            <div>
-                <h1>Similar Size</h1>
-                <a href="/main/prop_view/{{ss.id}}"></a><img src="/media/{{ss.main_img}}" alt="Property Image 1">
-                <p><strong>name:</strong> {{ss.title}}</p>
-                <p><strong>Price:</strong>{{ss.price}}</p>
-                
-            </div>
-            <div>
-                <h1>More from {{prop.city}}</h1>
-                <a href="/main/prop_view/{{sc.id}}"><img src="/media/{{sc.main_img}}" alt="Property Image 1"></a>
-                <p><strong>name:</strong> {{sc.title}}</p>
-                <p><strong>Price:</strong>{{sc.price}}</p>
-                
-            </div>
-            <div>
-                <h1>More from {{prop.devloper}}</h1>
-                <a href="/main/prop_view/{{sd.id}}"><img src="/media/{{sd.main_img}}" alt="Property Image 1"></a>
-                <p><strong>name:</strong> {{sd.title}}</p>
-                <p><strong>Price:</strong>{{sd.price}}</p>
-                
+                {% endfor %}
+                </ul>
+                {% endif %}
             </div>
         </div>
-
     </div>
-    
-    <style>/* Overlay background */
+    <h2>More Images</h2>
+    <div class="property-gallery flex">
+        <div class="gallery-images">
+            {%for img in photos%}
+            <img src="/media/{{img.image}}" alt="Property Image 1">
+            {%endfor%}
+            <a href="/main/moreimages/{{prop.id}}">{{remaining}}More</a>
+
+
+        </div>
+        <div class="google-map">
+            <iframe src="{{prop.map_url}}" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+    </div>
+    <div class=" space-y-3">
+        <h2 class="font-semibold text-2xl mt-3">Suggested according to</h2>
+
+        <h1 class="font-semibold text-xl">Similar price</h1>
+        <div class="flex space-x-2 overflow-x-scroll lg:space-x-4 pb-2">
+            <a href="/main/prop_view/{{sp.id}}"></a>
+            <div
+                class="property w-[80vw] h-[90vw] lg:w-[25vw] lg:h-[20vw] rounded-lg p-1 border flex flex-col bg-white">
+                <div class="display h-[70%] w-full overflow-hidden rounded-lg">
+                    <img src="/media/{{sp.main_img}}" alt="Beautiful Family Home"
+                        class="object-cover object-center w-full h-full">
+                </div>
+                <div class="description space-y-2 mx-2">
+                    <h2 class="font-semibold text-xl">{{ sp.title }}</h2>
+                    <div class="flex gap-x-5 font-semibold text-gray-800 text-xl">
+                        <p>₹ {{ sp.price }}</p>
+                        <p>|</p>
+                        <p>{{ sp.bedrooms }}BHK</p>
+                    </div>
+                    <p> {{ sp.city }}- {{sp.zip_code }}</p>
+
+                </div>
+            </div>
+            </a>
+        </div>
+
+        <h1 class="font-semibold text-xl">Similar Size</h1>
+        <div class="flex space-x-2 overflow-x-scroll lg:space-x-4 pb-2">
+            <a href="/main/prop_view/{{ss.id}}"></a>
+            <div
+                class="property w-[80vw] h-[90vw] lg:w-[25vw] lg:h-[20vw] rounded-lg p-1 border flex flex-col bg-white">
+                <div class="display h-[70%] w-full overflow-hidden rounded-lg">
+                    <img src="/media/{{ss.main_img}}" alt="Beautiful Family Home"
+                        class="object-cover object-center w-full h-full">
+                </div>
+                <div class="description space-y-2 mx-2">
+                    <h2 class="font-semibold text-xl">{{ ss.title }}</h2>
+                    <div class="flex gap-x-5 font-semibold text-gray-800 text-xl">
+                        <p>₹ {{ ss.price }}</p>
+                        <p>|</p>
+                        <p>{{ ss.bedrooms }}BHK</p>
+                    </div>
+                    <p> {{ ss.city }}- {{ss.zip_code }}</p>
+                </div>
+            </div>
+            </a>
+        </div>
+        <h1 class="font-semibold text-xl">More from {{prop.city}}</h1>
+        <div class="flex space-x-2 overflow-x-scroll lg:space-x-4 pb-2">
+            <a href="/main/prop_view/{{sc.id}}"></a>
+            <div
+                class="property w-[80vw] h-[90vw] lg:w-[25vw] lg:h-[20vw] rounded-lg p-1 border flex flex-col bg-white">
+                <div class="display h-[70%] w-full overflow-hidden rounded-lg">
+                    <img src="/media/{{sc.main_img}}" alt="Beautiful Family Home"
+                        class="object-cover object-center w-full h-full">
+                </div>
+                <div class="description space-y-2 mx-2">
+                    <h2 class="font-semibold text-xl">{{ sc.title }}</h2>
+                    <div class="flex gap-x-5 font-semibold text-gray-800 text-xl">
+                        <p>₹ {{ sc.price }}</p>
+                        <p>|</p>
+                        <p>{{ sc.bedrooms }}BHK</p>
+                    </div>
+                    <p> {{ sc.city }}- {{sc.zip_code }}</p>
+                </div>
+            </div>
+            </a>
+        </div>
+        <h1 class="font-semibold text-xl">More from {{prop.devloper}}</h1>
+        <div class="flex space-x-2 overflow-x-scroll lg:space-x-4 pb-2">
+            <a href="/main/prop_view/{{sd.id}}"></a>
+            <div
+                class="property w-[80vw] h-[90vw] lg:w-[25vw] lg:h-[20vw] rounded-lg p-1 border flex flex-col bg-white">
+                <div class="display h-[70%] w-full overflow-hidden rounded-lg">
+                    <img src="/media/{{sd.main_img}}" alt="Beautiful Family Home"
+                        class="object-cover object-center w-full h-full">
+                </div>
+                <div class="description space-y-2 mx-2">
+                    <h2 class="font-semibold text-xl">{{ sd.title }}</h2>
+                    <div class="flex gap-x-5 font-semibold text-gray-800 text-xl">
+                        <p>₹ {{ sd.price }}</p>
+                        <p>|</p>
+                        <p>{{ sd.bedrooms }}BHK</p>
+                    </div>
+                    <p> {{ sd.city }}- {{sd.zip_code }}</p>
+
+                </div>
+            </div>
+            </a>
+
+        </div>
+    </div>
+
+    <style>
+        /* Overlay background */
         .container {
-            display: none; /* Hidden by default */
-            position: fixed; /* Stay in place */
-            z-index: 1; /* Sit on top */
+            display: none;
+            /* Hidden by default */
+            position: fixed;
+            /* Stay in place */
+            z-index: 1;
+            /* Sit on top */
             left: 0;
             top: 0;
-            width: 100%; /* Full width */
-            height: 100%; /* Full height */
-            overflow: auto; /* Enable scroll if needed */
-            background-color: rgb(0,0,0); /* Fallback color */
-            background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-            justify-content: center; /* Center the form horizontally */
-            align-items: center; /* Center the form vertically */
+            width: 100%;
+            /* Full width */
+            height: 100%;
+            /* Full height */
+            overflow: auto;
+            /* Enable scroll if needed */
+            background-color: rgb(0, 0, 0);
+            /* Fallback color */
+            background-color: rgba(0, 0, 0, 0.4);
+            /* Black w/ opacity */
+            justify-content: center;
+            /* Center the form horizontally */
+            align-items: center;
+            /* Center the form vertically */
         }
-        
+
         /* Center the form */
         form {
             background-color: #fefefe;
@@ -108,16 +190,18 @@
             padding: 20px;
             border: 1px solid #888;
             width: 80%;
-            max-width: 400px; /* Max width for the form */
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-            position: relative; /* For the close button positioning */
+            max-width: 400px;
+            /* Max width for the form */
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            position: relative;
+            /* For the close button positioning */
         }
-        
+
         /* Form group styling */
         .form-group {
             margin-bottom: 15px;
         }
-        
+
         /* Close button */
         .close {
             position: absolute;
@@ -127,42 +211,43 @@
             font-size: 28px;
             font-weight: bold;
         }
-        
+
         .close:hover,
         .close:focus {
             color: black;
             text-decoration: none;
             cursor: pointer;
         }
-        </style>
-    
-        <div class="container">
+    </style>
 
-            <form action="/main/contactus/" method="POST">
-                {% csrf_token %}<div class="form-group">
-                    <input type="hidden"id="property" name="property" value="{{prop.title}}">
-                    <label  for="Property_name">{{prop.title}}</label>
-                  
-                </div>
-    
-                <div class="form-group">
-                    <label for="name">Name:</label>
-                    <input type="text" id="name" name="name" required>
-                </div>
-                <div class="form-group">
-                    <label for="phone">Phone Number:</label>
-                    <input type="tel" id="phone" name="phone" required>
-                </div>
-                <div class="form-group">
-                    <label for="email">Email:</label>
-                    <input type="email" id="email" name="email" required>
-                </div>
-                <button  type="submit">Submit</button>
-            </form>
-        </div>
-        <span class="close" onclick="document.querySelector('.container').style.display='none'">&times;</span>
-        <button onclick="document.querySelector('.container').style.display='flex'">Open Contact Form</button>
-    
- 
+    <div class="container">
+
+        <form action="/main/contactus/" method="POST">
+            {% csrf_token %}<div class="form-group">
+                <input type="hidden" id="property" name="property" value="{{prop.title}}">
+                <label for="Property_name">{{prop.title}}</label>
+
+            </div>
+
+            <div class="form-group">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+            <div class="form-group">
+                <label for="phone">Phone Number:</label>
+                <input type="tel" id="phone" name="phone" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+    <span class="close" onclick="document.querySelector('.container').style.display='none'">&times;</span>
+    <button onclick="document.querySelector('.container').style.display='flex'">Open Contact Form</button>
+
+
 </body>
+
 </html>
