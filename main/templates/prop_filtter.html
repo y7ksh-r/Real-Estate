@@ -6,23 +6,31 @@
 
 
 <div class="projects m-2">
-    <h2 class="font-semibold text-xl underline my-3 ">RESULTS </h2>
-    <div class="flex flex-col lg:grid lg:grid-cols-3 justify-center space-y-2 overflow-y-scroll">
+    <h2 class=" text-lg ml-2 text-white my-6 ">Your Search Results > </h2>
+    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 justify-center gap-2 overflow-y-scroll">
         {% for property in properties %}
         <a href="/main/prop_view/{{property.id}}">
-            <div class="property w-[80vw] h-[90vw] lg:w-[30vw] lg:h-[25vw] rounded-lg p-1 border flex flex-col bg-white">
-                <div class="display h-[70%] w-full overflow-hidden rounded-lg">
+            <div class="property w-[200px] h-[345px] lg:w-[25vw] lg:h-[20vw] flex flex-col relative group">
+                <div class="display h-full w-full overflow-hidden rounded-3xl">
                     <img src="/media/{{property.main_img}}" alt="Beautiful Family Home"
-                        class="object-cover object-center w-full h-full">
+                        class="object-cover object-center w-full h-full group-hover:scale-110 duration-500">
                 </div>
-                <div class="description space-y-2 mx-2">
-                    <h2 class="font-semibold text-xl">{{ property.title }}</h2>
-                    <div class="flex gap-x-5 font-semibold text-gray-800 text-xl">
-                        <p>₹ {{ property.price }}</p>
+                <div class="description h-[41%] w-full space-y-2 px-2 mt-[102%] absolute backdrop-blur-lg rounded-3xl">
+                    <h2 class="font-semibold bg-gradient-to-br from-white from-[-1rem] via-gray-900 via-50% to-black  bg-clip-text text-transparent text-2xl price"> ₹ {{ property.price }}</h2>
+                    <div class="flex gap-x-5 h-6 overflow-hidden text-white">
+                        <p> {{ property.title }}</p>
                         <p>|</p>
                         <p>{{ property.bedrooms }}BHK</p>
+                    </div>  
+                    <p class="text-white"> {{ property.city }}- {{property.zip_code }}</p>
+                    <div class="flex justify-between items-center rounded-3xl border border-black px-2 -mx-1 py-[2px]">
+                        <span>
+                            More details
+                        </span>
+                        <span class="group-hover:rotate-[360deg] duration-500">
+                            <img src="/media/icons/arrow.png" alt="" class="h-6">
+                        </span>
                     </div>
-                    <p> {{ property.city }}- {{property.zip_code }}</p>
 
                 </div>
             </div>

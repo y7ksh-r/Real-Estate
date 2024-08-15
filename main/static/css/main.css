@@ -77,9 +77,6 @@ body {
     cursor: pointer;
   }
 
-  .filters button:hover {
-    background-color: #555;
-  }
 
   .content {
     text-align: center;
