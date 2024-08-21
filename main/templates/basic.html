@@ -70,32 +70,39 @@
 
         <div
             class=" lg:!pt-0 lg:!mt-6 filters flex justify-center items-center w-[90vw] mx-[5vw] mb-4 bg-transparent lg:bg-white border border-white m-1 bg-white bg-opacity-20 rounded-3xl mt-28 ">
-            <form method="get" action="{% url 'filteroption'%}">
+           <form method="get" action="{% url 'filteroption'%}" name="filteroption">
                 <select id="city" name="city"
                     class=" h-10 w-20 border-none bg-transparent  overflow-y-scroll text-white focus:outline-none focus:ring-0 focus:border-transparent">
 
                     <option value="" class="text-sm">City</option>
                     {% for city in cities %}
-                    <option value="{{ city }}" class="text-sm">{{ city }}</option>
+                    <option value="{{ city }}" {% if city == selected_city %}selected{% endif %}>
+                        {{ city }}
+                    </option>
                     {% endfor %}
 
                 </select>
+                <select id="size" name="size"
+                class=" h-10 border-none bg-transparent overflow-y-scroll text-white focus:outline-none focus:ring-0 focus:border-transparent">
+                <option value="" class="text-sm ">Size</option>
+                {% for size in bedrooms %}
+                <option value="{{ size }}" {% if size|stringformat:"s" == selected_size|stringformat:"s" %}selected{% endif %}>
+                    {{ size }} BHK
+                </option>
+                {% endfor %}
+            </select>
 
-                <select id="project" name="project"
-                    class=" h-10 border-none bg-transparent overflow-y-scroll text-white focus:outline-none focus:ring-0 focus:border-transparent">
-                    <option value="" class="text-sm">Project</option>
-                </select>
-
-                <select id="price_range" name="price_range"
-                    class=" h-10 w-[6rem] border-none bg-transparent overflow-y-scroll text-white focus:outline-none focus:ring-0 focus:border-transparent">
-                    <option value="" class="text-sm">Price</option>
-                    <option value="10" class="text-sm">10-20 lakh</option>
-                    <option value="20" class="text-sm">20-30 lakh</option>
-                    <option value="30" class="text-sm">30-50 lakh</option>
-                    <option value="50" class="text-sm">50-70 lakh</option>
-                    <option value="70" class="text-sm">70-90 lakh</option>
-                    <option value="1" class="text-sm">Above 1Cr</option>
-                </select>
+            <select id="price_range" name="price_range"
+            class="h-10 w-[6rem] border-none bg-transparent overflow-y-scroll text-white focus:outline-none focus:ring-0 focus:border-transparent">
+            <option value="" class="text-sm">Price</option>
+            <option value="10" class="text-sm" {% if selected_price_range == '10' %}selected{% endif %}>10-20 lakh</option>
+            <option value="20" class="text-sm" {% if selected_price_range == '20' %}selected{% endif %}>20-30 lakh</option>
+            <option value="30" class="text-sm" {% if selected_price_range == '30' %}selected{% endif %}>30-50 lakh</option>
+            <option value="50" class="text-sm" {% if selected_price_range == '50' %}selected{% endif %}>50-70 lakh</option>
+            <option value="70" class="text-sm" {% if selected_price_range == '70' %}selected{% endif %}>70-90 lakh</option>
+            <option value="1" class="text-sm" {% if selected_price_range == '1' %}selected{% endif %}>Above 1Cr</option>
+        </select>
+  
 
                 <button class="bg-transparent text-white font-semibold lg:border-red-500 border-none duration-300">
                     <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1"

@@ -87,7 +87,7 @@
 <body class="bg-black">
     <!-- <link rel="stylesheet" href="{% static 'css/main.css' %}"> -->
 
-    <script src="{%static 'js/filter.js'%}"></script>
+  
 
     <div class="bg-image bg-[url('/media/icons/bgimage.jpg')] h-[20rem] bg-no-repeat bg-cover">
 
@@ -140,7 +140,7 @@
 
         <div
             class=" lg:!pt-0 lg:!mt-6 filters flex justify-center items-center w-[90vw] mx-[5vw] mb-4 bg-transparent lg:bg-white border border-white m-1 bg-white bg-opacity-20 rounded-3xl mt-28 ">
-            <form method="get" action="{% url 'filteroption'%}">
+            <form method="GET" action="{% url 'filteroption'%}">
                 <select id="city" name="city"
                     class=" h-10 w-20 border-none bg-transparent  overflow-y-scroll text-white focus:outline-none focus:ring-0 focus:border-transparent">
 
@@ -150,10 +150,14 @@
                     {% endfor %}
                 </select>
 
-                <select id="project" name="project"
+                <select id="size" name="size"
                     class=" h-10 border-none bg-transparent overflow-y-scroll text-white focus:outline-none focus:ring-0 focus:border-transparent">
-                    <option value="" class="text-sm inh">Project</option>
+                    <option value="" class="text-sm inh">Size</option>
+                    {% for size in bedrooms %}
+                    <option value="{{ size }}" class="text-sm">{{ size }} BHK</option>
+                    {% endfor %}
                 </select>
+             
 
                 <select id="price_range" name="price_range"
                     class=" h-10 w-[6rem] border-none bg-transparent overflow-y-scroll text-white focus:outline-none focus:ring-0 focus:border-transparent">
@@ -200,14 +204,14 @@
             <h2 class="font-semibold text-xl ml-2 text-white">All ></h2>
             <div class="flex space-x-2 overflow-x-scroll lg:space-x-4 pb-2">
                 {% for property in properties %}
-                <a href="/main/prop_view/{{property.id}}">
+                <a href="prop_view/{{property.id}}">
                     <div class="property w-[206px] h-[345px] lg:w-[25vw] lg:h-[20vw] flex flex-col relative group">
                         <div class="display h-full w-full overflow-hidden rounded-3xl">
                             <img src="/media/{{property.main_img}}" alt="Beautiful Family Home"
                                 class="object-cover object-center w-full h-full group-hover:scale-110 duration-500">
                         </div>
                         <div class="description h-[41%] w-full space-y-2 px-2 mt-[100%] absolute backdrop-blur-lg rounded-3xl">
-                            <h2 class="font-semibold bg-gradient-to-br from-white from-[-1rem] via-gray-900 via-50% to-black  bg-clip-text text-transparent text-2xl price"> ₹ {{ property.price }}</h2>
+                            <h2 class="font-semibold bg-gradient-to-br from-white from-[-1rem] via-gray-900 via-50% to-black  bg-clip-text text-transparent text-2xl price"> ₹ {{ property.price2 }}</h2>
                             <div class="flex gap-x-5 h-6 overflow-hidden text-white">
                                 <p> {{ property.title }}</p>
                                 <p>|</p>
@@ -234,14 +238,14 @@
             <h2 class="font-semibold text-xl bg-transparent text-white ">Ready to move ></h2>
             <div class="flex space-x-2 overflow-x-scroll lg:space-x-4 pb-2">
                 {% for property in rtm %}
-                <a href="/main/prop_view/{{property.id}}">
+                <a href="prop_view/{{property.id}}">
                     <div class="property w-[206px] h-[345px] lg:w-[25vw] lg:h-[20vw] flex flex-col relative group ">
                         <div class="display h-full w-full overflow-hidden rounded-3xl">
                             <img src="/media/{{property.main_img}}" alt="Beautiful Family Home"
                                 class="object-cover object-center w-full h-full group-hover:scale-110 duration-500">
                         </div>
                         <div class="description h-[41%] w-full space-y-2 px-2 mt-[100%] absolute backdrop-blur-lg rounded-3xl">
-                            <h2 class="font-semibold bg-gradient-to-br from-white from-[-1rem] via-gray-900 via-50% to-black  bg-clip-text text-transparent text-2xl price"> ₹ {{ property.price }}</h2>
+                            <h2 class="font-semibold bg-gradient-to-br from-white from-[-1rem] via-gray-900 via-50% to-black  bg-clip-text text-transparent text-2xl price"> ₹ {{ property.price2 }}</h2>
                             <div class="flex gap-x-5 h-6 overflow-hidden text-white">
                                 <p> {{ property.title }}</p>
                                 <p>|</p>
@@ -267,14 +271,14 @@
             <h2 class="font-semibold text-xl text-white">Under Construction ></h2>
             <div class="flex space-x-2 overflow-x-scroll lg:space-x-4 pb-2">
                 {% for property in uc %}
-                <a href="/main/prop_view/{{property.id}}">
+                <a href="prop_view/{{property.id}}">
                     <div class="property w-[206px] h-[345px] lg:w-[25vw] lg:h-[20vw] flex flex-col relative group ">
                         <div class="display h-full w-full overflow-hidden rounded-3xl">
                             <img src="/media/{{property.main_img}}" alt="Beautiful Family Home"
                                 class="object-cover object-center w-full h-full group-hover:scale-110 duration-500">
                         </div>
                         <div class="description h-[41%] w-full space-y-2 px-2 mt-[100%] absolute backdrop-blur-lg rounded-3xl">
-                            <h2 class="font-semibold bg-gradient-to-br from-white from-[-1rem] via-gray-900 via-50% to-black  bg-clip-text text-transparent text-2xl price"> ₹ {{ property.price }}</h2>
+                            <h2 class="font-semibold bg-gradient-to-br from-white from-[-1rem] via-gray-900 via-50% to-black  bg-clip-text text-transparent text-2xl price"> ₹ {{ property.price2 }}</h2>
                             <div class="flex gap-x-5 h-6 overflow-hidden text-white">
                                 <p> {{ property.title }}</p>
                                 <p>|</p>
@@ -302,14 +306,14 @@
             <h2 class="font-semibold text-xl text-white bg-transparent">Cost efficient ></h2>
             <div class="flex space-x-2 lg:space-x-4 overflow-x-scroll ">
                 {% for property in ce %}
-                <a href="/main/prop_view/{{property.id}}">
+                <a href="prop_view/{{property.id}}">
                     <div class="property w-[206px] h-[345px] lg:w-[25vw] lg:h-[20vw] flex flex-col relative group ">
                         <div class="display h-full w-full overflow-hidden rounded-3xl">
                             <img src="/media/{{property.main_img}}" alt="Beautiful Family Home"
                                 class="object-cover object-center w-full h-full group-hover:scale-110 duration-500">
                         </div>
                         <div class="description h-[41%] w-full space-y-2 px-2 mt-[100%] absolute backdrop-blur-lg rounded-3xl">
-                            <h2 class="font-semibold bg-gradient-to-br from-white from-[-1rem] via-gray-900 via-50% to-black  bg-clip-text text-transparent text-2xl price"> ₹ {{ property.price }}</h2>
+                            <h2 class="font-semibold bg-gradient-to-br from-white from-[-1rem] via-gray-900 via-50% to-black  bg-clip-text text-transparent text-2xl price"> ₹ {{ property.price2 }}</h2>
                             <div class="flex gap-x-5 h-6 overflow-hidden text-white">
                                 <p> {{ property.title }}</p>
                                 <p>|</p>

@@ -8,8 +8,56 @@
 <div class="projects m-2">
     <h2 class=" text-lg ml-2 text-white my-6 ">Your Search Results > </h2>
     <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 justify-center gap-2 overflow-y-scroll">
+        <div style="background-color: rgb(255, 255, 255);">
+            <form method="get" id="filter-form" action="{%url 'filteroption'%}">
+                <div class="filter-section">
+                    <h3>Projects in City</h3>
+                    {% for project in projects_in_city %}
+                    <label>
+                        <input type="checkbox" name="projects_in_city" value="{{ project }}" {% if project in selected_project_in_city %}checked{% endif %}> {{ project|capfirst }}
+                    </label>
+                    {% endfor %}
+                </div>
+                       
+                
+                <div class="filter-section">
+                    <input type="hidden" name="city" value="{{ selected_city }}">
+                    <input type="hidden" name="size" value="{{ selected_size }}">
+                    <input type="hidden" name="price_range" value="{{ selected_price_range }}">
+                
+                    <h3>Property Type</h3>
+                    {% for option in property_type_options %}
+                    <label>
+                        <input type="checkbox" name="property_type" value="{{ option }}" {% if option in selected_property_types %}checked{% endif %}> {{ option|capfirst }}
+                    </label>
+                    {% endfor %}
+                </div>
+            
+                <div class="filter-section">
+                    <h3>Sort by Price</h3>
+                    <label>
+                        <input type="radio" name="price_order" value="low_to_high" {% if selected_price_order == 'low_to_high' %}checked{% endif %}>
+                        Low to High
+                    </label>
+                    <label>
+                        <input type="radio" name="price_order" value="high_to_low" {% if selected_price_order == 'high_to_low' %}checked{% endif %}>
+                        High to Low
+                    </label>
+                </div>
+            
+                <div class="filter-section">
+                    <h3>Project Status</h3>
+                    {% for option in status_options %}
+                    <label>
+                        <input type="checkbox" name="status" value="{{ option }}" {% if option in selected_status %}checked{% endif %}> {{ option|capfirst }}
+                    </label>
+                    {% endfor %}
+                </div>
+            </form>
+            
+        </div>
         {% for property in properties %}
-        <a href="/main/prop_view/{{property.id}}">
+        <a href="{% url 'prop_view'%}">
             <div class="property w-[200px] h-[345px] lg:w-[25vw] lg:h-[20vw] flex flex-col relative group">
                 <div class="display h-full w-full overflow-hidden rounded-3xl">
                     <img src="/media/{{property.main_img}}" alt="Beautiful Family Home"
@@ -39,4 +87,22 @@
         {% endfor %}
     </div>
 </div>
+<script>
+    // Select all checkboxes and radio buttons within the form with ID 'filter-form'
+    const filters = document.querySelectorAll('#filter-form input[type="checkbox"], #filter-form input[type="radio"]');
+    
+    // Loop through each checkbox and radio button
+    filters.forEach(filter => {
+        // Add an event listener that triggers when the checkbox or radio button is changed
+        filter.addEventListener('change', function() {
+            // Submit the form automatically when a change is detected
+         
+
+            document.getElementById('filter-form').submit();
+            
+
+        });
+    });
+    </script>
+    
 {%endblock%}
