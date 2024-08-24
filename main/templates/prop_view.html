@@ -62,7 +62,7 @@
             {%for img in photos%}
             <img src="/media/{{img.image}}" alt="Property Image 1">
             {%endfor%}
-            <a href="/main/moreimages/{{prop.id}}">{{remaining}}More</a>
+            <a href="/moreimages/{{prop.id}}">{{remaining}}More</a>
 
 
         </div>
@@ -76,7 +76,7 @@
 
         <h1 class="font-semibold text-xl">Similar price</h1>
         <div class="flex space-x-2 overflow-x-scroll lg:space-x-4 pb-2">
-            <a href="/main/prop_view/{{sp.id}}"></a>
+            <a href="/prop_view/{{sp.id}}">
             <div
                 class="property w-[80vw] h-[90vw] lg:w-[25vw] lg:h-[20vw] rounded-lg p-1 border flex flex-col bg-white">
                 <div class="display h-[70%] w-full overflow-hidden rounded-lg">
@@ -99,7 +99,7 @@
 
         <h1 class="font-semibold text-xl">Similar Size</h1>
         <div class="flex space-x-2 overflow-x-scroll lg:space-x-4 pb-2">
-            <a href="/main/prop_view/{{ss.id}}"></a>
+            <a href="/prop_view/{{ss.id}}">
             <div
                 class="property w-[80vw] h-[90vw] lg:w-[25vw] lg:h-[20vw] rounded-lg p-1 border flex flex-col bg-white">
                 <div class="display h-[70%] w-full overflow-hidden rounded-lg">
@@ -120,7 +120,7 @@
         </div>
         <h1 class="font-semibold text-xl">More from {{prop.city}}</h1>
         <div class="flex space-x-2 overflow-x-scroll lg:space-x-4 pb-2">
-            <a href="/main/prop_view/{{sc.id}}"></a>
+            <a href="/prop_view/{{sc.id}}">
             <div
                 class="property w-[80vw] h-[90vw] lg:w-[25vw] lg:h-[20vw] rounded-lg p-1 border flex flex-col bg-white">
                 <div class="display h-[70%] w-full overflow-hidden rounded-lg">
@@ -141,7 +141,7 @@
         </div>
         <h1 class="font-semibold text-xl">More from {{prop.devloper}}</h1>
         <div class="flex space-x-2 overflow-x-scroll lg:space-x-4 pb-2">
-            <a href="/main/prop_view/{{sd.id}}"></a>
+            <a href="/prop_view/{{sd.id}}">
             <div
                 class="property w-[80vw] h-[90vw] lg:w-[25vw] lg:h-[20vw] rounded-lg p-1 border flex flex-col bg-white">
                 <div class="display h-[70%] w-full overflow-hidden rounded-lg">

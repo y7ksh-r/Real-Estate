@@ -4,7 +4,10 @@
         {%for img in photos%}
         <img src="/media/{{img.image}}" alt="Property Image 1">
         {%endfor%}
-        
-       
+        <div class="video-container">
+            <iframe src="{{property.video}}"frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
+        </div>
+       
+    
     </div>

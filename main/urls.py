@@ -10,4 +10,6 @@ urlpatterns = [
     path('contactus/', views.abt_us, name='contact_us'),
     path('moreimages/<int:pid>', views.more_img, name='more_img'),
     path("__reload__/", include("django_browser_reload.urls")),
+   
+    
     ]    
