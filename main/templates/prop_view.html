@@ -10,157 +10,196 @@
     {% tailwind_css %}
 </head>
 
-<body>
+<body class="bg-black px-2">
     <style>
         .price {
             font-family: "Old Standard TT", serif;
             font-weight: 700;
             font-style: normal;
-          }
-          
+        }
     </style>
-    <div class="property-container m-2">
-        <div class="property-image rounded-lg">
-            <img src="/media/{{prop.main_img}}" alt="Beautiful Family Home" class="rounded-lg">
+    <div class="navbar flex justify-center my-2">
+        <img src="/media/icons/image1.png" alt="harsh" class="h-8 lg:h-12">
+    </div>
+    <div class="property-container m-2 relative">
+        <div class="property-image rounded-lg overflow-hidden h-[400px]">
+            <img src="/media/{{prop.main_img}}" alt="Beautiful Family Home"
+                class="rounded-lg object-cover w-full h-full object-center md:object-contain">
         </div>
-        <div class="property-details">
-            <h1 class="property-title text-2xl font-semibold my-4">{{prop.title}}</h1>
-            <div class="details-elements grid grid-cols-2 bg-white shadow-md rounded-lg">
-                <div>
-                    <p><strong>Location:</strong><br>{{prop.address}}</p>
-                </div>
-                <div>
-                    <p><strong>Price:</strong><br>{{prop.price}}</p>
-                </div>
-                <div>
-                    <p><strong>Bedrooms:</strong><br>{{prop.bedrooms}}</p>
-                </div>
-                <div>
-                    <p><strong>Carpet Area:</strong> <br> 2,500 sq ft</p>
-                </div>
-                <div class="col-span-2">
-                    <p><strong>Description:</strong><br>{{prop.description}}</p>
-                </div>
-                <div><button onclick="document.querySelector('.container').style.display='flex'"
-                        class="bg-red-500 text-white p-1 px-2 rounded-lg font-semibold my-4">Inquiry</button></div>
-            </div>
-            <div> {% if messages %}
-
-                {% for message in messages %}
-                <li style="color: brown;">
-                    {{ message }}
-                </li>
+        <a href="/moreimages/{{prop.id}}">
+            <div class="gallery-images flex h-14 rounded-lg absolute bottom-0 left-0 backdrop-blur-lg w-full px-2 lg:grid lg:grid-cols-2 lg:gap-1 lg:h-auto lg:w-28 p-1 group">
+    
+                {% for img in photos %}
+                <img src="/media/{{img.image}}" alt="Property Image 1" class="h-full object-cover rounded-lg group-hover:scale-105 duration-300">
                 {% endfor %}
-                </ul>
-                {% endif %}
+                <span class="text-white pl-2 flex items-center lg:absolute lg:bottom-0 lg:right-0 lg:flex-col group lg:bg-black lg:bg-opacity-60 lg:w-full lg:h-full lg:items-center lg:justify-center"><span>+{{remaining}}</span> More 
+                    <img src="/media/icons/arrow copy.png" alt="" class="h-5 pl-2 lg:group-hover:rotate-[360deg] duration-500">
+                </span>
             </div>
+        </a>
+    </div>
+    
+    <div class="property-details mt-6 mr-2">
+
+        <div
+            class="details-elements grid grid-cols-2 bg-transparent text-white backdrop-blur-lg shadow-md shadow-slate-600 rounded-lg p-2 mb-2">
+            <h1 class="property-title text-2xl font-semibold my-4 col-span-2">{{prop.title}}</h1>
+            <div class="border-b-[1px] rounded-r-xl w-[40vw] pb-1 ">
+                <p><strong>Location:</strong><br>{{prop.address}}</p>
+            </div>
+            <div class=" border-b w-[40vw] rounded-r-xl pb-1 ">
+                <p><strong>Price:</strong><br>{{prop.price}}</p>
+            </div>
+            <div class="border-b w-[40vw] rounded-r-xl pb-1 ">
+                <p><strong>Bedrooms:</strong><br>{{prop.bedrooms}}</p>
+            </div class="border-b w-40 pb-1 rounded-r-xl">
+            <div class="border-b w-[40vw] rounded-r-xl pb-1 ">
+                <p><strong>Carpet Area:</strong> <br> 2,500 sq ft</p>
+            </div>
+            <div class="col-span-2 ">
+                <p><strong>Description:</strong><br>{{prop.description}}</p>
+            </div class="border-b w-40 rounded-r-xl pb-1 ">
+            <div><button onclick="document.querySelector('.container').style.display='flex';"
+                    class="bg-red-500 text-white p-1 px-2 rounded-lg font-semibold my-4">Inquiry</button></div>
+        </div>
+        <div> {% if messages %}
+
+            {% for message in messages %}
+            <li style="color: brown;">
+                {{ message }}
+            </li>
+            {% endfor %}
+            </ul>
+            {% endif %}
         </div>
     </div>
-    <h2>More Images</h2>
-    <div class="property-gallery flex">
-        <div class="gallery-images">
-            {%for img in photos%}
-            <img src="/media/{{img.image}}" alt="Property Image 1">
-            {%endfor%}
-            <a href="/moreimages/{{prop.id}}">{{remaining}}More</a>
 
-
-        </div>
-        <div class="google-map">
-            <iframe src="{{prop.map_url}}" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
-                referrerpolicy="no-referrer-when-downgrade"></iframe>
-        </div>
+    <div class="google-map overflow-hidden relative">
+        <iframe src="{{prop.map_url}}" width="450" height="250" style="border:0;" allowfullscreen="" loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"></iframe>
     </div>
-    <div class=" space-y-3">
-        <h2 class="font-semibold text-2xl mt-3">Suggested according to</h2>
 
-        <h1 class="font-semibold text-xl">Similar price</h1>
-        <div class="flex space-x-2 overflow-x-scroll lg:space-x-4 pb-2">
-            <a href="/prop_view/{{sp.id}}">
-            <div
-                class="property w-[80vw] h-[90vw] lg:w-[25vw] lg:h-[20vw] rounded-lg p-1 border flex flex-col bg-white">
-                <div class="display h-[70%] w-full overflow-hidden rounded-lg">
-                    <img src="/media/{{sp.main_img}}" alt="Beautiful Family Home"
-                        class="object-cover object-center w-full h-full">
-                </div>
-                <div class="description space-y-2 mx-2">
-                    <h2 class="font-semibold text-xl">{{ sp.title }}</h2>
-                    <div class="flex gap-x-5 font-semibold text-gray-800 text-xl">
-                        <p>₹ {{ sp.price }}</p>
-                        <p>|</p>
-                        <p>{{ sp.bedrooms }}BHK</p>
+    <div class=" space-y-6">
+        <h2 class="font-semibold text-2xl mt-3 text-white flex items-center">Suggested according to
+            <img src="/media/icons/arrow copy.png" alt="" class="mt-1 ml-3 h-6">
+        </h2>
+
+        <h1 class="font-semibold text-xl text-white">Similar price</h1>
+        <div class="flex space-x-2 lg:space-x-4 overflow-x-scroll ">
+            <a href="prop_view/{{sp.id}}">
+                <div class="property w-[206px] h-[345px]  lg:w-[280px] lg:h-[475px] flex flex-col relative group ">
+                    <div class="display h-full w-full overflow-hidden rounded-3xl">
+                        <img src="/media/{{sp.main_img}}" alt="Beautiful Family Home"
+                            class="object-cover object-center w-full h-full group-hover:scale-110 duration-500">
                     </div>
-                    <p> {{ sp.city }}- {{sp.zip_code }}</p>
+                    <div class="description h-[41%] lg:h-[35%] lg:mt-[111%] w-full space-y-2 px-2 mt-[100%] absolute backdrop-blur-lg rounded-3xl lg:space-y-4">
+                        <h2 class="font-semibold bg-gradient-to-br from-white from-[-1rem] via-gray-900 via-50% to-black  bg-clip-text text-transparent text-2xl price"> ₹ {{ sp.price2 }}</h2>
+                        <div class="flex gap-x-5 h-6 overflow-hidden text-white">
+                            <p> {{ sp.title }}</p>
+                            <p>|</p>
+                            <p>{{ sp.bedrooms }}BHK</p>
+                        </div>  
+                        <p class="text-white"> {{ sp.city }}- {{sp.zip_code }}</p>
+                        <div class="flex justify-between items-center rounded-3xl border border-black px-2 -mx-1 py-[2px]">
+                            <span>
+                                More details
+                            </span>
+                            <span class="group-hover:rotate-[360deg] duration-500">
+                                <img src="/media/icons/arrow.png" alt="" class="h-6">
+                            </span>
+                        </div>
 
+                    </div>  
                 </div>
-            </div>
             </a>
         </div>
 
-        <h1 class="font-semibold text-xl">Similar Size</h1>
-        <div class="flex space-x-2 overflow-x-scroll lg:space-x-4 pb-2">
-            <a href="/prop_view/{{ss.id}}">
-            <div
-                class="property w-[80vw] h-[90vw] lg:w-[25vw] lg:h-[20vw] rounded-lg p-1 border flex flex-col bg-white">
-                <div class="display h-[70%] w-full overflow-hidden rounded-lg">
-                    <img src="/media/{{ss.main_img}}" alt="Beautiful Family Home"
-                        class="object-cover object-center w-full h-full">
-                </div>
-                <div class="description space-y-2 mx-2">
-                    <h2 class="font-semibold text-xl">{{ ss.title }}</h2>
-                    <div class="flex gap-x-5 font-semibold text-gray-800 text-xl">
-                        <p>₹ {{ ss.price }}</p>
-                        <p>|</p>
-                        <p>{{ ss.bedrooms }}BHK</p>
+        <h1 class="font-semibold text-xl text-white">More in {{prop.bedrooms}} BHK</h1>
+        <div class="flex space-x-2 lg:space-x-4 overflow-x-scroll ">
+            <a href="prop_view/{{ss.id}}">
+                <div class="property w-[206px] h-[345px]  lg:w-[280px] lg:h-[475px] flex flex-col relative group ">
+                    <div class="display h-full w-full overflow-hidden rounded-3xl">
+                        <img src="/media/{{ss.main_img}}" alt="Beautiful Family Home"
+                            class="object-cover object-center w-full h-full group-hover:scale-110 duration-500">
                     </div>
-                    <p> {{ ss.city }}- {{ss.zip_code }}</p>
+                    <div class="description h-[41%] lg:h-[35%] lg:mt-[111%] w-full space-y-2 px-2 mt-[100%] absolute backdrop-blur-lg rounded-3xl lg:space-y-4">
+                        <h2 class="font-semibold bg-gradient-to-br from-white from-[-1rem] via-gray-900 via-50% to-black  bg-clip-text text-transparent text-2xl price"> ₹ {{ ss.price2 }}</h2>
+                        <div class="flex gap-x-5 h-6 overflow-hidden text-white">
+                            <p> {{ ss.title }}</p>
+                            <p>|</p>
+                            <p>{{ ss.bedrooms }}BHK</p>
+                        </div>  
+                        <p class="text-white"> {{ ss.city }}- {{ss.zip_code }}</p>
+                        <div class="flex justify-between items-center rounded-3xl border border-black px-2 -mx-1 py-[2px]">
+                            <span>
+                                More details
+                            </span>
+                            <span class="group-hover:rotate-[360deg] duration-500">
+                                <img src="/media/icons/arrow.png" alt="" class="h-6">
+                            </span>
+                        </div>
+
+                    </div>  
                 </div>
-            </div>
             </a>
         </div>
-        <h1 class="font-semibold text-xl">More from {{prop.city}}</h1>
-        <div class="flex space-x-2 overflow-x-scroll lg:space-x-4 pb-2">
-            <a href="/prop_view/{{sc.id}}">
-            <div
-                class="property w-[80vw] h-[90vw] lg:w-[25vw] lg:h-[20vw] rounded-lg p-1 border flex flex-col bg-white">
-                <div class="display h-[70%] w-full overflow-hidden rounded-lg">
-                    <img src="/media/{{sc.main_img}}" alt="Beautiful Family Home"
-                        class="object-cover object-center w-full h-full">
-                </div>
-                <div class="description space-y-2 mx-2">
-                    <h2 class="font-semibold text-xl">{{ sc.title }}</h2>
-                    <div class="flex gap-x-5 font-semibold text-gray-800 text-xl">
-                        <p>₹ {{ sc.price }}</p>
-                        <p>|</p>
-                        <p>{{ sc.bedrooms }}BHK</p>
+        <h1 class="font-semibold text-xl text-white">More from {{prop.city}}</h1>
+        <div class="flex space-x-2 lg:space-x-4 overflow-x-scroll ">
+            <a href="prop_view/{{sc.id}}">
+                <div class="property w-[206px] h-[345px]  lg:w-[280px] lg:h-[475px] flex flex-col relative group ">
+                    <div class="display h-full w-full overflow-hidden rounded-3xl">
+                        <img src="/media/{{sc.main_img}}" alt="Beautiful Family Home"
+                            class="object-cover object-center w-full h-full group-hover:scale-110 duration-500">
                     </div>
-                    <p> {{ sc.city }}- {{sc.zip_code }}</p>
+                    <div class="description h-[41%] lg:h-[35%] lg:mt-[111%] w-full space-y-2 px-2 mt-[100%] absolute backdrop-blur-lg rounded-3xl lg:space-y-4">
+                        <h2 class="font-semibold bg-gradient-to-br from-white from-[-1rem] via-gray-900 via-50% to-black  bg-clip-text text-transparent text-2xl price"> ₹ {{ sc.price2 }}</h2>
+                        <div class="flex gap-x-5 h-6 overflow-hidden text-white">
+                            <p> {{ sc.title }}</p>
+                            <p>|</p>
+                            <p>{{ sc.bedrooms }}BHK</p>
+                        </div>  
+                        <p class="text-white"> {{ sc.city }}- {{sc.zip_code }}</p>
+                        <div class="flex justify-between items-center rounded-3xl border border-black px-2 -mx-1 py-[2px]">
+                            <span>
+                                More details
+                            </span>
+                            <span class="group-hover:rotate-[360deg] duration-500">
+                                <img src="/media/icons/arrow.png" alt="" class="h-6">
+                            </span>
+                        </div>
+
+                    </div>  
                 </div>
-            </div>
             </a>
         </div>
-        <h1 class="font-semibold text-xl">More from {{prop.devloper}}</h1>
-        <div class="flex space-x-2 overflow-x-scroll lg:space-x-4 pb-2">
-            <a href="/prop_view/{{sd.id}}">
-            <div
-                class="property w-[80vw] h-[90vw] lg:w-[25vw] lg:h-[20vw] rounded-lg p-1 border flex flex-col bg-white">
-                <div class="display h-[70%] w-full overflow-hidden rounded-lg">
-                    <img src="/media/{{sd.main_img}}" alt="Beautiful Family Home"
-                        class="object-cover object-center w-full h-full">
-                </div>
-                <div class="description space-y-2 mx-2">
-                    <h2 class="font-semibold text-xl">{{ sd.title }}</h2>
-                    <div class="flex gap-x-5 font-semibold text-gray-800 text-xl">
-                        <p>₹ {{ sd.price }}</p>
-                        <p>|</p>
-                        <p>{{ sd.bedrooms }}BHK</p>
+        <h1 class="font-semibold text-xl text-white">More from {{prop.devloper}}</h1>
+        <div class="flex space-x-2 lg:space-x-4 overflow-x-scroll ">
+            <a href="prop_view/{{sd.id}}">
+                <div class="property w-[206px] h-[345px]  lg:w-[280px] lg:h-[475px] flex flex-col relative group ">
+                    <div class="display h-full w-full overflow-hidden rounded-3xl">
+                        <img src="/media/{{sd.main_img}}" alt="Beautiful Family Home"
+                            class="object-cover object-center w-full h-full group-hover:scale-110 duration-500">
                     </div>
-                    <p> {{ sd.city }}- {{sd.zip_code }}</p>
+                    <div class="description h-[41%] lg:h-[35%] lg:mt-[111%] w-full space-y-2 px-2 mt-[100%] absolute backdrop-blur-lg rounded-3xl lg:space-y-4">
+                        <h2 class="font-semibold bg-gradient-to-br from-white from-[-1rem] via-gray-900 via-50% to-black  bg-clip-text text-transparent text-2xl price"> ₹ {{ sd.price2 }}</h2>
+                        <div class="flex gap-x-5 h-6 overflow-hidden text-white">
+                            <p> {{ sd.title }}</p>
+                            <p>|</p>
+                            <p>{{ sd.bedrooms }}BHK</p>
+                        </div>  
+                        <p class="text-white"> {{ sd.city }}- {{sd.zip_code }}</p>
+                        <div class="flex justify-between items-center rounded-3xl border border-black px-2 -mx-1 py-[2px]">
+                            <span>
+                                More details
+                            </span>
+                            <span class="group-hover:rotate-[360deg] duration-500">
+                                <img src="/media/icons/arrow.png" alt="" class="h-6">
+                            </span>
+                        </div>
 
+                    </div>  
                 </div>
-            </div>
             </a>
-
         </div>
     </div>
 
@@ -208,52 +247,54 @@
         /* Form group styling */
         .form-group {
             margin-bottom: 15px;
+            border-top: none;
+            border-left: none;
+            border-right: none;
         }
 
         /* Close button */
-        .close {
-            position: absolute;
-            top: 10px;
-            right: 25px;
-            color: #aaa;
-            font-size: 28px;
-            font-weight: bold;
-        }
-
-        .close:hover,
-        .close:focus {
-            color: black;
-            text-decoration: none;
-            cursor: pointer;
-        }
     </style>
 
-    <div class="container">
+    <div class="container relative  ">
 
-        <form action="/main/contactus/" method="POST">
-            {% csrf_token %}<div class="form-group">
+        <form action="/main/contactus/" method="POST" class="rounded-2xl flex-col flex justify-center ">
+            <span
+                class="close absolute cursor-pointer top-0 right-3 text-2xl font-black hover:text-red-600 text-gray-800"
+                onclick="document.querySelector('.container').style.display='none';">&times;</span>
+            {% csrf_token %}
+
+            <div class="form-group text-xl font-semibold">
                 <input type="hidden" id="property" name="property" value="{{prop.title}}">
                 <label for="Property_name">{{prop.title}}</label>
 
             </div>
 
-            <div class="form-group">
-                <label for="name">Name:</label>
-                <input type="text" id="name" name="name" required>
+            <div class="form-group  ">
+                <input type="text"
+                    class="form-group ring-0 focus:border-orange-500 focus:border-b-2 focus:ring-0 w-full " id="name"
+                    name="name" placeholder="Your Full Name">
             </div>
             <div class="form-group">
-                <label for="phone">Phone Number:</label>
-                <input type="tel" id="phone" name="phone" required>
+
+                <input type="tel"
+                    class="form-group ring-0 focus:border-orange-500 focus:border-b-2 focus:ring-0 w-full " id="phone"
+                    name="phone" placeholder="Your Contact No." required>
             </div>
             <div class="form-group">
-                <label for="email">Email:</label>
-                <input type="email" id="email" name="email" required>
+                <label for="email"></label>
+                <input type="email"
+                    class="form-group ring-0 focus:border-orange-500 focus:border-b-2 focus:ring-0 w-full " id="email"
+                    name="email" required placeholder="Your Personal Email Address">
             </div>
-            <button type="submit">Submit</button>
+            <button type="submit"
+                class="bg-transparent border border-orange-500 text-orange-500 hover:bg-orange-500 hover:text-white rounded-lg px-2 py-1 active:bg-orange-600 shadow-xl font-semibold duration-300">Confirm</button>
         </form>
+
+
     </div>
-    <span class="close" onclick="document.querySelector('.container').style.display='none'">&times;</span>
-    <button onclick="document.querySelector('.container').style.display='flex'">Open Contact Form</button>
+    <button onclick="document.querySelector('.container').style.display='flex'" class="text-white">Open Contact
+        Form</button>
+
 
 
 </body>

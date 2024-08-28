@@ -74,22 +74,45 @@
 
         #achievements {
             font-family: "IBM Plex Serif";
-        } 
+        }
 
         .price {
             font-family: "Old Standard TT", serif;
             font-weight: 700;
             font-style: normal;
-          }
+        }
+
+        select {
+            color: #333;
+            /* Default text color */
+            background-color: #f2f2f2;
+            /* Default background color */
+        }
+
+        /* Change the color of all options */
+        select option {
+            color: #333;
+            /* Color of the option text */
+            background-color: #f2f2f2;
+            /* Background color of the option */
+        }
+
+        /* For styling the selected option */
+        select option:checked {
+            background-color: #f2f2f2;
+            /* Background color of the selected option */
+            color: #000;
+            /* Text color of the selected option */
+        }
     </style>
 </head>
 
 <body class="bg-black">
-    <!-- <link rel="stylesheet" href="{% static 'css/main.css' %}"> -->
 
-  
 
-    <div class="bg-image bg-[url('/media/icons/bgimage.jpg')] h-[20rem] bg-no-repeat bg-cover">
+
+
+    <div class="bg-image bg-[url('/media/icons/bgimage.jpg')] h-[20rem] lg:h-[40rem] w-full bg-no-repeat bg-cover">
 
 
         <div class="navbar-lg lg:hidden hidden flex flex-col bg-transparent text-white font-medium shadow-lg rounded-lg p-4 absolute mt-12 lg:m-0 lg:w-fit w-1/2 space-y-4  lg:font-semibold "
@@ -104,18 +127,13 @@
                 class="border-b p-3 lg:border-none  lg:text-lg rounded-xl hover:backdrop-blur-xl hover:text-black">Contact</a>
         </div>
 
-        <div
-            class="navbar flex justify-between bg-transparent p-2 w-screen items-center lg:sticky top-0 overflow-hidden">
+        <div class="navbar flex justify-between bg-transparent p-2 w-screen items-center top-0 overflow-hidden">
             <div
-                class="navbar-lg hidden flex flex-col lg:bg-transparent shadow-lg lg:shadow-none rounded-lg p-4 lg:static absolute mt-12 lg:m-0 lg:w-fit lg:space-x-6 w-1/2 h-full space-y-4 lg:block lg:text-white lg:font-semibold overflow-hidden  ">
-                <a href="#home"
-                    class="border-b p-3 lg:border-none lg:text-lg rounded-xl  hover:text-black duration-300">Home</a>
-                <a href="#about"
-                    class="border-b p-3 lg:border-none lg:text-lg rounded-xl   hover:text-black duration-300">About</a>
-                <a href="#services"
-                    class="border-b p-3 lg:border-none lg:text-lg rounded-xl  hover:text-black duration-300">Services</a>
-                <a href="#contact"
-                    class="border-b p-3 lg:border-none  lg:text-lg  rounded-xl  hover:text-black duration-300">Contact</a>
+                class="navbar-lg hidden flex flex-col lg:bg-transparent lg:shadow-none rounded-lg lg:static lg:ml-2 lg:w-fit lg:space-x-14 lg:block lg:text-white lg:font-semibold overflow-hidden  ">
+                <a href="#home" class=" lg:border-none rounded-xl  hover:text-black duration-300">Home</a>
+                <a href="#about" class="lg:border-none rounded-xl   hover:text-black duration-300">About</a>
+                <a href="#services" class=" lg:border-none rounded-xl  hover:text-black duration-300">Services</a>
+                <a href="#contact" class=" lg:border-none  rounded-xl  hover:text-black duration-300">Contact</a>
             </div>
             <div class="hamburger lg:hidden " id="hamburger">
                 <svg class="w-8 h-8 text-white duration-300 cursor-pointer" fill="none" stroke="currentColor"
@@ -124,44 +142,44 @@
                     </path>
                 </svg>
             </div>
-            <div class="company-logo mr-[4vw] ">
-                <img src="/media/icons/image1.png" alt="harsh" class="h-8 lg:h-16">
+            <div class="company-logo mr-[4vw] lg:ml-[8vw]  lg:order-2 md:m-0">
+                <img src="/media/icons/image1.png" alt="harsh" class="h-8 lg:h-12">
             </div>
-            <div class="invisible">
+            <div class="invisible lg:w-1/3 lg:order-3 ">
             </div>
         </div>
 
-        <div class=" flex justify-center items-center mt-16 h-0">
-            <div class="typing-text text-2xl text-black h-6">
+        <div class=" flex justify-center items-center mt-16 lg:mt-48 h-0">
+            <div class="typing-text text-2xl lg:text-3xl text-black h-6">
                 <span id="typing-content"></span>
             </div>
 
         </div>
 
         <div
-            class=" lg:!pt-0 lg:!mt-6 filters flex justify-center items-center w-[90vw] mx-[5vw] mb-4 bg-transparent lg:bg-white border border-white m-1 bg-white bg-opacity-20 rounded-3xl mt-28 ">
-            <form method="GET" action="{% url 'filteroption'%}">
+            class=" lg:!mt-1/3 filters flex justify-center items-center w-[90vw] lg:w-[60vw] mx-[5vw] lg:mx-[20vw] mb-4 bg-transparent sm:border lg:border-none border-white m-1 bg-white bg-opacity-20 rounded-3xl mt-28 shadow-2xl shadow-black">
+            <form method="GET" action="{% url 'filteroption'%}" class=" flex items-center">
                 <select id="city" name="city"
-                    class=" h-10 w-20 border-none bg-transparent  overflow-y-scroll text-white focus:outline-none focus:ring-0 focus:border-transparent">
+                    class=" h-10 w-24 lg:w-32 border-none bg-transparent overflow-y-scroll text-white lg:text-black focus:outline-none focus:ring-0 focus:border-transparent ">
 
-                    <option value="" class="text-sm">City</option>
+                    <option value="City" class="text-sm">City</option>
                     {% for city in cities %}
                     <option value="{{ city }}" class="text-sm ">{{ city }}</option>
                     {% endfor %}
                 </select>
 
                 <select id="size" name="size"
-                    class=" h-10 border-none bg-transparent overflow-y-scroll text-white focus:outline-none focus:ring-0 focus:border-transparent">
-                    <option value="" class="text-sm inh">Size</option>
+                    class=" h-10 border-none bg-transparent overflow-y-scroll text-white lg:text-black focus:outline-none focus:ring-0 focus:border-transparent w-24 lg:w-28">
+                    <option value='0' class="text-sm inh">Size</option>
                     {% for size in bedrooms %}
                     <option value="{{ size }}" class="text-sm">{{ size }} BHK</option>
                     {% endfor %}
                 </select>
-             
+
 
                 <select id="price_range" name="price_range"
-                    class=" h-10 w-[6rem] border-none bg-transparent overflow-y-scroll text-white focus:outline-none focus:ring-0 focus:border-transparent">
-                    <option value="" class="text-sm">Price</option>
+                    class=" h-10 w-24 border-none bg-transparent overflow-y-scroll text-white lg:text-black focus:outline-none focus:ring-0 focus:border-transparent lg:w-32">
+                    <option value='0' class="text-sm">Price</option>
                     <option value="10" class="text-sm">10-20 lakh</option>
                     <option value="20" class="text-sm">20-30 lakh</option>
                     <option value="30" class="text-sm">30-50 lakh</option>
@@ -171,54 +189,70 @@
                 </select>
 
                 <button
-                    class="bg-transparent text-white font-semibold lg:border-red-500 border-none duration-300">
-                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1"
-                        width="20px" height="20px" viewBox="0 0 256 256" xml:space="preserve">
-
-                        <defs>
-                        </defs>
-                        <g style="stroke: none; stroke-width: 0; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: none; fill-rule: nonzero; opacity: 1;"
-                            transform="translate(1.4065934065934016 1.4065934065934016) scale(2.81 2.81)">
-                            <path
-                                d="M 52.537 80.466 V 45.192 L 84.53 2.999 C 85.464 1.768 84.586 0 83.041 0 H 6.959 C 5.414 0 4.536 1.768 5.47 2.999 l 31.994 42.192 v 43.441 c 0 1.064 1.163 1.719 2.073 1.167 l 11.758 -7.127 C 52.065 82.205 52.537 81.368 52.537 80.466 z"
-                                style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: rgb(255, 255, 255); fill-rule: nonzero; opacity: 1;"
-                                transform=" matrix(1 0 0 1 0 0) " stroke-linecap="round" />
+                    class="bg-transparent lg:hidden text-white md:block  font-semibold border-none duration-300 translate-y-1 pl-2 pb-2 ">
+                    <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="20" height="20"
+                        viewBox="0,0,256,256">
+                        <g fill="#ffffff " fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt"
+                            stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0"
+                            font-family="none" font-weight="none" font-size="none" text-anchor="none"
+                            style="mix-blend-mode: normal">
+                            <g transform="scale(9.84615,9.84615)">
+                                <path
+                                    d="M10,0.1875c-5.42187,0 -9.8125,4.39063 -9.8125,9.8125c0,5.42188 4.39063,9.8125 9.8125,9.8125c2.28906,0 4.39453,-0.80859 6.0625,-2.125l0.875,0.875c-0.36719,0.69141 -0.23828,1.57422 0.34375,2.15625l4.59375,4.625c0.71484,0.71484 1.87891,0.71484 2.59375,0l0.875,-0.875c0.71484,-0.71484 0.71484,-1.87891 0,-2.59375l-4.625,-4.59375c-0.58594,-0.58594 -1.46484,-0.6875 -2.15625,-0.3125l-0.875,-0.875c1.32422,-1.67187 2.125,-3.79297 2.125,-6.09375c0,-5.42187 -4.39062,-9.8125 -9.8125,-9.8125zM10,2c4.41797,0 8,3.58203 8,8c0,4.41797 -3.58203,8 -8,8c-4.41797,0 -8,-3.58203 -8,-8c0,-4.41797 3.58203,-8 8,-8zM4.9375,7.46875c-0.51562,0.83594 -0.8125,1.82031 -0.8125,2.875c0,3.02734 2.44141,5.46875 5.46875,5.46875c1.16797,0 2.26563,-0.37891 3.15625,-1c-0.23828,0.02734 -0.50391,0.03125 -0.75,0.03125c-3.91406,0 -7.0625,-3.14844 -7.0625,-7.0625c0,-0.10547 -0.00391,-0.20703 0,-0.3125z">
+                                </path>
+                            </g>
+                        </g>
+                    </svg>
+                </button>
+                <button
+                    class="bg-transparent hidden lg:block text-black md:hidden font-semibold border-none duration-300 translate-y-1 pl-2 align-middle leading-none pb-2 ">
+                    <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="20" height="20"
+                        viewBox="0,0,256,256">
+                        <g fill="#000000" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt"
+                            stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0"
+                            font-family="none" font-weight="none" font-size="none" text-anchor="none"
+                            style="mix-blend-mode: normal">
+                            <g transform="scale(9.84615,9.84615)">
+                                <path
+                                    d="M10,0.1875c-5.42187,0 -9.8125,4.39063 -9.8125,9.8125c0,5.42188 4.39063,9.8125 9.8125,9.8125c2.28906,0 4.39453,-0.80859 6.0625,-2.125l0.875,0.875c-0.36719,0.69141 -0.23828,1.57422 0.34375,2.15625l4.59375,4.625c0.71484,0.71484 1.87891,0.71484 2.59375,0l0.875,-0.875c0.71484,-0.71484 0.71484,-1.87891 0,-2.59375l-4.625,-4.59375c-0.58594,-0.58594 -1.46484,-0.6875 -2.15625,-0.3125l-0.875,-0.875c1.32422,-1.67187 2.125,-3.79297 2.125,-6.09375c0,-5.42187 -4.39062,-9.8125 -9.8125,-9.8125zM10,2c4.41797,0 8,3.58203 8,8c0,4.41797 -3.58203,8 -8,8c-4.41797,0 -8,-3.58203 -8,-8c0,-4.41797 3.58203,-8 8,-8zM4.9375,7.46875c-0.51562,0.83594 -0.8125,1.82031 -0.8125,2.875c0,3.02734 2.44141,5.46875 5.46875,5.46875c1.16797,0 2.26563,-0.37891 3.15625,-1c-0.23828,0.02734 -0.50391,0.03125 -0.75,0.03125c-3.91406,0 -7.0625,-3.14844 -7.0625,-7.0625c0,-0.10547 -0.00391,-0.20703 0,-0.3125z">
+                                </path>
+                            </g>
                         </g>
                     </svg>
                 </button>
             </form>
         </div>
-        <div class=" section-achievements text-white text-lg space-y-3 space-x-3 mx-2  ">
+        <div class=" section-achievements text-white text-lg my-6 lg:my-16   space-x-3 mx-2 flex justify-center ">
             <div class="inline-flex items-center space-x-2">
                 <img src="/media/icons/achv1.png" alt="" class="h-8 w-8  ">
-                <span class="flex items-center" id="achievements"><span class="text-xl mr-2">1K+ </span><span
-                        class="smile">Happy Customers</span>
-            </div>
-            <div class="inline-flex items-center space-x-2">
-                <img src="/media/icons/achv2.png" alt="" class="h-8 w-8 ">
-                <span id="achievements"><span class="">Reasonable</span> Prices</span>
+                <span class="flex items-center"><span class="text-xl mr-2 font-semibold">1K+ </span><span
+                        class="smile lg:font-semibold">Happy Customers</span>
             </div>
         </div>
 
-        <div class="projects m-2 space-y-2 lg:space-y-4 border-t border-gray-700 rounded-3xl px-2">
+        <div class="projects m-2 pt-2  space-y-2 lg:space-y-5 border-t border-gray-700 rounded-3xl px-2">
             <h2 class="font-semibold text-xl ml-2 text-white">All ></h2>
-            <div class="flex space-x-2 overflow-x-scroll lg:space-x-4 pb-2">
+            <div class="flex space-x-2 overflow-x-scroll lg:space-x-4 pb-2 ">
                 {% for property in properties %}
                 <a href="prop_view/{{property.id}}">
-                    <div class="property w-[206px] h-[345px] lg:w-[25vw] lg:h-[20vw] flex flex-col relative group">
+                    <div class="property w-[206px] h-[345px] lg:w-[280px] lg:h-[475px] flex flex-col relative group">
                         <div class="display h-full w-full overflow-hidden rounded-3xl">
                             <img src="/media/{{property.main_img}}" alt="Beautiful Family Home"
                                 class="object-cover object-center w-full h-full group-hover:scale-110 duration-500">
                         </div>
-                        <div class="description h-[41%] w-full space-y-2 px-2 mt-[100%] absolute backdrop-blur-lg rounded-3xl">
-                            <h2 class="font-semibold bg-gradient-to-br from-white from-[-1rem] via-gray-900 via-50% to-black  bg-clip-text text-transparent text-2xl price"> ₹ {{ property.price2 }}</h2>
+                        <div
+                            class="description h-[41%] lg:h-[35%] lg:mt-[111%] w-full space-y-2 px-2 mt-[100%] absolute backdrop-blur-lg rounded-3xl lg:space-y-4">
+                            <h2
+                                class="font-semibold bg-gradient-to-br from-white from-[-1rem] via-gray-900 via-50% to-black  bg-clip-text text-transparent text-2xl price">
+                                ₹ {{ property.price2 }}</h2>
                             <div class="flex gap-x-5 h-6 overflow-hidden text-white">
                                 <p> {{ property.title }}</p>
                                 <p>|</p>
                                 <p>{{ property.bedrooms }}BHK</p>
-                            </div>  
+                            </div>
                             <p class="text-white"> {{ property.city }}- {{property.zip_code }}</p>
-                            <div class="flex justify-between items-center rounded-3xl border border-black px-2 -mx-1 py-[2px]">
+                            <div
+                                class="flex justify-between items-center rounded-3xl border border-black px-2 -mx-1 py-[2px]">
                                 <span>
                                     More details
                                 </span>
@@ -239,20 +273,24 @@
             <div class="flex space-x-2 overflow-x-scroll lg:space-x-4 pb-2">
                 {% for property in rtm %}
                 <a href="prop_view/{{property.id}}">
-                    <div class="property w-[206px] h-[345px] lg:w-[25vw] lg:h-[20vw] flex flex-col relative group ">
+                    <div class="property w-[206px] h-[345px]  lg:w-[280px] lg:h-[475px] flex flex-col relative group ">
                         <div class="display h-full w-full overflow-hidden rounded-3xl">
                             <img src="/media/{{property.main_img}}" alt="Beautiful Family Home"
                                 class="object-cover object-center w-full h-full group-hover:scale-110 duration-500">
                         </div>
-                        <div class="description h-[41%] w-full space-y-2 px-2 mt-[100%] absolute backdrop-blur-lg rounded-3xl">
-                            <h2 class="font-semibold bg-gradient-to-br from-white from-[-1rem] via-gray-900 via-50% to-black  bg-clip-text text-transparent text-2xl price"> ₹ {{ property.price2 }}</h2>
+                        <div
+                            class="description h-[41%] lg:h-[35%] lg:mt-[111%] w-full space-y-2 px-2 mt-[100%] absolute backdrop-blur-lg rounded-3xl lg:space-y-4">
+                            <h2
+                                class="font-semibold bg-gradient-to-br from-white from-[-1rem] via-gray-900 via-50% to-black  bg-clip-text text-transparent text-2xl price">
+                                ₹ {{ property.price2 }}</h2>
                             <div class="flex gap-x-5 h-6 overflow-hidden text-white">
                                 <p> {{ property.title }}</p>
                                 <p>|</p>
                                 <p>{{ property.bedrooms }}BHK</p>
-                            </div>  
+                            </div>
                             <p class="text-white"> {{ property.city }}- {{property.zip_code }}</p>
-                            <div class="flex justify-between items-center rounded-3xl border border-black px-2 -mx-1 py-[2px]">
+                            <div
+                                class="flex justify-between items-center rounded-3xl border border-black px-2 -mx-1 py-[2px]">
                                 <span>
                                     More details
                                 </span>
@@ -272,20 +310,24 @@
             <div class="flex space-x-2 overflow-x-scroll lg:space-x-4 pb-2">
                 {% for property in uc %}
                 <a href="prop_view/{{property.id}}">
-                    <div class="property w-[206px] h-[345px] lg:w-[25vw] lg:h-[20vw] flex flex-col relative group ">
+                    <div class="property w-[206px] h-[345px]  lg:w-[280px] lg:h-[475px] flex flex-col relative group ">
                         <div class="display h-full w-full overflow-hidden rounded-3xl">
                             <img src="/media/{{property.main_img}}" alt="Beautiful Family Home"
                                 class="object-cover object-center w-full h-full group-hover:scale-110 duration-500">
                         </div>
-                        <div class="description h-[41%] w-full space-y-2 px-2 mt-[100%] absolute backdrop-blur-lg rounded-3xl">
-                            <h2 class="font-semibold bg-gradient-to-br from-white from-[-1rem] via-gray-900 via-50% to-black  bg-clip-text text-transparent text-2xl price"> ₹ {{ property.price2 }}</h2>
+                        <div
+                            class="description h-[41%] lg:h-[35%] lg:mt-[111%] w-full space-y-2 px-2 mt-[100%] absolute backdrop-blur-lg rounded-3xl lg:space-y-4">
+                            <h2
+                                class="font-semibold bg-gradient-to-br from-white from-[-1rem] via-gray-900 via-50% to-black  bg-clip-text text-transparent text-2xl price">
+                                ₹ {{ property.price2 }}</h2>
                             <div class="flex gap-x-5 h-6 overflow-hidden text-white">
                                 <p> {{ property.title }}</p>
                                 <p>|</p>
                                 <p>{{ property.bedrooms }}BHK</p>
-                            </div>  
+                            </div>
                             <p class="text-white"> {{ property.city }}- {{property.zip_code }}</p>
-                            <div class="flex justify-between items-center rounded-3xl border border-black px-2 -mx-1 py-[2px]">
+                            <div
+                                class="flex justify-between items-center rounded-3xl border border-black px-2 -mx-1 py-[2px]">
                                 <span>
                                     More details
                                 </span>
@@ -298,7 +340,6 @@
                     </div>
                 </a>
 
-
                 {% endfor %}
             </div>
 
@@ -307,20 +348,24 @@
             <div class="flex space-x-2 lg:space-x-4 overflow-x-scroll ">
                 {% for property in ce %}
                 <a href="prop_view/{{property.id}}">
-                    <div class="property w-[206px] h-[345px] lg:w-[25vw] lg:h-[20vw] flex flex-col relative group ">
+                    <div class="property w-[206px] h-[345px]  lg:w-[280px] lg:h-[475px] flex flex-col relative group ">
                         <div class="display h-full w-full overflow-hidden rounded-3xl">
                             <img src="/media/{{property.main_img}}" alt="Beautiful Family Home"
                                 class="object-cover object-center w-full h-full group-hover:scale-110 duration-500">
                         </div>
-                        <div class="description h-[41%] w-full space-y-2 px-2 mt-[100%] absolute backdrop-blur-lg rounded-3xl">
-                            <h2 class="font-semibold bg-gradient-to-br from-white from-[-1rem] via-gray-900 via-50% to-black  bg-clip-text text-transparent text-2xl price"> ₹ {{ property.price2 }}</h2>
+                        <div
+                            class="description h-[41%] lg:h-[35%] lg:mt-[111%] w-full space-y-2 px-2 mt-[100%] absolute backdrop-blur-lg rounded-3xl lg:space-y-4">
+                            <h2
+                                class="font-semibold bg-gradient-to-br from-white from-[-1rem] via-gray-900 via-50% to-black  bg-clip-text text-transparent text-2xl price">
+                                ₹ {{ property.price2 }}</h2>
                             <div class="flex gap-x-5 h-6 overflow-hidden text-white">
                                 <p> {{ property.title }}</p>
                                 <p>|</p>
                                 <p>{{ property.bedrooms }}BHK</p>
-                            </div>  
+                            </div>
                             <p class="text-white"> {{ property.city }}- {{property.zip_code }}</p>
-                            <div class="flex justify-between items-center rounded-3xl border border-black px-2 -mx-1 py-[2px]">
+                            <div
+                                class="flex justify-between items-center rounded-3xl border border-black px-2 -mx-1 py-[2px]">
                                 <span>
                                     More details
                                 </span>
@@ -329,7 +374,7 @@
                                 </span>
                             </div>
 
-                        </div>  
+                        </div>
                     </div>
                 </a>
                 {% endfor %}
@@ -340,7 +385,7 @@
             document.addEventListener("DOMContentLoaded", function () {
                 const hamburger = document.getElementById('hamburger');
                 const menu = document.getElementById('menu');
-                
+
 
                 hamburger.addEventListener('click', function () {
                     menu.classList.toggle('backdrop-blur-lg');
