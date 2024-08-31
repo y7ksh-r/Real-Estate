@@ -81,7 +81,7 @@
     <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 justify-center gap-2 overflow-y-scroll">
 
         {% for property in properties %}
-        <a href="{% url 'prop_view'%}">
+        <a href="/prop_view/{{property.id}}">
             <div class="property w-[200px] h-[345px] lg:w-[25vw] lg:h-[20vw] flex flex-col relative group">
                 <div class="display h-full w-full overflow-hidden rounded-3xl">
                     <img src="/media/{{property.main_img}}" alt="Beautiful Family Home"

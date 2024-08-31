@@ -8,6 +8,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Real Estate Property</title>
     {% tailwind_css %}
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app.js"></script>
+    <!-- Firebase Authentication SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth.js"></script>
+    <!-- Your existing scripts and other head content -->
 </head>
 
 <body class="bg-black px-2">
@@ -254,47 +258,106 @@
 
         /* Close button */
     </style>
+     
+     <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.1/firebase-app.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.13.1/firebase-analytics.js";
+        // TODO: Add SDKs for Firebase products that you want to use
+        // https://firebase.google.com/docs/web/setup#available-libraries
+      
+        // Your web app's Firebase configuration
+        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+        const firebaseConfig = {
+          apiKey: "AIzaSyDtS4uTzsCBKO1tpj6-UfhB00JmlG_ocvo",
+          authDomain: "ncpr-acd83.firebaseapp.com",
+          projectId: "ncpr-acd83",
+          storageBucket: "ncpr-acd83.appspot.com",
+          messagingSenderId: "1028406996510",
+          appId: "1:1028406996510:web:d90688bc96a4b5a443880f",
+          measurementId: "G-9THVBVHX2S"
+        };
+      
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const analytics = getAnalytics(app);
+      </script>
+<script>
+function sendOTP() {
+    const phoneNumber = document.getElementById('phone').value;
 
-    <div class="container relative  ">
+    firebase.auth().signInWithPhoneNumber(phoneNumber, window.recaptchaVerifier)
+        .then((confirmationResult) => {
+            window.confirmationResult = confirmationResult;
+            alert('OTP sent successfully');
+        })
+        .catch((error) => {
+            console.error("Error during signInWithPhoneNumber", error);
+        });
+}
 
-        <form action="/main/contactus/" method="POST" class="rounded-2xl flex-col flex justify-center ">
-            <span
-                class="close absolute cursor-pointer top-0 right-3 text-2xl font-black hover:text-red-600 text-gray-800"
-                onclick="document.querySelector('.container').style.display='none';">&times;</span>
-            {% csrf_token %}
-
-            <div class="form-group text-xl font-semibold">
-                <input type="hidden" id="property" name="property" value="{{prop.title}}">
-                <label for="Property_name">{{prop.title}}</label>
-
-            </div>
-
-            <div class="form-group  ">
-                <input type="text"
-                    class="form-group ring-0 focus:border-orange-500 focus:border-b-2 focus:ring-0 w-full " id="name"
-                    name="name" placeholder="Your Full Name">
-            </div>
-            <div class="form-group">
-
-                <input type="tel"
-                    class="form-group ring-0 focus:border-orange-500 focus:border-b-2 focus:ring-0 w-full " id="phone"
-                    name="phone" placeholder="Your Contact No." required>
-            </div>
-            <div class="form-group">
-                <label for="email"></label>
-                <input type="email"
-                    class="form-group ring-0 focus:border-orange-500 focus:border-b-2 focus:ring-0 w-full " id="email"
-                    name="email" required placeholder="Your Personal Email Address">
-            </div>
-            <button type="submit"
-                class="bg-transparent border border-orange-500 text-orange-500 hover:bg-orange-500 hover:text-white rounded-lg px-2 py-1 active:bg-orange-600 shadow-xl font-semibold duration-300">Confirm</button>
-        </form>
+function verifyOTP() {
+    const code = document.getElementById('otp').value;
+    confirmationResult.confirm(code)
+        .then((result) => {
+            result.user.getIdToken().then((idToken) => {
+                // Optionally, you can send this token to the server
+                alert('OTP verified successfully');
+                document.getElementById('contact-form').submit();  // Automatically submit the form after verification
+            });
+        })
+        .catch((error) => {
+            console.error("Error during OTP verification", error);
+            alert('Failed to verify OTP. Please try again.');
+        });
+}
 
 
-    </div>
-    <button onclick="document.querySelector('.container').style.display='flex'" class="text-white">Open Contact
-        Form</button>
 
+    </script>
+<div class="container relative">
+    <form id="contact-form" action="/contactus" method="POST" class="rounded-2xl flex-col flex justify-center">
+        <span class="close absolute cursor-pointer top-0 right-3 text-2xl font-black hover:text-red-600 text-gray-800"
+              onclick="document.querySelector('.container').style.display='none';">&times;</span>
+        {% csrf_token %}
+
+        <div class="form-group text-xl font-semibold">
+            <input type="hidden" id="property" name="property" value="{{prop.title}}">
+            <label for="Property_name">{{prop.title}}</label>
+        </div>
+
+        <div class="form-group">
+            <input type="text" class="form-group ring-0 focus:border-orange-500 focus:border-b-2 focus:ring-0 w-full"
+                   id="name" name="name" placeholder="Your Full Name">
+        </div>
+
+        <div class="form-group">
+            <input type="tel" class="form-group ring-0 focus:border-orange-500 focus:border-b-2 focus:ring-0 w-full"
+                   id="phone" name="phone" placeholder="Your Contact No." required>
+            <button type="button" onclick="sendOTP()" class="bg-blue-500 text-black rounded-lg px-2 py-1 mt-2">
+                Get OTP
+            </button>
+        </div>
+
+        <div class="form-group">
+            <input type="text" id="otp" placeholder="Enter OTP" class="form-group ring-0 focus:border-orange-500 focus:border-b-2 focus:ring-0 w-full">
+            <button type="button" onclick="verifyOTP()" class="bg-green-500 text-white rounded-lg px-2 py-1 mt-2">
+                Verify OTP
+            </button>
+        </div>
+
+        <div class="form-group">
+            <input type="email" class="form-group ring-0 focus:border-orange-500 focus:border-b-2 focus:ring-0 w-full"
+                   id="email" name="email" required placeholder="Your Personal Email Address">
+        </div>
+        
+        <button id="submit-button" type="submit" disabled
+                class="bg-transparent border border-orange-500 text-orange-500 hover:bg-orange-500 hover:text-white rounded-lg px-2 py-1 active:bg-orange-600 shadow-xl font-semibold duration-300">
+            Confirm
+        </button>
+    </form>
+</div>
+<button onclick="document.querySelector('.container').style.display='flex'" class="text-white">Open Contact Form</button>
 
 
 </body>

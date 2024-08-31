@@ -1,0 +1,42 @@
+{%extends 'basicbg.html'%}
+{%block body%}
+{% load static tailwind_tags %}
+{% tailwind_css %}
+{%load static%}
+{%load static%}
+<div class="flex space-x-2 overflow-x-scroll lg:space-x-4 pb-2">
+    {% for property in properties%}
+    <a href="prop_view/{{property.id}}">
+        <div class="property w-[206px] h-[345px]  lg:w-[280px] lg:h-[475px] flex flex-col relative group ">
+            <div class="display h-full w-full overflow-hidden rounded-3xl">
+                <img src="/media/{{property.main_img}}" alt="Beautiful Family Home"
+                    class="object-cover object-center w-full h-full group-hover:scale-110 duration-500">
+            </div>
+            <div
+                class="description h-[41%] lg:h-[35%] lg:mt-[111%] w-full space-y-2 px-2 mt-[100%] absolute backdrop-blur-lg rounded-3xl lg:space-y-4">
+                <h2
+                    class="font-semibold bg-gradient-to-br from-white from-[-1rem] via-gray-900 via-50% to-black  bg-clip-text text-transparent text-2xl price">
+                    ₹ {{ property.price2 }}</h2>
+                <div class="flex gap-x-5 h-6 overflow-hidden text-white">
+                    <p> {{ property.title }}</p>
+                    <p>|</p>
+                    <p>{{ property.bedrooms }}BHK</p>
+                </div>
+                <p class="text-white"> {{ property.city }}- {{property.zip_code }}</p>
+                <div
+                    class="flex justify-between items-center rounded-3xl border border-black px-2 -mx-1 py-[2px]">
+                    <span>
+                        More details
+                    </span>
+                    <span class="group-hover:rotate-[360deg] duration-500">
+                        <img src="/media/icons/arrow.png" alt="" class="h-6">
+                    </span>
+                </div>
+
+            </div>
+        </div>
+    </a>
+
+    {% endfor %}
+</div>
+{%endblock%}
