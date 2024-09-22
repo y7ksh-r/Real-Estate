@@ -104,6 +104,36 @@
             color: #000;
             /* Text color of the selected option */
         }
+
+        /* Scrollbar styling for Chrome, Safari, and Edge */
+::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    background: #1e1e1e; /* Dark background for track */
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background-color: #888; /* Dark gray thumb */
+    border-radius: 10px;
+    border: 2px solid #1e1e1e; /* Match track background to make thumb appear smaller */
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background-color: #555; /* Lighter gray on hover */
+  }
+  
+  /* Scrollbar styling for Firefox */
+  html {
+    scrollbar-width: thin;
+    scrollbar-color: #888 #1e1e1e; /* Thumb color #888, track color #1e1e1e */
+  }
+  
+  html:hover {
+    scrollbar-color: #555 #1e1e1e; /* Change thumb color on hover */
+  }
+  
     </style>
 </head>
 
@@ -269,7 +299,9 @@
             </div>
 
 
-            <a href="/special_filter/2"><h2 class="font-semibold text-xl bg-transparent text-white ">Ready to move ></h2></a>
+            <a href="/special_filter/2">
+                <h2 class="font-semibold text-xl bg-transparent text-white ">Ready to move ></h2>
+            </a>
             <div class="flex space-x-2 overflow-x-scroll lg:space-x-4 pb-2">
                 {% for property in rtm %}
                 <a href="prop_view/{{property.id}}">
@@ -306,7 +338,9 @@
                 {% endfor %}
             </div>
 
-            <a href="/special_filter/1"><h2 class="font-semibold text-xl text-white">Under Construction ></h2></a>
+            <a href="/special_filter/1">
+                <h2 class="font-semibold text-xl text-white">Under Construction ></h2>
+            </a>
             <div class="flex space-x-2 overflow-x-scroll lg:space-x-4 pb-2">
                 {% for property in uc %}
                 <a href="prop_view/{{property.id}}">
@@ -344,8 +378,10 @@
             </div>
 
 
-            <a href="/special_filter/3"><h2 class="font-semibold text-xl text-white bg-transparent">Cost efficient ></h2></a>
-            <div class="flex space-x-2 lg:space-x-4 overflow-x-scroll ">
+            <a href="/special_filter/3">
+                <h2 class="font-semibold text-xl text-white bg-transparent">Cost efficient ></h2>
+            </a>
+            <div class="flex space-x-2 lg:space-x-4 overflow-x-scroll overflow-y-hidden  ">
                 {% for property in ce %}
                 <a href="prop_view/{{property.id}}">
                     <div class="property w-[206px] h-[345px]  lg:w-[280px] lg:h-[475px] flex flex-col relative group ">
@@ -380,6 +416,40 @@
                 {% endfor %}
             </div>
         </div>
+
+        <footer class="bg-gray-600 text-white p-8 mt-12">
+            <div class="container mx-auto flex flex-col md:flex-row justify-between">
+                <!-- Company Info -->
+                <div class="mb-4 md:mb-0">
+                    <h2 class="text-xl font-bold">NCPR Homes</h2>
+                    <p class="mt-2">Your trusted partner in real estate.</p>
+                    <p class="mt-2">© 2024 NCPR Homes. All rights reserved.</p>
+                </div>
+
+                <!-- Quick Links -->
+                <div class="mb-4 md:mb-0">
+                    <h2 class="text-xl font-bold">Quick Links</h2>
+                    <ul class="mt-2 space-y-2">
+                        <li><a href="/" class="hover:underline">Home</a></li>
+                        <li><a href="/about" class="hover:underline">About Us</a></li>
+                        <li><a href="/services" class="hover:underline">Services</a></li>
+                        <li><a href="/contact" class="hover:underline">Contact</a></li>
+                    </ul>
+                </div>
+
+                <!-- Social Media Links -->
+                <div class="mb-4 md:mb-0">
+                    <h2 class="text-xl font-bold">Follow Us</h2>
+                    <div class="flex flex-col space-y-2 mt-2">
+                        <a href="https://www.linkedin.com/company/ncpr-homes/" class="hover:text-gray-400">LinkedIn</a>
+                        <a href="https://www.youtube.com/channel/UCQ5ufNstvJGst642QJCFGwA"
+                            class="hover:text-gray-400">YouTube</a>
+                        <a href="https://www.facebook.com/people/NCPR-HOMES/61550468357089/"
+                            class="hover:text-gray-400">Facebook</a>
+                    </div>
+                </div>
+            </div>
+        </footer>
 
         <script defer>
             document.addEventListener("DOMContentLoaded", function () {

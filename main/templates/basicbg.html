@@ -17,12 +17,44 @@
 </head>
 
 <body class="bg-black">
-   
-    </style>
+   <style>        /* Custom styles for fade-in and fade-out animations */
+    .fade-in {
+        animation: fadeIn 0.3s forwards;
+    }
+
+    .fade-out {
+        animation: fadeOut 0.3s forwards;
+    }
+
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+            transform: scale(0.95);
+        }
+
+        to {
+            opacity: 1;
+            transform: scale(1);
+        }
+    }
+
+    @keyframes fadeOut {
+        from {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        to {
+            opacity: 0;
+            transform: scale(0.95);
+        }
+    }
+</style>
+    
     <script src="{%static 'js/filter.js'%}"></script>
 
 
-    <div class="bg-image bg-[url('/media/icons/bgimage.jpg')] h-[20rem] lg:h-[40rem] bg-no-repeat bg-cover">
+    <div class="bg-image bg-[url('/media/icons/bgimage.jpg')] h-[20rem] lg:h-[35rem] bg-no-repeat bg-cover">
 
 
         <div class="navbar-lg lg:hidden hidden flex flex-col bg-transparent text-white font-medium shadow-lg rounded-lg p-4 absolute mt-12 lg:m-0 lg:w-fit w-1/2 space-y-4  lg:font-semibold "
@@ -64,12 +96,69 @@
             </div>
         </div>
 
+        
+        {% block body %}
+        {% endblock %}  
 
+        <footer class="bg-gray-600 text-white p-8 mt-12">
+            <div class="container mx-auto flex flex-col md:flex-row justify-between">
+              <!-- Company Info -->
+              <div class="mb-4 md:mb-0">
+                <h2 class="text-xl font-bold">NCPR Homes</h2>
+                <p class="mt-2">Your trusted partner in real estate.</p>
+                <p class="mt-2">© 2024 NCPR Homes. All rights reserved.</p>
+              </div>
+          
+              <!-- Quick Links -->
+              <div class="mb-4 md:mb-0">
+                <h2 class="text-xl font-bold">Quick Links</h2>
+                <ul class="mt-2 space-y-2">
+                  <li><a href="/" class="hover:underline">Home</a></li>
+                  <li><a href="/about" class="hover:underline">About Us</a></li>
+                  <li><a href="/services" class="hover:underline">Services</a></li>
+                  <li><a href="/contact" class="hover:underline">Contact</a></li>
+                </ul>
+              </div>
+          
+              <!-- Social Media Links -->
+              <div class="mb-4 md:mb-0">
+                <h2 class="text-xl font-bold">Follow Us</h2>
+                <div class="flex flex-col space-y-2 mt-2">
+                  <a href="https://www.linkedin.com/company/ncpr-homes/" class="hover:text-gray-400">LinkedIn</a>
+                  <a href="https://www.youtube.com/channel/UCQ5ufNstvJGst642QJCFGwA" class="hover:text-gray-400">YouTube</a>
+                  <a href="https://www.facebook.com/people/NCPR-HOMES/61550468357089/" class="hover:text-gray-400">Facebook</a>
+                </div>
+              </div>
+            </div>
+          </footer>
+          
         
 
 
-        {% block body %}
-        {% endblock %}
+
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                const hamburger = document.getElementById('hamburger');
+                const menu = document.getElementById('menu');
+
+
+                hamburger.addEventListener('click', function () {
+                    menu.classList.toggle('backdrop-blur-lg');
+                    if (menu.classList.contains('hidden')) {
+                        menu.classList.remove('hidden');
+                        menu.classList.remove('fade-out');
+                        menu.classList.add('fade-in');
+                    } else {
+                        menu.classList.remove('fade-in');
+                        menu.classList.add('fade-out');
+                        setTimeout(() => {
+                            menu.classList.add('hidden');
+                        }, 300); // Match the duration of the fade-out animation
+                    }
+                });
+            });
+
+        </script>
 </body>
 
 </html>
