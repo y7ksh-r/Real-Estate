@@ -14,7 +14,22 @@
     <!-- Your existing scripts and other head content -->
 </head>
 
-<body class="bg-black px-2">
+<body class="bg-black px-2">{% if messages %}
+    <div id="message-bar" class="fixed top-4 left-1/2 transform -translate-x-1/2 w-full max-w-md bg-green-500 text-white px-6 py-4 rounded-lg shadow-lg flex flex-col items-center">
+        <div class="flex justify-between items-center w-full">
+
+            <button onclick="hideMessageBar()" class="text-white hover:text-red-500">&times;</button>
+        </div>
+        {% for message in messages %}
+            <p class="mt-2 text-center">{{ message }}</p>
+        {% endfor %}
+        <div class="relative w-full h-1 bg-white mt-4 rounded-full">
+            <!-- Progress Bar that runs in reverse -->
+            <div id="progress-bar" class="absolute left-0 top-0 h-full bg-orange-400 rounded-full"></div>
+        </div>
+    </div>
+{% endif %}
+
     <div class="navbar flex justify-center my-2">
         <img src="/media/icons/image1.png" alt="harsh" class="h-8 lg:h-12">
     </div>
@@ -89,15 +104,7 @@
                     </div>
             </div>
         </div>
-        <div> {% if messages %}
-
-            {% for message in messages %}
-            <li style="color: brown;">
-                {{ message }}
-            </li>
-            {% endfor %}
-            </ul>
-            {% endif %}
+        <div> 
         </div>
     </div>
 
@@ -330,111 +337,176 @@
         /* Close button */
     </style>
 
-    <script type="module">
-        // Import the functions you need from the SDKs you need
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.1/firebase-app.js";
-        import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.13.1/firebase-analytics.js";
-        // TODO: Add SDKs for Firebase products that you want to use
-        // https://firebase.google.com/docs/web/setup#available-libraries
+<script>
+    let otpVerified = false; // Flag to track OTP verification status
+    let timerInterval;
+let resendButton = document.getElementById('resend-otp-btn');
+let timerDisplay = document.getElementById('timer');
 
-        // Your web app's Firebase configuration
-        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-        const firebaseConfig = {
-            apiKey: "AIzaSyDtS4uTzsCBKO1tpj6-UfhB00JmlG_ocvo",
-            authDomain: "ncpr-acd83.firebaseapp.com",
-            projectId: "ncpr-acd83",
-            storageBucket: "ncpr-acd83.appspot.com",
-            messagingSenderId: "1028406996510",
-            appId: "1:1028406996510:web:d90688bc96a4b5a443880f",
-            measurementId: "G-9THVBVHX2S"
-        };
+    function sendOTP() {
+    const phone = document.getElementById("phone_no").value;
 
-        // Initialize Firebase
-        const app = initializeApp(firebaseConfig);
-        const analytics = getAnalytics(app);
-    </script>
-    <script>
-        function sendOTP() {
-            const phoneNumber = document.getElementById('phone').value;
-
-            firebase.auth().signInWithPhoneNumber(phoneNumber, window.recaptchaVerifier)
-                .then((confirmationResult) => {
-                    window.confirmationResult = confirmationResult;
-                    alert('OTP sent successfully');
-                })
-                .catch((error) => {
-                    console.error("Error during signInWithPhoneNumber", error);
-                });
+        
+    if (!phone) {
+        alert("Please enter your phone number.");
+        return;
+    }
+    fetch('/otp_verification/', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRFToken': '{{ csrf_token }}'
+        },
+        body: JSON.stringify({ phone_no: phone })
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+           alert("OTP Sent ");
+        } else {
+            alert("Failed To Send OTP " + data.error, "error");
         }
+    });    
 
-        function verifyOTP() {
-            const code = document.getElementById('otp').value;
-            confirmationResult.confirm(code)
-                .then((result) => {
-                    result.user.getIdToken().then((idToken) => {
-                        // Optionally, you can send this token to the server
-                        alert('OTP verified successfully');
-                        document.getElementById('contact-form').submit();  // Automatically submit the form after verification
-                    });
-                })
-                .catch((error) => {
-                    console.error("Error during OTP verification", error);
-                    alert('Failed to verify OTP. Please try again.');
-                });
+// Start the timer for 60 seconds and disable the Resend button
+startTimer(60);
+resendButton.disabled = true;
+}
+function startTimer(duration) {
+    let timeLeft = duration;
+    
+    timerInterval = setInterval(function() {
+        timeLeft--;
+        timerDisplay.textContent = timeLeft;
+
+        if (timeLeft <= 0) {
+            clearInterval(timerInterval);
+            resendButton.disabled = false;
+            timerDisplay.textContent = "0";  // Reset timer text
         }
-
-
-
-    </script>
+    }, 1000);
+}
+function resendOTP() {
+    // Logic to resend the OTP
+    console.log("OTP resent!");
+    sendOTP();
+    // Restart the timer after resending the OTP
+    startTimer(60);
+    resendButton.disabled = true;
+}
+    function verifyOTP() {
+        const otp = document.getElementById('otp').value;
+        fetch('/verify_otp/', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken': '{{ csrf_token }}'
+            },
+            body: JSON.stringify({ otp: otp })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                otpVerified = true; // Set flag to true if OTP is verified
+                 alert("OTP verified successfully!");
+                document.getElementById('submit-button').disabled = false; // Enable the submit button
+            } else {
+                alert("Invalid OTP: " + data.error);
+            }
+        });
+    }
+</script>
     <div class="container relative">
         <form id="contact-form" action="/contactus" method="POST" class="rounded-2xl flex-col flex justify-center">
-            <span
-                class="close absolute cursor-pointer top-0 right-3 text-2xl font-black hover:text-red-600 text-gray-800"
-                onclick="document.querySelector('.container').style.display='none';">&times;</span>
+            <span class="close absolute cursor-pointer top-0 right-3 text-2xl font-black hover:text-red-600 text-gray-800"
+                  onclick="document.querySelector('.container').style.display='none';">&times;</span>
             {% csrf_token %}
-
+        
             <div class="form-group text-xl font-semibold">
                 <input type="hidden" id="property" name="property" value="{{prop.title}}">
+                <input type="hidden" id="property_id" name="property_id" value="{{prop.id}}">
                 <label for="Property_name">{{prop.title}}</label>
             </div>
-
+        
             <div class="form-group">
-                <input type="text"
-                    class="form-group ring-0 focus:border-orange-500 focus:border-b-2 focus:ring-0 w-full" id="name"
-                    name="name" placeholder="Your Full Name">
+                <input type="text" class="form-group ring-0 focus:border-orange-500 focus:border-b-2 focus:ring-0 w-full"
+                       id="name" name="name" placeholder="Your Full Name">
             </div>
-
+            
+            <!-- Add this div where appropriate in your HTML body -->
+            <div id="recaptcha-container" class="my-4"></div>
+        
             <div class="form-group">
-                <input type="tel" class="form-group ring-0 focus:border-orange-500 focus:border-b-2 focus:ring-0 w-full"
-                    id="phone" name="phone" placeholder="Your Contact No." required>
-                <button type="button" onclick="sendOTP()" class="bg-blue-500 text-black rounded-lg px-2 py-1 mt-2">
+                <input type="text" class="form-group ring-0 focus:border-orange-500 focus:border-b-2 focus:ring-0 w-full"
+                       id="phone_no" name="phone_no" placeholder="Your Contact No." required>
+                <button type="button" id="send-otp-btn" onclick="sendOTP()" class="bg-blue-500 text-black rounded-lg px-2 py-1 mt-2">
                     Get OTP
                 </button>
             </div>
-
+        
+            <!-- OTP verification input -->
             <div class="form-group">
-                <input type="text" id="otp" placeholder="Enter OTP"
-                    class="form-group ring-0 focus:border-orange-500 focus:border-b-2 focus:ring-0 w-full">
-                <button type="button" onclick="verifyOTP()" class="bg-green-500 text-white rounded-lg px-2 py-1 mt-2">
+                <input type="tel" id="otp" placeholder="Enter OTP" class="form-group ring-0 focus:border-orange-500 focus:border-b-2 focus:ring-0 w-full">
+                <button type="button" onclick="verifyOTP()" class="bg-green-500 text-black rounded-lg px-2 py-1 mt-2">
                     Verify OTP
                 </button>
             </div>
-
+            
+            <!-- Resend OTP button -->
             <div class="form-group">
-                <input type="email"
-                    class="form-group ring-0 focus:border-orange-500 focus:border-b-2 focus:ring-0 w-full" id="email"
-                    name="email" required placeholder="Your Personal Email Address">
+                <button type="button" id="resend-otp-btn" onclick="resendOTP()" class="bg-yellow-500 text-black rounded-lg px-2 py-1 mt-2" disabled>
+                    Resend OTP (<span id="timer">60</span>s)
+                </button>
             </div>
-
-            <button id="submit-button" type="submit" disabled
-                class="bg-transparent border border-orange-500 text-orange-500 hover:bg-orange-500 hover:text-white rounded-lg px-2 py-1 active:bg-orange-600 shadow-xl font-semibold duration-300">
+        
+            <div class="form-group">
+                <input type="email" class="form-group ring-0 focus:border-orange-500 focus:border-b-2 focus:ring-0 w-full"
+                       id="email" name="email" required placeholder="Your Personal Email Address">
+            </div>
+            
+            <button id="submit-button" type="submit" 
+                    class="bg-transparent border border-orange-500 text-orange-500 hover:bg-orange-500 hover:text-white rounded-lg px-2 py-1 active:bg-orange-600 shadow-xl font-semibold duration-300">
                 Confirm
             </button>
         </form>
+        
     </div>
     
-
-
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Find the message bar and progress bar elements
+            var messageBar = document.getElementById('message-bar');
+            var progressBar = document.getElementById('progress-bar');
+            
+            if (messageBar && progressBar) {
+                // Set initial width of the progress bar to 100%
+                progressBar.style.width = '100%';
+                
+                // Duration for how long the message bar will be visible (5 seconds)
+                var duration = 5000;
+                
+                // Use CSS transitions to animate the progress bar in reverse
+                progressBar.style.transition = `width ${duration}ms linear`;
+                setTimeout(() => {
+                    progressBar.style.width = '0%';
+                }, 0);
+    
+                // Hide the message bar after the duration
+                setTimeout(function() {
+                    messageBar.style.display = 'none';
+                }, duration);
+            }
+        });
+    
+        // Function to manually hide the message bar when close button is clicked
+        function hideMessageBar() {
+            var messageBar = document.getElementById('message-bar');
+            if (messageBar) {
+                messageBar.style.display = 'none';
+            }
+        }
+    </script>
+    
 </body>
 
 </html>

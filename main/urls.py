@@ -14,5 +14,7 @@ urlpatterns = [
     path('about', views.about, name='contact_us'),
     path('services', views.services, name='contact_us'),
     path('special_filter/<int:fid>', views.special_page_filter, name='special_page_filter'),
-    path('verify-otp/', views.verify_otp, name='verify_otp'),
+    path('otp/', views.otp_verification, name='otp_verification'),
+    path('otp_verification/', views.otp_verification, name='otp_verification'),
+    path('verify_otp/', views.verify_otp, name='verify_otp'),
     ]    

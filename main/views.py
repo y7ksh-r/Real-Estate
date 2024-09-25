@@ -4,9 +4,13 @@ from .models import*
 from django.db.models import F, ExpressionWrapper, FloatField
 from django.db.models.functions import Abs
 from django.contrib import messages
-# Create your views here.
-from firebase_admin import auth
+import boto3
 
+from datetime import datetime,timedelta
+from django.core.validators import RegexValidator
+from django.core.exceptions import ValidationError
+import json
+import pyotp
 def verify_otp(request):
     id_token = request.POST.get('id_token')
 
@@ -25,7 +29,6 @@ def home(request):
     cities=Property.objects.values_list('city',flat=True).distinct()   
     bedrooms=Property.objects.values_list('bedrooms',flat=True).distinct().order_by('bedrooms')
     cities=sorted(set(cities))
-    print(cities)
     properties_with_efficiency = []
     for property in list_proj:
         if property.bedrooms > 0:  # Avoid division by zero
@@ -94,16 +97,85 @@ def prop_view(request,pid):
         )
     ).exclude(id=property.id).order_by('price_difference').first()
    return render(request, 'prop_view.html', {'prop': property,'photos':photos,'remaining':total,"sp":similar_price_property,"sc":similar_price_city_property,'sd':similar_price_developer_property,'ss':similar_size_property})
+def otp_verification(request):
+    if request.method == 'POST':
+        data = json.loads(request.body)
+        phone_no = data.get('phone_no')
+        data = json.loads(request.body)
+    
+        # Generate and send OTP with 10-minute validity (600 seconds)
+        totp = pyotp.TOTP(pyotp.random_base32(), interval=300)
+        otp = totp.now()
+        print(otp)
+        # Store the secret key and OTP expiration time in the session (valid for 10 minutes)
+        request.session['otp_secret_key'] = totp.secret
+        valid_date = datetime.now() + timedelta(minutes=5)
+        request.session['valid_time'] = valid_date.isoformat()  # Store as ISO format for better consistency
+        request.session['phone_no'] = phone_no
+
+        # Create SNS client and send the OTP
+        client = boto3.client('sns', 
+            region_name="ap-south-1",
+            aws_access_key_id="AKIA356SJVSG5OU6P4M3",
+            aws_secret_access_key="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")
+        message = f"VEFICATION CODE FOR NCPR INQUIRY IS: {otp}. It will expire in 5 minutes."
+
+        try:
+            client.publish(PhoneNumber=phone_no, Message=message)
+            return JsonResponse({'success': True, 'message': "OTP sent successfully!"})
+        except Exception as e:
+            return JsonResponse({'success': False, 'error': str(e)})
+    else:
+        return JsonResponse({'success': False, 'error': 'Invalid request method'})
+
+def verify_otp(request):
+    if request.method == 'POST':
+        data = json.loads(request.body)
+        entered_otp = data.get('otp')
+        print(entered_otp)
+        otp_secret_key = request.session.get('otp_secret_key')
+        valid_time = request.session.get('valid_time')
+        # Check if OTP is still valid
+        if otp_secret_key and valid_time:
+            valid_time = datetime.fromisoformat(valid_time)
+            if datetime.now() > valid_time:
+                return JsonResponse({'success': False, 'error': "OTP has expired."})
+
+            # Verify OTP
+            totp = pyotp.TOTP(otp_secret_key, interval=300)
+            if totp.verify(entered_otp):
+                request.session['otp_verified'] = True  # Mark OTP as verified
+                return JsonResponse({'success': True, 'message': "OTP verified successfully!"})
+            else:
+                return JsonResponse({'success': False, 'error': " INVALID OTP."})
+    return JsonResponse({'success': False, 'error': 'Invalid request method'})
+from django.shortcuts import redirect, render
+from datetime import datetime
 def abt_us(request):
-    property=request.POST.get("property")
-    name=request.POST.get("name")
-    phone=request.POST.get("phone")
-    email=request.POST.get("email")
-    inquiry = inq(name=name, contactno=phone, email=email,property=property)
-    inquiry.save()
+    if not request.session.get('otp_verified'):
+        return redirect('otp_verification')  # Redirect to OTP verification if not verified
+
+    if request.method == 'POST':
+        property = request.POST.get("property")
+        property_id = request.POST.get("property_id")
+        name = request.POST.get("name")
+        phone = request.POST.get("phone_no")
+        email = request.POST.get("email")
+        print(name)
+        # Save the inquiry if OTP was verified
+        if request.session.get('otp_verified'):
+            inquiry = inq(name=name, contactno=phone, email=email, property=property)
+            inquiry.save()
+
+            # Clear the session after successful inquiry
+            request.session.pop('otp_verified', None)
+            request.session.pop('otp_secret_key', None)
+            request.session.pop('valid_time', None)
+            messages.success(request, 'Your inquiry has been submitted successfully!')
+        return redirect(f'/prop_view/{property_id}')
 
 
-    return redirect("/")
+    return render(request, 'inquiry_form.html')
 def more_img(request,pid):
     property = Property.objects.get(id=pid)
     photos=Photo.objects.filter(property=pid)
