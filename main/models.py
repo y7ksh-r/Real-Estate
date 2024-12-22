@@ -1,6 +1,12 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.utils import timezone
+class Amenity(models.Model):
+    title = models.CharField(max_length=200)
+    image = models.ImageField(upload_to="media/amenities", blank=True, null=True)
+
+    def __str__(self):
+        return self.title
 
 
 class Property(models.Model):
@@ -35,6 +41,7 @@ class Property(models.Model):
     list_date = models.DateTimeField(auto_now_add=True)
     devloper = models.TextField(max_length=300, null=True)
     price2 = models.CharField(max_length=255, editable=False,default='NONE')  # Field for storing the price in words
+    amenities = models.ManyToManyField(Amenity, related_name="properties", blank=True)
 
     def convert_to_lakh_or_crore(self, value):
         if value >= 1_00_00_000:

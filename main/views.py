@@ -69,10 +69,13 @@ def load_projects(request):
 
 
 def prop_view(request,pid):
+  
    property = Property.objects.get(id=pid)
    t_photos=Photo.objects.filter(property=pid)
    photos=Photo.objects.filter(property=pid)[:4]
    total=len(t_photos)
+   amenities=property.amenities.all()
+
    total=total-3
    similar_price_property = Property.objects.annotate(
         price_difference=ExpressionWrapper(
@@ -96,7 +99,7 @@ def prop_view(request,pid):
             Abs(F('price') - property.price), output_field=FloatField()
         )
     ).exclude(id=property.id).order_by('price_difference').first()
-   return render(request, 'prop_view.html', {'prop': property,'photos':photos,'remaining':total,"sp":similar_price_property,"sc":similar_price_city_property,'sd':similar_price_developer_property,'ss':similar_size_property})
+   return render(request, 'prop_view.html', {'prop': property,'photos':photos,'remaining':total,"sp":similar_price_property,"sc":similar_price_city_property,'sd':similar_price_developer_property,'ss':similar_size_property,'amenities':amenities})
 def otp_verification(request):
     if request.method == 'POST':
         data = json.loads(request.body)
