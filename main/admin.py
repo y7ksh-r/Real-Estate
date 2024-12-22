@@ -4,3 +4,4 @@ from .models import*
 admin.site.register(Property)
 admin.site.register(Photo)
 admin.site.register(inq)
+admin.site.register(Amenity)
