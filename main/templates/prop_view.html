@@ -12,110 +12,306 @@
     <!-- Firebase Authentication SDK -->
     <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth.js"></script>
     <!-- Your existing scripts and other head content -->
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400..900&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Luxurious+Roman&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700&display=swap');
+    </style>
 </head>
 
-<body class="bg-black px-2">{% if messages %}
-    <div id="message-bar" class="fixed top-4 left-1/2 transform -translate-x-1/2 w-full max-w-md bg-green-500 text-white px-6 py-4 rounded-lg shadow-lg flex flex-col items-center">
+<body class="bg-black mx-2">{% if messages %}
+    <div id="message-bar"
+        class="fixed top-4 left-1/2 transform -translate-x-1/2 w-full max-w-md bg-green-500 text-white px-6 py-4 rounded-lg shadow-lg flex flex-col items-center">
         <div class="flex justify-between items-center w-full">
 
             <button onclick="hideMessageBar()" class="text-white hover:text-red-500">&times;</button>
         </div>
         {% for message in messages %}
-            <p class="mt-2 text-center">{{ message }}</p>
+        <p class="mt-2 text-center">{{ message }}</p>
         {% endfor %}
         <div class="relative w-full h-1 bg-white mt-4 rounded-full">
             <!-- Progress Bar that runs in reverse -->
             <div id="progress-bar" class="absolute left-0 top-0 h-full bg-orange-400 rounded-full"></div>
         </div>
     </div>
-{% endif %}
+    {% endif %}
 
-    <div class="navbar flex justify-center my-2">
-        <img src="/media/icons/image1.png" alt="harsh" class="h-8 lg:h-12">
+    <div class="navbar flex justify-between my-2">
+        <div class="navbar-lg lg:hidden hidden flex flex-col bg-transparent text-white font-medium shadow-lg rounded-lg p-4 absolute mt-12 lg:m-0 lg:w-fit w-1/2 space-y-4  lg:font-semibold "
+            id="menu">
+            <a href="/"
+                class="border-b p-3 lg:border-none lg:text-lg rounded-xl hover:backdrop-blur-xl  hover:text-black">Home</a>
+            <a href="/about"
+                class="border-b p-3 lg:border-none lg:text-lg rounded-xl hover:backdrop-blur-xl   hover:text-black">About</a>
+            <a href="/services"
+                class="border-b p-3 lg:border-none lg:text-lg rounded-xl hover:backdrop-blur-xl hover:text-black">Services</a>
+            <a href="/contact"
+                class="border-b p-3 lg:border-none  lg:text-lg rounded-xl hover:backdrop-blur-xl hover:text-black">Contact</a>
+        </div>
+
+        <div class="navbar flex justify-between bg-transparent p-2 w-screen items-center top-0 overflow-hidden">
+            <div
+                class="navbar-lg hidden flex flex-col lg:bg-transparent lg:shadow-none rounded-lg lg:static lg:ml-2 lg:w-fit lg:space-x-14 lg:block lg:text-white lg:font-semibold overflow-hidden  ">
+                <a href=" /" class=" lg:border-none rounded-xl  hover:text-black duration-300">Home</a>
+                <a href="/about" class="lg:border-none rounded-xl   hover:text-black duration-300">About</a>
+                <a href="/services" class=" lg:border-none rounded-xl  hover:text-black duration-300">Services</a>
+                <a href="/contact" class=" lg:border-none  rounded-xl  hover:text-black duration-300">Contact</a>
+            </div>
+            <div class="hamburger lg:hidden " id="hamburger">
+                <svg class="w-8 h-8 text-white duration-300 cursor-pointer" fill="none" stroke="currentColor"
+                    viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16">
+                    </path>
+                </svg>
+            </div>
+            <div class="company-logo mr-[4vw] lg:ml-[8vw]  lg:order-2 md:m-0">
+                <a href="/ "><img src="/media/icons/image1.png" alt="harsh" class="h-10 lg:h-12"></a>
+            </div>
+            <div class="invisible lg:w-1/3 lg:order-3 ">
+            </div>
+        </div>
     </div>
 
-    <div class="block lg:grid grid-cols-3">
-        <div class="property-container m-2 relative flex flex-col lg:w-[780px] ">
-            <div class="property-image rounded-lg overflow-hidden h-[400px] lg:h-[535px] ">
+    <div class="block">
+        <div class="property-container relative flex flex-col w-full">
+            <div class="property-image overflow-hidden h-[400px] lg:h-[90vh] relative ">
                 <img src="/media/{{prop.main_img}}" alt="Beautiful Family Home"
-                    class="rounded-lg object-cover w-full h-full object-center md:object-contain lg:object-cover">
+                    class=" object-cover w-full h-full object-center md:object-contain lg:object-cover">
+                <div class="hidden lg:block property-title text-7xl font-semibold my-4 col-span-2 text-left absolute top-48  w-[30vw] bg-white p-3  bg-opacity-15 break-words"
+                    style="font-family: Montserrat; font-weight: 400;">
+                    <h1 class="uppercase">{{prop.title}}</h1>
+                    <h1 class=" text-black text-sm  font-light uppercase ">{{prop.bedrooms}} beds | {{prop.bathrooms}}
+                        baths |
+                        {{prop.city}}</h1>
+                </div>
             </div>
             <a href="/moreimages/{{prop.id}}">
-                <div
-                    class="gallery-images flex h-14 rounded-lg absolute bottom-0 left-0 backdrop-blur-sm w-full px-2 p-1 group overflow-scroll lg:hidden ">
+                <div class="gallery-images flex h-14 rounded-lg absolute bottom-0 left-0 backdrop-blur-sm w-full px-2 p-1 group overflow-scroll lg:hidden space-x-1"
+                    name="mobile">
 
                     {% for img in photos %}
                     <img src="/media/{{img.image}}" alt="Property Image 1" class="h-full object-cover">
                     {% endfor %}
                     <span class="text-white pl-1 flex items-center group"><span>+ {{remaining}} More </span>
 
-                        <img src="/media/icons/arrow copy.png" alt="" class="h-5 pl-1 ">
                     </span>
                 </div>
             </a>
         </div>
         <a href="/moreimages/{{prop.id}}">
-            <div
-                class="gallery-images w-48 px-2 p-1 group overflow-scroll lg:block hidden float-right ">
+            <div class="gallery-images h-20 lg:flex absolute bottom-0 right-1/3 float-none backdrop-blur-lg
+             bg-opacity-30 group overflow-hidden hidden space-x-2 bg-black ">
 
                 {% for img in photos %}
                 <img src="/media/{{img.image}}" alt="Property Image 1" class="h-full object-cover">
                 {% endfor %}
-                <span class="text-white pl-1 flex items-center group"><span>+ {{remaining}} More </span>
+                <span
+                    class="text-white pl-11 flex items-center group backdrop-blur-md absolute right-0 h-full w-1/4 center"><span>+
+                        {{remaining}} <br> More </span>
 
-                    <img src="/media/icons/arrow copy.png" alt="" class="h-5 pl-1 ">
                 </span>
             </div>
         </a>
 
-        <div class="property-details mt-6 lg:mt-1 mr-2">
-            <div
-                class="details-elements lg:block bg-transparent text-white rounded-lg p-2 mb-2 bg-orange-400 bg-opacity-15 border-[1px] border-orange-400 lg:w-[400px] space-y-3 lg:px-4 lg:mx-10">
-                <h1 class="property-title text-2xl font-semibold my-4 col-span-2 text-center">{{prop.title}}</h1>
-                <div class=" lg:border-none w-full lg:w-[20vw] pb-1 col-span-2 ">
-                    <p><strong>Location: </strong><br>{{prop.address}}</p>
-                </div>
-                <div class="  lg:border-none  lg:w-[20vw] pb-1 ">
-                    <p><strong>Price: </strong>{{prop.price}}</p>
-                </div>
-                <div class=" lg:border-none  lg:w-[20vw] pb-1 ">
-                    <p><strong>Bedrooms: </strong>{{prop.bedrooms}}</p>
-                </div>
-                <div class=" lg:border-none  lg:w-[20vw] pb-1 ">
-                    <p><strong>Bathrooms: </strong>{{prop.bathrooms}}</p>
-                </div>
-                <div class="lg:border-none  lg:w-[20vw] pb-1 ">
-                    <p class="flex"><strong>Carpet Area:</strong> 
-                        <button onclick="document.querySelector('.container').style.display='flex'" class="text-white">View <svg fill="#ffffff" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 448.004 448.004" xml:space="preserve"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <g> <path d="M46.139,217.607l-17.93-20.798C18.766,185.932,9.443,175.054,0,164.057l17.212-14.822 c9.323,10.877,18.767,21.755,28.209,32.632l17.93,20.798L46.139,217.607z M145.589,159.157l-24.265-66.34l-21.277,7.77 l24.265,66.34L145.589,159.157z M235.357,76.799h-22.711v70.643h22.711V76.799z M347.955,100.586l-21.275-7.77l-24.266,66.34 l21.277,7.77L347.955,100.586z M448.004,164.057l-17.213-14.822l-46.139,53.55l17.211,14.822L448.004,164.057z M404.852,268.049 l6.455,7.65l-6.455,7.649c-0.717,0.957-18.885,22.353-49.963,43.868c-41.598,28.808-86.779,43.987-130.768,43.987 c-43.988,0-89.29-15.18-130.767-43.987c-31.078-21.516-49.247-43.031-49.964-43.868l-6.455-7.649l6.455-7.65 c0.717-0.956,18.886-22.353,49.964-43.867c41.597-28.808,86.779-43.988,130.767-43.988c43.988,0,89.289,15.181,130.768,43.988 C385.967,245.697,404.016,267.212,404.852,268.049z M286.039,275.7c0-34.306-27.732-62.037-62.038-62.037 c-34.306,0-62.037,27.731-62.037,62.037s27.731,62.036,62.037,62.036C258.307,337.856,286.039,310.005,286.039,275.7z M224.001,294.585c-10.399,0-18.886-8.486-18.886-18.886s8.486-18.886,18.886-18.886v-23.906 c-23.548,0-42.792,19.244-42.792,42.792s19.244,42.792,42.792,42.792c23.547,0,42.792-19.244,42.792-42.792h-23.906 C242.887,286.218,234.4,294.585,224.001,294.585z"></path> </g> </g></svg></button></p>
-                </div>
-                <div class="col-span-2 ">
-                    <p><strong>Description:</strong></p>
-                    <div class="border rounded-lg border-white p-1 mt-2 h-28 overflow-y-scroll">{{prop.description}}
-                    </div>
-                </div>
+        <div class="property-details mt-6 lg:mt-1 text-white ">
 
-                <button onclick="document.querySelector('.container').style.display='flex';"
-                    class="bg-orange-500 text-white p-1 px-2 rounded-lg font-semibold my-4 col-span-2 w-full">Inquiry</button>
-
-                    <p><strong>Google Map:</strong></p>
-                    <div class="google-map overflow-hidden relative mt-4 ">
-                        <iframe src="{{prop.map_url}}" width="450" height="250"  allowfullscreen="" loading="lazy"
-                            referrerpolicy="no-referrer-when-downgrade"></iframe>
-                    </div>
+            <div class="my-8">
+                <h1 class="property-title text-4xl uppercase break-words font-semibold mt-4 col-span-2 text-center"
+                    style="font-family: Montserrat; font-weight: 400;">{{prop.title}}</h1>
+                <h1 class=" text-white text-center font-extralight text-sm "
+                    style="font-family: Montserrat; font-weight: 100;">{{prop.bedrooms}} beds | {{prop.bathrooms}}
+                    baths |
+                    {{prop.price2}}</h1>
             </div>
-        </div>
-        <div> 
+
+            <div class="mx-6 mb-12 flex items-center justify-center " style="font-family: Cinzel;">
+                <button onclick="document.querySelector('.container').style.display='flex';"
+                    class="border border-orange-500 text-orange-500 hover:bg-orange-500 hover:text-white duration-300 p-2 font-light w-full lg:w-1/2">I
+                    N Q U I R Y </button>
+            </div>
+            <div class="description-group lg:mx-20 mx-3  tracking-wide">
+                <hr class="mx-2 my-4 opacity-30">
+
+                <div class="col-span-2 ">
+                    <p class="text-2xl uppercase ml-2" style="font-family: Cinzel;">Description</p>
+                    <div class=" text-justify mx-2 mt-2 h-auto text-sm"
+                        style="font-family:Montserrat    ; font-weight: 300;">
+                        {{prop.description}}
+                    </div>
+                </div>
+
+                <hr class="mx-2 my-4 opacity-30">
+
+                <div class="col-span-2 ">
+                    <p class="text-2xl uppercase ml-2" style="font-family: Cinzel;">Location</p>
+                    <div class=" text-left mx-2 mt-2 h-auto text-sm"
+                        style="font-family:Montserrat    ; font-weight: 300;">
+                        {{prop.address}}
+                    </div>
+                </div>
+
+
+                <hr class="mx-2 my-4 opacity-30">
+
+                <div class="col-span-2 ">
+                    <p class="text-2xl uppercase ml-2" style="font-family: Cinzel;">Price</p>
+                    <div class=" text-justify mx-2 mt-2 h-auto text-sm"
+                        style="font-family:Montserrat    ; font-weight: 300;">
+                        {{prop.price2}}
+                    </div>
+                </div>
+
+                <hr class="mx-2 my-4 opacity-30">
+
+                <div class="col-span-2 ">
+                    <p class="text-2xl uppercase ml-2" style="font-family: Cinzel;">Bedrooms</p>
+                    <div class=" text-justify mx-2 mt-2 h-auto text-sm"
+                        style="font-family:Montserrat    ; font-weight: 300;">
+                        {{prop.bedrooms}}
+                    </div>
+                </div>
+
+                <hr class="mx-2 my-4 opacity-30">
+
+                <div class="col-span-2 ">
+                    <p class="text-2xl uppercase ml-2" style="font-family: Cinzel;">Bathrooms</p>
+                    <div class=" text-justify mx-2 mt-2 h-auto text-sm"
+                        style="font-family:Montserrat    ; font-weight: 300;">
+                        {{prop.bathrooms}}
+                    </div>
+                </div>
+
+                <hr class="mx-2 my-4 opacity-30">
+                <p class="text-2xl uppercase ml-2" style="font-family: Cinzel;">Carpet Area</p>
+                <div class=" text-justify mx-2 mt-2 h-auto text-sm"
+                    style="font-family:Montserrat    ; font-weight: 300;">
+                    <button onclick="document.querySelector('.container').style.display='flex'" class="text-white"
+                        style="font-family:Cinzel    ; font-weight: 300;">View
+                    </button>
+                </div>
+            </div>
+
+            <div class="owner-details bg-orange-400 bg-opacity-10 w-full mt-8 lg:hidden" name="mobile">
+
+                <div class=" px-6 pt-12 pb-8 lg:w-1/4"><img src="/media/photos/owner.jpg" alt=""
+                        class="object-cover lg:h-auto lg:pl-10 "></div>
+
+                <div class="">
+                    <p class="uppercase text-center text-2xl" style="font-family: Montserrat;">Saurabh
+                        <br>Mishra
+                    </p>
+                </div>
+                <div class="mt-6">
+                    <p class=" text-center" style="font-family:Cinzel; font-weight: 300;">Title</p>
+                    <ul class="opacity-80 text-justify text-sm list-disc mt-2 mx-5 space-y-1"
+                        style="font-family:Cinzel; font-weight: 300;">
+                        <li>Award-Winning Real Estate Advisor, Thane & Mumbai Specialist</li>
+                        <li>Leading Real Estate Expert with Key Achievements Across Thane & Mumbai</li>
+                        <li>Maharashtra’s Trusted Real Estate Advisor with Expertise in Thane and Mumbai</li>
+                        <li>Premier Property Consultant with Major Achievements in Thane & Mumbai</li>
+                        <li>Acclaimed Real Estate Advisor with Notable Success in Thane, Mumbai & Beyond</li>
+                    </ul>
+                </div>
+                <div class="mt-6">
+                    <p class=" text-center" style="font-family:Cinzel; font-weight: 300;">Phone</p>
+                    <p class="opacity-80 text-center text-sm mt-1 mx-5 underline decoration-0  "
+                        style="font-family:Cinzel; font-weight: 300;">
+                        +91 070456-26807
+                    </p>
+                </div>
+
+                <div class="mt-6">
+                    <p class=" text-center" style="font-family:Cinzel; font-weight: 300;">Email</p>
+                    <p class="opacity-80 text-center text-sm mt-1 mx-5 underline decoration-0 cursor-pointer "
+                        style="font-family:Cinzel; font-weight: 300;">
+                        ncpr.23realestate@gmail.com
+                    </p>
+                </div>
+
+                <div class="mx-6 mt-6 pb-12" style="font-family: Montserrat;">
+                    <button onclick="document.querySelector('.container').style.display='flex';"
+                        class="border border-white text-white hover:bg-white hover:text-black duration-300 p-2 font-light w-full">CONTACT
+                        AGENT</button>
+                </div>
+            </div>
+
+            <div class=" hidden owner-details bg-orange-400 bg-opacity-10 w-full mt-8 lg:flex justify-between">
+
+                <div class=" px-6 pt-12 pb-8 lg:w-1/4"><img src="/media/photos/owner.jpg" alt=""
+                        class="object-cover lg:h-auto lg:pl-10 "></div>
+                <div class="section-2">
+                    <div class="pt-20">
+                        <p class="uppercase text-left text-4xl" style="font-family: Montserrat;">Saurabh
+                            Mishra
+                        </p>
+                    </div>
+                    <div class="mt-6">
+                        <p class=" text-left" style="font-family:Cinzel; font-weight: 300;">Title</p>
+                        <ul class="opacity-80 text-left text-sm list-disc mt-2 mx-5 space-y-1"
+                            style="font-family:Cinzel; font-weight: 300;">
+                            <li>Award-Winning Real Estate Advisor, Thane & Mumbai Specialist</li>
+                            <li>Leading Real Estate Expert with Key Achievements Across Thane & Mumbai</li>
+                            <li>Maharashtra’s Trusted Real Estate Advisor with Expertise in Thane and Mumbai</li>
+                            <li>Premier Property Consultant with Major Achievements in Thane & Mumbai</li>
+                            <li>Acclaimed Real Estate Advisor with Notable Success in Thane, Mumbai & Beyond</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="mr-44 mt-6 pb-12" style="font-family: Montserrat;">
+                        <button onclick="document.querySelector('.container').style.display='flex';"
+                            class="border border-white text-white hover:bg-white hover:text-black duration-300 p-2 font-light w-full">CONTACT
+                            AGENT</button>
+
+                    </div>
+                </div>
+                <div class="section-3 flex items-center justify-center">
+                    <div class="mt-6">
+                        <p class=" text-center" style="font-family:Cinzel; font-weight: 300;">Phone</p>
+                        <p class="opacity-80 text-center text-sm mt-1 mx-5 underline decoration-0  "
+                            style="font-family:Cinzel; font-weight: 300;">
+                            +91 070456-26807
+                        </p>
+                    </div>
+
+                    <div class="mt-6">
+                        <p class=" text-center" style="font-family:Cinzel; font-weight: 300;">Email</p>
+                        <p class="opacity-80 text-center text-sm mt-1 mx-5 underline decoration-0 cursor-pointer "
+                            style="font-family:Cinzel; font-weight: 300;">
+                            ncpr.23realestate@gmail.com
+                        </p>
+                    </div>
+
+                </div>
+            </div>
+
+
         </div>
     </div>
 
 
 
-    <div class=" space-y-6">
-        <h2 class="font-semibold text-2xl mt-3 text-white flex items-center">Suggested according to
-            <img src="/media/icons/arrow copy.png" alt="" class="mt-1 ml-3 h-6">
+
+    <p class="text-2xl uppercase ml-2 text-white mt-2" style="font-family: Montserrat;">Google map</p>
+    <div class="google-map overflow-hidden relative mt-4 lg:hidden " name="mobile">
+        <iframe src="{{prop.map_url}}" width="450" height="250" allowfullscreen="" loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+    <div class="google-map overflow-hidden lg:block hidden relative mt-4 mx-2" name="desktop">
+        <iframe src="{{prop.map_url}}" width="2000" height="500" allowfullscreen="" loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+  
+
+
+
+
+    <div class=" space-y-6" style="font-family: Cinzel;">
+        <h2 class=" text-2xl mt-3 text-white flex items-center">SUGGESTED ACCORDING TO
+        
         </h2>
 
-        <h1 class="font-semibold text-xl text-white">Similar price</h1>
+        <h1 class=" text-xl text-white">Similar price</h1>
         <div class="flex space-x-2 lg:space-x-4 overflow-x-scroll overflow-y-hidden ">
             <a href="prop_view/{{sp.id}}">
                 <div class="property w-[206px] h-[345px]  lg:w-[280px] lg:h-[475px] flex flex-col relative group ">
@@ -149,7 +345,7 @@
             </a>
         </div>
 
-        <h1 class="font-semibold text-xl text-white">More in {{prop.bedrooms}} BHK</h1>
+        <h1 class=" text-xl text-white">More in {{prop.bedrooms}} BHK</h1>
         <div class="flex space-x-2 lg:space-x-4 overflow-x-scroll overflow-y-hidden ">
             <a href="prop_view/{{ss.id}}">
                 <div class="property w-[206px] h-[345px]  lg:w-[280px] lg:h-[475px] flex flex-col relative group ">
@@ -160,7 +356,7 @@
                     <div
                         class="description h-[41%] lg:h-[35%] lg:mt-[111%] w-full space-y-2 px-2 mt-[100%] absolute backdrop-blur-lg rounded-3xl lg:space-y-4">
                         <h2
-                            class="font-semibold bg-gradient-to-br from-white from-[-1rem] via-gray-900 via-50% to-black  bg-clip-text text-transparent text-2xl price">
+                            class="font-semibold text-2xl price">
                             ₹ {{ ss.price2 }}</h2>
                         <div class="flex gap-x-5 h-6 overflow-hidden text-white">
                             <p> {{ ss.title }}</p>
@@ -182,7 +378,7 @@
                 </div>
             </a>
         </div>
-        <h1 class="font-semibold text-xl text-white">More from {{prop.city}}</h1>
+        <h1 class=" text-xl text-white">More from {{prop.city}}</h1>
         <div class="flex space-x-2 lg:space-x-4 overflow-x-scroll overflow-y-hidden ">
             <a href="prop_view/{{sc.id}}">
                 <div class="property w-[206px] h-[345px]  lg:w-[280px] lg:h-[475px] flex flex-col relative group ">
@@ -193,7 +389,7 @@
                     <div
                         class="description h-[41%] lg:h-[35%] lg:mt-[111%] w-full space-y-2 px-2 mt-[100%] absolute backdrop-blur-lg rounded-3xl lg:space-y-4">
                         <h2
-                            class="font-semibold bg-gradient-to-br from-white from-[-1rem] via-gray-900 via-50% to-black  bg-clip-text text-transparent text-2xl price">
+                            class="font-semibold text-2xl price">
                             ₹ {{ sc.price2 }}</h2>
                         <div class="flex gap-x-5 h-6 overflow-hidden text-white">
                             <p> {{ sc.title }}</p>
@@ -215,7 +411,7 @@
                 </div>
             </a>
         </div>
-        <h1 class="font-semibold text-xl text-white">More from {{prop.devloper}}</h1>
+        <h1 class="text-xl text-white">More from {{prop.devloper}}</h1>
         <div class="flex space-x-2 lg:space-x-4 overflow-x-scroll overflow-y-hidden ">
             <a href="prop_view/{{sd.id}}">
                 <div class="property w-[206px] h-[345px]  lg:w-[280px] lg:h-[475px] flex flex-col relative group ">
@@ -224,9 +420,9 @@
                             class="object-cover object-center w-full h-full group-hover:scale-110 duration-500">
                     </div>
                     <div
-                        class="description h-[41%] lg:h-[35%] lg:mt-[111%] w-full space-y-2 px-2 mt-[100%] absolute backdrop-blur-lg rounded-3xl lg:space-y-4">
+                        class="description h-[41%] lg:h-[35%] lg:mt-[111%] w-full space-y-2 px-2 mt-[100%] absolute backdrop-blur-lg rounded-3xl lg:space-y-4 "style="font-family: Montserrat;">
                         <h2
-                            class="font-semibold bg-gradient-to-br from-white from-[-1rem] via-gray-900 via-50% to-black  bg-clip-text text-transparent text-2xl price">
+                            class="font-semibold text-2xl price">
                             ₹ {{ sd.price2 }}</h2>
                         <div class="flex gap-x-5 h-6 overflow-hidden text-white">
                             <p> {{ sd.title }}</p>
@@ -257,12 +453,12 @@
         }
 
         ::-webkit-scrollbar-track {
-            background: #1e1e1e;
+            background: transparent;
             /* Dark background for track */
         }
 
         ::-webkit-scrollbar-thumb {
-            background-color: #888;
+            background-color: transparent;
             /* Dark gray thumb */
             border-radius: 10px;
             border: 2px solid #1e1e1e;
@@ -270,7 +466,7 @@
         }
 
         ::-webkit-scrollbar-thumb:hover {
-            background-color: #555;
+            background-color: transparent;
             /* Lighter gray on hover */
         }
 
@@ -337,167 +533,201 @@
         /* Close button */
     </style>
 
-<script>
-    let otpVerified = false; // Flag to track OTP verification status
-    let timerInterval;
-let resendButton = document.getElementById('resend-otp-btn');
-let timerDisplay = document.getElementById('timer');
+    <script>
+        let otpVerified = false; // Flag to track OTP verification status
+        let timerInterval;
+        let resendButton = document.getElementById('resend-otp-btn');
+        let timerDisplay = document.getElementById('timer');
 
-    function sendOTP() {
-    const phone = document.getElementById("phone_no").value;
+        function sendOTP() {
+            const phone = document.getElementById("phone_no").value;
 
-        
-    if (!phone) {
-        alert("Please enter your phone number.");
-        return;
-    }
-    fetch('/otp_verification/', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-            'X-CSRFToken': '{{ csrf_token }}'
-        },
-        body: JSON.stringify({ phone_no: phone })
-    })
-    .then(response => response.json())
-    .then(data => {
-        if (data.success) {
-           alert("OTP Sent ");
-        } else {
-            alert("Failed To Send OTP " + data.error, "error");
-        }
-    });    
 
-// Start the timer for 60 seconds and disable the Resend button
-startTimer(60);
-resendButton.disabled = true;
-}
-function startTimer(duration) {
-    let timeLeft = duration;
-    
-    timerInterval = setInterval(function() {
-        timeLeft--;
-        timerDisplay.textContent = timeLeft;
-
-        if (timeLeft <= 0) {
-            clearInterval(timerInterval);
-            resendButton.disabled = false;
-            timerDisplay.textContent = "0";  // Reset timer text
-        }
-    }, 1000);
-}
-function resendOTP() {
-    // Logic to resend the OTP
-    console.log("OTP resent!");
-    sendOTP();
-    // Restart the timer after resending the OTP
-    startTimer(60);
-    resendButton.disabled = true;
-}
-    function verifyOTP() {
-        const otp = document.getElementById('otp').value;
-        fetch('/verify_otp/', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'X-CSRFToken': '{{ csrf_token }}'
-            },
-            body: JSON.stringify({ otp: otp })
-        })
-        .then(response => response.json())
-        .then(data => {
-            if (data.success) {
-                otpVerified = true; // Set flag to true if OTP is verified
-                 alert("OTP verified successfully!");
-                document.getElementById('submit-button').disabled = false; // Enable the submit button
-            } else {
-                alert("Invalid OTP: " + data.error);
+            if (!phone) {
+                alert("Please enter your phone number.");
+                return;
             }
+            fetch('/otp_verification/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': '{{ csrf_token }}'
+                },
+                body: JSON.stringify({ phone_no: phone })
+            })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        alert("OTP Sent ");
+                    } else {
+                        alert("Failed To Send OTP " + data.error, "error");
+                    }
+                });
+
+            // Start the timer for 60 seconds and disable the Resend button
+            startTimer(60);
+            resendButton.disabled = true;
+        }
+        function startTimer(duration) {
+            let timeLeft = duration;
+
+            timerInterval = setInterval(function () {
+                timeLeft--;
+                timerDisplay.textContent = timeLeft;
+
+                if (timeLeft <= 0) {
+                    clearInterval(timerInterval);
+                    resendButton.disabled = false;
+                    timerDisplay.textContent = "0";  // Reset timer text
+                }
+            }, 1000);
+        }
+        function resendOTP() {
+            // Logic to resend the OTP
+            console.log("OTP resent!");
+            sendOTP();
+            // Restart the timer after resending the OTP
+            startTimer(60);
+            resendButton.disabled = true;
+        }
+        function verifyOTP() {
+            const otp = document.getElementById('otp').value;
+            fetch('/verify_otp/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': '{{ csrf_token }}'
+                },
+                body: JSON.stringify({ otp: otp })
+            })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        otpVerified = true; // Set flag to true if OTP is verified
+                        alert("OTP verified successfully!");
+                        document.getElementById('submit-button').disabled = false; // Enable the submit button
+                    } else {
+                        alert("Invalid OTP: " + data.error);
+                    }
+                });
+        }
+
+        //hamburger code
+
+        document.addEventListener("DOMContentLoaded", function () {
+            const hamburger = document.getElementById('hamburger');
+            const menu = document.getElementById('menu');
+
+
+            hamburger.addEventListener('click', function () {
+                menu.classList.toggle('backdrop-blur-lg');
+                if (menu.classList.contains('hidden')) {
+                    menu.classList.remove('hidden');
+                    menu.classList.remove('fade-out');
+                    menu.classList.add('fade-in');
+                } else {
+                    menu.classList.remove('fade-in');
+                    menu.classList.add('fade-out');
+                    setTimeout(() => {
+                        menu.classList.add('hidden');
+                    }, 300); // Match the duration of the fade-out animation
+                }
+            });
         });
-    }
-</script>
+
+
+    </script>
     <div class="container relative">
         <form id="contact-form" action="/contactus" method="POST" class="rounded-2xl flex-col flex justify-center">
-            <span class="close absolute cursor-pointer top-0 right-3 text-2xl font-black hover:text-red-600 text-gray-800"
-                  onclick="document.querySelector('.container').style.display='none';">&times;</span>
+            <span
+                class="close absolute cursor-pointer top-0 right-3 text-2xl font-black hover:text-red-600 text-gray-800"
+                onclick="document.querySelector('.container').style.display='none';">&times;</span>
             {% csrf_token %}
-        
+
             <div class="form-group text-xl font-semibold">
                 <input type="hidden" id="property" name="property" value="{{prop.title}}">
                 <input type="hidden" id="property_id" name="property_id" value="{{prop.id}}">
                 <label for="Property_name">{{prop.title}}</label>
             </div>
-        
+
             <div class="form-group">
-                <input type="text" class="form-group ring-0 focus:border-orange-500 focus:border-b-2 focus:ring-0 w-full"
-                       id="name" name="name" placeholder="Your Full Name">
+                <input type="text"
+                    class="form-group ring-0 focus:border-orange-500 focus:border-b-2 focus:ring-0 w-full" id="name"
+                    name="name" placeholder="Your Full Name">
             </div>
-            
+
             <!-- Add this div where appropriate in your HTML body -->
             <div id="recaptcha-container" class="my-4"></div>
-        
+
             <div class="form-group">
-                <input type="text" class="form-group ring-0 focus:border-orange-500 focus:border-b-2 focus:ring-0 w-full"
-                       id="phone_no" name="phone_no" placeholder="Your Contact No." required>
-                <button type="button" id="send-otp-btn" onclick="sendOTP()" class="bg-blue-500 text-black rounded-lg px-2 py-1 mt-2">
+                <input type="text"
+                    class="form-group ring-0 focus:border-orange-500 focus:border-b-2 focus:ring-0 w-full" id="phone_no"
+                    name="phone_no" placeholder="Your Contact No." required>
+                <button type="button" id="send-otp-btn" onclick="sendOTP()"
+                    class="bg-blue-500 text-black rounded-lg px-2 py-1 mt-2">
                     Get OTP
                 </button>
             </div>
-        
+
             <!-- OTP verification input -->
             <div class="form-group">
-                <input type="tel" id="otp" placeholder="Enter OTP" class="form-group ring-0 focus:border-orange-500 focus:border-b-2 focus:ring-0 w-full">
+                <input type="tel" id="otp" placeholder="Enter OTP"
+                    class="form-group ring-0 focus:border-orange-500 focus:border-b-2 focus:ring-0 w-full">
                 <button type="button" onclick="verifyOTP()" class="bg-green-500 text-black rounded-lg px-2 py-1 mt-2">
                     Verify OTP
                 </button>
             </div>
-            
+
             <!-- Resend OTP button -->
             <div class="form-group">
-                <button type="button" id="resend-otp-btn" onclick="resendOTP()" class="bg-yellow-500 text-black rounded-lg px-2 py-1 mt-2" disabled>
+                <button type="button" id="resend-otp-btn" onclick="resendOTP()"
+                    class="bg-yellow-500 text-black rounded-lg px-2 py-1 mt-2" disabled>
                     Resend OTP (<span id="timer">60</span>s)
                 </button>
             </div>
-        
+
             <div class="form-group">
-                <input type="email" class="form-group ring-0 focus:border-orange-500 focus:border-b-2 focus:ring-0 w-full"
-                       id="email" name="email" required placeholder="Your Personal Email Address">
+                <input type="email"
+                    class="form-group ring-0 focus:border-orange-500 focus:border-b-2 focus:ring-0 w-full" id="email"
+                    name="email" required placeholder="Your Personal Email Address">
             </div>
-            
-            <button id="submit-button" type="submit" 
-                    class="bg-transparent border border-orange-500 text-orange-500 hover:bg-orange-500 hover:text-white rounded-lg px-2 py-1 active:bg-orange-600 shadow-xl font-semibold duration-300">
+
+            <button id="submit-button" type="submit"
+                class="bg-transparent border border-orange-500 text-orange-500 hover:bg-orange-500 hover:text-white rounded-lg px-2 py-1 active:bg-orange-600 shadow-xl font-semibold duration-300">
                 Confirm
             </button>
         </form>
-        
+
     </div>
-    
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
+
+    <script defer>
+
+
+        document.addEventListener('DOMContentLoaded', function () {
             // Find the message bar and progress bar elements
             var messageBar = document.getElementById('message-bar');
             var progressBar = document.getElementById('progress-bar');
-            
+
             if (messageBar && progressBar) {
                 // Set initial width of the progress bar to 100%
                 progressBar.style.width = '100%';
-                
+
                 // Duration for how long the message bar will be visible (5 seconds)
                 var duration = 5000;
-                
+
                 // Use CSS transitions to animate the progress bar in reverse
                 progressBar.style.transition = `width ${duration}ms linear`;
                 setTimeout(() => {
                     progressBar.style.width = '0%';
                 }, 0);
-    
+
                 // Hide the message bar after the duration
-                setTimeout(function() {
+                setTimeout(function () {
                     messageBar.style.display = 'none';
                 }, duration);
             }
         });
-    
+
         // Function to manually hide the message bar when close button is clicked
         function hideMessageBar() {
             var messageBar = document.getElementById('message-bar');
@@ -506,7 +736,7 @@ function resendOTP() {
             }
         }
     </script>
-    
+
 </body>
 
 </html>

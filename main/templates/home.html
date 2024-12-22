@@ -12,6 +12,12 @@
         @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap');
         @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&family=Old+Standard+TT:ital,wght@0,400;0,700;1,400&display=swap');
     </style>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400..900&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Luxurious+Roman&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700&display=swap');
+    </style>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <style>
         /* Custom styles for fade-in and fade-out animations */
@@ -77,9 +83,8 @@
         }
 
         .price {
-            font-family: "Old Standard TT", serif;
-            font-weight: 700;
-            font-style: normal;
+            font-family: "Cinzel";
+           
         }
 
         select {
@@ -106,23 +111,28 @@
         }
 
         /* Scrollbar styling for Chrome, Safari, and Edge */
-::-webkit-scrollbar {
-    width: 10px;
-  }
-  
-  ::-webkit-scrollbar-track {
-    background: #1e1e1e; /* Dark background for track */
-  }
-  
-  ::-webkit-scrollbar-thumb {
-    background-color: #888; /* Dark gray thumb */
-    border-radius: 10px;
-    border: 2px solid #1e1e1e; /* Match track background to make thumb appear smaller */
-  }
-  
-  ::-webkit-scrollbar-thumb:hover {
-    background-color: #555; /* Lighter gray on hover */
-  }
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: transparent;
+            /* Dark background for track */
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background-color: transparent;
+            /* Dark gray thumb */
+            border-radius: 10px;
+            border: 2px solid #1e1e1e;
+            /* Match track background to make thumb appear smaller */
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background-color: transparent;
+            /* Lighter gray on hover */
+        }
+
   
   /* Scrollbar styling for Firefox */
   html {
@@ -137,7 +147,7 @@
     </style>
 </head>
 
-<body class="bg-black">
+<body class="bg-black uppercase"  style="font-family: Cinzel;">
 
 
 
@@ -148,7 +158,7 @@
         <div class="navbar-lg lg:hidden hidden flex flex-col bg-transparent text-white font-medium shadow-lg rounded-lg p-4 absolute mt-12 lg:m-0 lg:w-fit w-1/2 space-y-4  lg:font-semibold "
             id="menu">
             <a href="/ "
-                class="border-b p-3 lg:border-none lg:text-lg rounded-xl hover:backdrop-blur-xl  hover:text-black">Home</a>
+                class="border-b p-3 lg:border-none lg:text-lg rounded-xl hover:backdrop-blur-xl hover:text-black">Home</a>
             <a href="/about"
                 class="border-b p-3 lg:border-none lg:text-lg rounded-xl hover:backdrop-blur-xl   hover:text-black">About</a>
             <a href="/services"
@@ -160,10 +170,10 @@
         <div class="navbar flex justify-between bg-transparent p-2 w-screen items-center top-0 overflow-hidden">
             <div
                 class="navbar-lg hidden flex flex-col lg:bg-transparent lg:shadow-none rounded-lg lg:static lg:ml-2 lg:w-fit lg:space-x-14 lg:block lg:text-white lg:font-semibold overflow-hidden  ">
-                <a href=" " class=" lg:border-none rounded-xl  hover:text-black duration-300">Home</a>
-                <a href="/about" class="lg:border-none rounded-xl   hover:text-black duration-300">About</a>
-                <a href="/services" class=" lg:border-none rounded-xl  hover:text-black duration-300">Services</a>
-                <a href="/contact" class=" lg:border-none  rounded-xl  hover:text-black duration-300">Contact</a>
+                <a href=" " class=" lg:border-none rounded-xl  hover:text-black duration-300">HOME</a>
+                <a href="/about" class="lg:border-none rounded-xl   hover:text-black duration-300 uppercase">About</a>
+                <a href="/services" class=" lg:border-none rounded-xl  hover:text-black duration-300 uppercase">Services</a>
+                <a href="/contact" class=" lg:border-none  rounded-xl  hover:text-black duration-300 uppercase">Contact</a>
             </div>
             <div class="hamburger lg:hidden " id="hamburger">
                 <svg class="w-8 h-8 text-white duration-300 cursor-pointer" fill="none" stroke="currentColor"
@@ -180,7 +190,7 @@
         </div>
 
         <div class=" flex justify-center items-center mt-16 lg:mt-48 h-0">
-            <div class="typing-text text-2xl lg:text-3xl text-black h-6">
+            <div class="typing-text text-2xl lg:text-3xl text-black h-6 uppercase">
                 <span id="typing-content"></span>
             </div>
 
@@ -262,7 +272,7 @@
 
         <div class="projects m-2 pt-2  space-y-2 lg:space-y-5 border-t border-gray-700 rounded-3xl px-2">
             <h2 class="font-semibold text-xl ml-2 text-white">All ></h2>
-            <div class="flex space-x-2 overflow-x-scroll lg:space-x-4 pb-2 ">
+            <div class="flex space-x-2 overflow-x-scroll lg:space-x-4 pb-2 " style="font-family: Montserrat;">
                 {% for property in properties %}
                 <a href="prop_view/{{property.id}}">
                     <div class="property w-[206px] h-[345px] lg:w-[280px] lg:h-[475px] flex flex-col relative group">
@@ -273,7 +283,7 @@
                         <div
                             class="description h-[41%] lg:h-[35%] lg:mt-[111%] w-full space-y-2 px-2 mt-[100%] absolute backdrop-blur-lg rounded-3xl lg:space-y-4">
                             <h2
-                                class="font-semibold bg-gradient-to-br from-white from-[-1rem] via-gray-900 via-50% to-black  bg-clip-text text-transparent text-2xl price">
+                                class="font-semibold text-2xl price">
                                 ₹ {{ property.price2 }}</h2>
                             <div class="flex gap-x-5 h-6 overflow-hidden text-white">
                                 <p> {{ property.title }}</p>
@@ -302,7 +312,7 @@
             <a href="/special_filter/2">
                 <h2 class="font-semibold text-xl bg-transparent text-white ">Ready to move ></h2>
             </a>
-            <div class="flex space-x-2 overflow-x-scroll lg:space-x-4 pb-2">
+            <div class="flex space-x-2 overflow-x-scroll lg:space-x-4 pb-2" style="font-family: Montserrat;">
                 {% for property in rtm %}
                 <a href="prop_view/{{property.id}}">
                     <div class="property w-[206px] h-[345px]  lg:w-[280px] lg:h-[475px] flex flex-col relative group ">
@@ -313,7 +323,7 @@
                         <div
                             class="description h-[41%] lg:h-[35%] lg:mt-[111%] w-full space-y-2 px-2 mt-[100%] absolute backdrop-blur-lg rounded-3xl lg:space-y-4">
                             <h2
-                                class="font-semibold bg-gradient-to-br from-white from-[-1rem] via-gray-900 via-50% to-black  bg-clip-text text-transparent text-2xl price">
+                                class="font-semibold text-2xl price">
                                 ₹ {{ property.price2 }}</h2>
                             <div class="flex gap-x-5 h-6 overflow-hidden text-white">
                                 <p> {{ property.title }}</p>
@@ -341,7 +351,7 @@
             <a href="/special_filter/1">
                 <h2 class="font-semibold text-xl text-white">Under Construction ></h2>
             </a>
-            <div class="flex space-x-2 overflow-x-scroll lg:space-x-4 pb-2">
+            <div class="flex space-x-2 overflow-x-scroll lg:space-x-4 pb-2" style="font-family: Montserrat;">
                 {% for property in uc %}
                 <a href="prop_view/{{property.id}}">
                     <div class="property w-[206px] h-[345px]  lg:w-[280px] lg:h-[475px] flex flex-col relative group ">
@@ -352,7 +362,7 @@
                         <div
                             class="description h-[41%] lg:h-[35%] lg:mt-[111%] w-full space-y-2 px-2 mt-[100%] absolute backdrop-blur-lg rounded-3xl lg:space-y-4">
                             <h2
-                                class="font-semibold bg-gradient-to-br from-white from-[-1rem] via-gray-900 via-50% to-black  bg-clip-text text-transparent text-2xl price">
+                                class="font-semibold text-2xl price">
                                 ₹ {{ property.price2 }}</h2>
                             <div class="flex gap-x-5 h-6 overflow-hidden text-white">
                                 <p> {{ property.title }}</p>
@@ -381,7 +391,7 @@
             <a href="/special_filter/3">
                 <h2 class="font-semibold text-xl text-white bg-transparent">Cost efficient ></h2>
             </a>
-            <div class="flex space-x-2 lg:space-x-4 overflow-x-scroll overflow-y-hidden  ">
+            <div class="flex space-x-2 lg:space-x-4 overflow-x-scroll overflow-y-hiddeN" style="font-family: Montserrat;">
                 {% for property in ce %}
                 <a href="prop_view/{{property.id}}">
                     <div class="property w-[206px] h-[345px]  lg:w-[280px] lg:h-[475px] flex flex-col relative group ">
@@ -392,7 +402,7 @@
                         <div
                             class="description h-[41%] lg:h-[35%] lg:mt-[111%] w-full space-y-2 px-2 mt-[100%] absolute backdrop-blur-lg rounded-3xl lg:space-y-4">
                             <h2
-                                class="font-semibold bg-gradient-to-br from-white from-[-1rem] via-gray-900 via-50% to-black  bg-clip-text text-transparent text-2xl price">
+                                class="font-semibold text-2xl price">
                                 ₹ {{ property.price2 }}</h2>
                             <div class="flex gap-x-5 h-6 overflow-hidden text-white">
                                 <p> {{ property.title }}</p>
@@ -417,7 +427,7 @@
             </div>
         </div>
 
-        <footer class="bg-gray-600 text-white p-8 mt-12">
+        <footer class="bg-gray-900 bg-opacity-70 text-white p-8 mt-12 font-sans">
             <div class="container mx-auto flex flex-col md:flex-row justify-between">
                 <!-- Company Info -->
                 <div class="mb-4 md:mb-0">
