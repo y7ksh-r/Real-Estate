@@ -42,6 +42,30 @@ def home(request):
     sorted_properties = [property for property, efficiency in properties_with_efficiency][:4]
     return render(request,'home.html',{'properties':list_proj,'cities':cities,'rtm':rtm,'uc':uc,'ce':sorted_properties,'bedrooms':bedrooms})
 
+
+def fetch_nearby_properties(request):
+    if request.method == "POST":
+        import json
+        data = json.loads(request.body)
+        pincode = data.get("pincode")
+        nearby_city = data.get("city")
+        if pincode:
+            properties = Property.objects.filter(zip_code=pincode).values(
+                'id', 'title', 'description', 'address', 'city', 'state', 'zip_code',
+                'property_type', 'property_status', 'price', 'bedrooms', 'bathrooms',
+                'square_feet', 'map_url', 'video', 'lot_size', 'year_built',
+                'is_published', 'list_date', 'devloper', 'price2', 'main_img'
+            )
+            
+            # Get the city of the first property to display
+
+           
+            return JsonResponse({"success": True, "properties": list(properties), "nearby_city": nearby_city})
+        else:
+            return JsonResponse({"success": False, "message": "Pincode not provided."})
+
+    return JsonResponse({"success": False, "message": "Invalid request method."})
+
 def special_page_filter(request,fid):
     if fid ==1:
      properties=Property.objects.filter(property_status="underconstrution")
