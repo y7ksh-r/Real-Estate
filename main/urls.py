@@ -17,4 +17,5 @@ urlpatterns = [
     path('otp/', views.otp_verification, name='otp_verification'),
     path('otp_verification/', views.otp_verification, name='otp_verification'),
     path('verify_otp/', views.verify_otp, name='verify_otp'),
+     path("fetch_nearby_properties/", views.fetch_nearby_properties, name="fetch_nearby_properties")
     ]    

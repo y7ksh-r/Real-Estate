@@ -145,6 +145,8 @@
   }
   
     </style>
+    <script src="{% static 'js/pincode.js' %}"></script>
+  
 </head>
 
 <body class="bg-black uppercase"  style="font-family: Cinzel;">
@@ -269,7 +271,18 @@
                         class="smile lg:font-semibold">Happy Customers</span>
             </div>
         </div>
+        <div>
+            
+            </h1>
 
+            <div class="output" style="color: white;" id="output"></div>
+            <div class="projects m-2 pt-2 space-y-2 lg:space-y-5 border-t border-gray-700 rounded-3xl px-2">
+                <h2 class="font-semibold text-xl ml-2 text-white"> Near  <span id="Nearby-city-name"></span></h2>
+                <div class="flex space-x-2 overflow-x-scroll lg:space-x-4 pb-2 " style="font-family: Montserrat;" id="properties-container">
+                    <!-- Properties will be dynamically inserted here -->
+                </div> 
+            </div>
+            
         <div class="projects m-2 pt-2  space-y-2 lg:space-y-5 border-t border-gray-700 rounded-3xl px-2">
             <h2 class="font-semibold text-xl ml-2 text-white">All ></h2>
             <div class="flex space-x-2 overflow-x-scroll lg:space-x-4 pb-2 " style="font-family: Montserrat;">
