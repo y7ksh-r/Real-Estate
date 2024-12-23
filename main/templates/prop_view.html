@@ -17,6 +17,11 @@
         @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400..900&display=swap');
         @import url('https://fonts.googleapis.com/css2?family=Luxurious+Roman&display=swap');
         @import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700&display=swap');
+
+      
+        
+
+        
     </style>
     
 </head>
@@ -191,15 +196,45 @@
                         style="font-family:Cinzel    ; font-weight: 300;">View
                     </button>
                 </div>
+                <hr class="mx-2 my-4 opacity-30">
+
+                <h1 class="text-2xl uppercase text-white mt-8" style="font-family: Montserrat;">Amenities</h1>
+
+                <div class="amenities-slideshow-container my-12 bg-white bg-opacity-[0.07]">
+                    <!-- Slideshow Wrapper -->
+                    <div class="slideshow-wrapper overflow-hidden relative w-full">
+                        <div class="slides flex transition-transform duration-500">
+                            <!-- Dynamically divide amenities into slides -->
+                            {% for amenity in amenities %}
+                            {% if forloop.counter0|divisibleby:12 %}
+                            <div class="slide grid grid-cols-3 md:grid-cols-3 lg:grid-cols-4 grid-rows-4 lg:grid-rows-3 w-full lg:mx-8 mx-2">
+                            {% endif %}
+                            
+                            <!-- Amenity Item -->
+                            <div class="amenity-item flex flex-col justify-center items-center text-center p-6 lg:py-12 py-6 h-[170px] lg:h-[190px] border-b border-opacity-20 border-orange-500" style="font-family:Montserrat;">
+                                <img src="/media/{{ amenity.image }}" alt="{{ amenity.title }}" class="amenity-img pb-6 lg:h-24 sm:h-28 h-[70px]">
+                                <p class="amenity-name sm:text-xs lg:text-base md:text-base">{{ amenity.title }}</p>
+                            </div>
+                            
+                            {% if forloop.counter|divisibleby:12 or forloop.last %}
+                            </div>
+                            {% endif %}
+                            {% endfor %}
+                        </div>
+                    </div>
+                
+                    <!-- Navigation Buttons -->
+                    <div class="slideshow-controls flex justify-center mt-4">
+                        <button id="prevSlide" class="bg-orange-500 text-white px-4 py-2 mr-2 rounded">Previous</button>
+                        <button id="nextSlide" class="bg-orange-500 text-white px-4 py-2 ml-2 rounded">Next</button>
+                    </div>
+                </div>
+                
+                
+                
             </div>
-            <div class="amenities">
-            {% for amenity in amenities %}
-            <div class="amenity-item">
-                <img src="/media/{{amenity.image }}" alt="" class="amenity-img">
-                <p class="amenity-name">{{ amenity.title }}</p>
-            </div>
-            {% endfor %}
-        </div>
+            
+            
             <div class="owner-details bg-orange-400 bg-opacity-10 w-full mt-8 lg:hidden" name="mobile">
 
                 <div class=" px-6 pt-12 pb-8 lg:w-1/4"><img src="/media/photos/owner.jpg" alt=""
@@ -711,6 +746,54 @@
     </div>
 
     <script defer>
+        //amenities slide code
+            // JavaScript for slide navigation
+            const slides = document.querySelector('.slides');
+            const prevSlide = document.getElementById('prevSlide');
+            const nextSlide = document.getElementById('nextSlide');
+            const slideCount = slides.children.length;
+        
+            let currentSlide = 0;
+        
+            // Ensure each slide is the width of the wrapper
+            const updateSlideWidth = () => {
+                const wrapperWidth = document.querySelector('.slideshow-wrapper').offsetWidth;
+                slides.style.width = `${wrapperWidth * slideCount}px`; // Set the total width for the slides container
+                Array.from(slides.children).forEach(slide => {
+                    slide.style.width = `${wrapperWidth}px`; // Set each slide's width
+                });
+                updateSlidePosition();
+            };
+        
+            // Update the position of the slides
+            const updateSlidePosition = () => {
+                const wrapperWidth = document.querySelector('.slideshow-wrapper').offsetWidth;
+                slides.style.transform = `translateX(-${currentSlide * wrapperWidth}px)`;
+            };
+        
+            // Handle "Next" button click
+            nextSlide.addEventListener('click', () => {
+                if (currentSlide < slideCount - 1) {
+                    currentSlide++;
+                    updateSlidePosition();
+                }
+            });
+        
+            // Handle "Previous" button click
+            prevSlide.addEventListener('click', () => {
+                if (currentSlide > 0) {
+                    currentSlide--;
+                    updateSlidePosition();
+                }
+            });
+        
+            // Recalculate slide width on window resize
+            window.addEventListener('resize', updateSlideWidth);
+        
+            // Initialize slide widths on load
+            updateSlideWidth();
+
+            
 
 
         document.addEventListener('DOMContentLoaded', function () {
