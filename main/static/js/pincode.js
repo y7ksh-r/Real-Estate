@@ -17,15 +17,15 @@ document.addEventListener("DOMContentLoaded", function () {
                         sendPincodeToBackend(pincode, city);
                     })
                     .catch(error => {
-                        console.error("Error fetching location details:", error);
-                        alert("Failed to fetch location details.");
+                       
+                        document.getElementById("Nearby-city-name").innerText = `Switch On Location Of Better Results`;
                     });
             }, function (error) {
                 console.error("Error getting location:", error);
-                alert("Please allow location access.");
+                document.getElementById("Nearby-city-name").innerText = `Switch On Location For Better Results`;
             });
         } else {
-            alert("Geolocation is not supported by this browser.");
+            document.getElementById("Nearby-city-name").innerText = `Switch On Location For Better Results`;
         }
     }
 
@@ -56,7 +56,7 @@ document.addEventListener("DOMContentLoaded", function () {
     function updateNearbyProperties(properties,nearby_city) {
         const container = document.getElementById("properties-container");
         container.innerHTML = ""; // Clear existing content
-        document.getElementById("Nearby-city-name").innerText = `${nearby_city}`; // Update city name
+        document.getElementById("Nearby-city-name").innerText = `Near ${nearby_city}`; // Update city name
         properties.forEach(property => {
             const propertyDiv = document.createElement("div");
             propertyDiv.className = "property w-[206px] h-[345px] lg:w-[280px] lg:h-[475px] flex flex-col relative group";
@@ -77,7 +77,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     <div class="flex justify-between items-center rounded-3xl border border-black px-2 -mx-1 py-[2px]">
                         <span>More details</span>
                         <span class="group-hover:rotate-[360deg] duration-500">
-                            <a href="prop_view/${property.id}"><img src="/media/icons/arrow.png" alt="" class="h-6"></a>
+                            <a href="prop_view/${property.id}"><img src="/media/icons/arrow.png"  class="group-hover:rotate-[360deg] duration-500 h-6" alt="" ></a>
                         </span>
                     </div>
                 </div>
