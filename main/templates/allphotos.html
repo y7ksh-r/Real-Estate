@@ -1,13 +1,116 @@
-<div class="property-gallery">
-    <h2>More Images</h2>
-    <div class="gallery-images">
-        {%for img in photos%}
-        <img src="/media/{{img.image}}" alt="Property Image 1">
-        {%endfor%}
-        <div class="video-container">
-            <iframe src="{{property.video}}"frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
+    {% load static tailwind_tags %}
+    {% tailwind_css %}
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400..900&display=swap');
+    </style>
+</head>
+
+<body class="bg-black font-sans uppercase text-center" style="font-family: Cinzel;">
+    <div class="property-gallery p-6 max-w-6xl mx-auto">
+        <h2 class="text-2xl font-bold mb-6 text-white">More Images</h2>
+
+        <!-- Image Grid -->
+        <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 mb-6" onclick="document.querySelector('.popup').style.display='block';">
+            {% for img in photos %}
+            <div class="relative">
+                <img src="/media/{{ img.image }}" alt="{{ img.description|default:'Property image' }}"
+                    class="w-full h-40 object-cover shadow-md cursor-pointer"
+                    data-index="{{ forloop.counter0 }}" >
+            </div>
+            {% empty %}
+            <p class="text-gray-500">No images available.</p>
+            {% endfor %}
         </div>
-       
-    
+        <div class="popup absolute top-20 bottom-20 lg:left-1/4 right-1/4">
+           
+            
+            <!-- Image Carousel -->
+            <div class="relative max-w-7xl  overflow-hidden hidden mb-6" id="carouselWrapper">
+                <div id="carousel" class="flex transition-transform duration-500">
+                    {% for img in photos %}
+                    <img src="/media/{{ img.image }}" alt="{{ img.description|default:'Property image' }}"
+                        class="w-full object-cover rounded-lg shadow-md flex-shrink-0">
+                    {% empty %}
+                    <p class="text-gray-500">No images available.</p>
+                    {% endfor %}
+                </div>
+
+                <!-- Carousel Controls -->
+                <span
+                class="close absolute cursor-pointer top-0 right-0 w-10 text-4xl text-center font-light bg-white hover:text-white hover:bg-red-500 text-red-800"
+                onclick="document.querySelector('.popup').style.display='none';">&times;</span>
+                <button id="prevBtn"
+                    class="absolute top-1/2 left-2 -translate-y-1/2 bg-gray-800 text-white p-2 rounded-full hover:bg-gray-600">
+                    &#9664;
+                </button>
+                <button id="nextBtn"
+                    class="absolute top-1/2 right-2 -translate-y-1/2 bg-gray-800 text-white p-2 rounded-full hover:bg-gray-600">
+                    &#9654;
+                </button>
+            </div>
+        </div>
+
+        <h2 class="text-2xl font-bold mb-6 text-white">property videos</h2>
+
+        <!-- Video Section -->
+        <div class="video-container mt-10">
+            {% if property.video %}
+            <iframe src="{{ property.video }}" frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen class="w-full h-64 rounded shadow-md">
+            </iframe>
+            {% else %}
+            <p class="text-gray-500">Video not available.</p>
+            {% endif %}
+        </div>
     </div>
+
+    <script>
+        // Carousel JavaScript
+        const carouselWrapper = document.getElementById('carouselWrapper');
+        const carousel = document.getElementById('carousel');
+        const thumbnails = document.querySelectorAll('.property-gallery .grid img');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+
+        let currentIndex = 0;
+        const images = carousel.children;
+        const totalImages = images.length;
+
+        const updateCarousel = () => {
+            const offset = -currentIndex * 100;
+            carousel.style.transform = `translateX(${offset}%)`;
+        };
+
+        const startCarousel = (index) => {
+            currentIndex = index;
+            carouselWrapper.classList.remove('hidden');  // Show the carousel
+            updateCarousel();
+        };
+
+        prevBtn.addEventListener('click', () => {
+            currentIndex = (currentIndex > 0) ? currentIndex - 1 : totalImages - 1;
+            updateCarousel();
+        });
+
+        nextBtn.addEventListener('click', () => {
+            currentIndex = (currentIndex < totalImages - 1) ? currentIndex + 1 : 0;
+            updateCarousel();
+        });
+
+        thumbnails.forEach((thumbnail, index) => {
+            thumbnail.addEventListener('click', () => {
+                startCarousel(index);
+            });
+        });
+
+        // Initialize the carousel to the first image
+        updateCarousel();
+    </script>
+</body>
+
+</html>

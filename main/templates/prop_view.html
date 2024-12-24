@@ -17,11 +17,6 @@
         @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400..900&display=swap');
         @import url('https://fonts.googleapis.com/css2?family=Luxurious+Roman&display=swap');
         @import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700&display=swap');
-
-      
-        
-
-        
     </style>
     
 </head>
@@ -683,67 +678,69 @@
 
     </script>
     <div class="container relative">
-        <form id="contact-form" action="/contactus" method="POST" class="rounded-2xl flex-col flex justify-center">
+        <form id="contact-form" action="/contactus" method="POST" class="flex-col flex bg-black bg-opacity-60 backdrop-blur-xl justify-center tracking-wide max-w-2xl" style="font-family: Montserrat;">
             <span
-                class="close absolute cursor-pointer top-0 right-3 text-2xl font-black hover:text-red-600 text-gray-800"
+                class="close absolute cursor-pointer top-0 right-0 w-10 text-4xl text-center font-light  hover:text-white hover:bg-red-500 text-red-800 m-2"
                 onclick="document.querySelector('.container').style.display='none';">&times;</span>
             {% csrf_token %}
 
-            <div class="form-group text-xl font-semibold">
+            <div class="form-group font-light text-xl text-white text-center  uppercase" style="font-family: Cinzel;">
                 <input type="hidden" id="property" name="property" value="{{prop.title}}">
                 <input type="hidden" id="property_id" name="property_id" value="{{prop.id}}">
-                <label for="Property_name">{{prop.title}}</label>
+                <label for="Property_name" class="font-extralight">{{prop.title}}</label>
             </div>
 
             <div class="form-group">
                 <input type="text"
-                    class="form-group ring-0 focus:border-orange-500 focus:border-b-2 focus:ring-0 w-full" id="name"
-                    name="name" placeholder="Your Full Name">
+                    class="bg-transparent form-group ring-0 focus:border-white focus:border-b-2 focus:ring-0 w-full text-white placeholder-white font-light" id="name"
+                    name="name"  placeholder="Full Name">
             </div>
 
             <!-- Add this div where appropriate in your HTML body -->
             <div id="recaptcha-container" class="my-4"></div>
 
-            <div class="form-group">
+       
                 <input type="text"
-                    class="form-group ring-0 focus:border-orange-500 focus:border-b-2 focus:ring-0 w-full" id="phone_no"
-                    name="phone_no" placeholder="Your Contact No." required>
+                    class="bg-transparent form-group ring-0 focus:border-white focus:border-b-2 focus:ring-0 w-full text-white placeholder-white font-light" id="phone_no"
+                    name="phone_no" placeholder="Contact No." required>
+                
                 <button type="button" id="send-otp-btn" onclick="sendOTP()"
-                    class="bg-blue-500 text-black rounded-lg px-2 py-1 mt-2">
+                    class="w-full bg-transparent border border-blue-500 lg:w-1/2 text-blue-500 uppercase hover:bg-blue-500 hover:text-white  px-2 py-1 font-light duration-300 self-center"  style="font-family: Cinzel;">
                     Get OTP
                 </button>
-            </div>
+            
 
             <!-- OTP verification input -->
-            <div class="form-group">
+           
                 <input type="tel" id="otp" placeholder="Enter OTP"
-                    class="form-group ring-0 focus:border-orange-500 focus:border-b-2 focus:ring-0 w-full">
-                <button type="button" onclick="verifyOTP()" class="bg-green-500 text-black rounded-lg px-2 py-1 mt-2">
+                    class="bg-transparent form-group ring-0 focus:border-white focus:border-b-2 focus:ring-0 w-full text-white placeholder-white font-light">
+                    
+                <button type="button" onclick="verifyOTP()" 
+                    class="w-full bg-transparent border border-green-600 text-green-600 uppercase lg:w-1/2  hover:bg-green-600 hover:text-white  px-2 py-1 active:bg-orange-600 font-light duration-300 self-center mb-3" style="font-family: Cinzel;">
                     Verify OTP
                 </button>
-            </div>
-
-            <!-- Resend OTP button -->
-            <div class="form-group">
+         
+            
                 <button type="button" id="resend-otp-btn" onclick="resendOTP()"
-                    class="bg-yellow-500 text-black rounded-lg px-2 py-1 mt-2" disabled>
+                    class="w-full bg-transparent border border-orange-500 lg:w-1/2 text-orange-500 uppercase hover:bg-orange-500 hover:text-white  px-2 py-1 active:bg-orange-600 font-light duration-300 self-center" style="font-family: Cinzel;" disabled>
                     Resend OTP (<span id="timer">60</span>s)
                 </button>
-            </div>
+            
 
-            <div class="form-group">
+           
                 <input type="email"
-                    class="form-group ring-0 focus:border-orange-500 focus:border-b-2 focus:ring-0 w-full" id="email"
-                    name="email" required placeholder="Your Personal Email Address">
-            </div>
+                    class="bg-transparent form-group ring-0 focus:border-white focus:border-b-2 focus:ring-0 w-full placeholder-white text-white font-light" id="email"
+                    name="email" required placeholder=" Personal Email Address">
+            
 
             <button id="submit-button" type="submit"
-                class="bg-transparent border border-orange-500 text-orange-500 hover:bg-orange-500 hover:text-white rounded-lg px-2 py-1 active:bg-orange-600 shadow-xl font-semibold duration-300">
+                class="bg-transparent border w-full border-white text-white uppercase hover:bg-white hover:text-black px-2 py-2 active:bg-gray-100 font-light duration-300 lg:w-1/2 self-center" style="font-family: Cinzel;">
                 Confirm
             </button>
         </form>
 
     </div>
+
 
     <script defer>
         //amenities slide code

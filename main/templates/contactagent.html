@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Agent</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400..900&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Luxurious+Roman&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700&display=swap');
+    </style>
+</head>
+
+<body class="m-4 lg:m-0">
+    <div class="container lg:m-10  lg:flex">
+        <div class=" lg:w-1/2 ">
+            <form action="{% url 'contact_agent' %}" method="post" class=" space-y-6" style="font-family: Cinzel;">
+
+                <div class="lg:w-full lg:text-center lg:my-10 w-full">
+                    <div for="" style="font-family: Cinzel;" class="text-xs font-light mt-12">Let me know how can I assit you</div>
+                    <br>
+                    <div for="name" class="lg:text-5xl text-4xl uppercase tracking-wider font-light "
+                    style="font-family: Montserrat;"> GET IN TOUCH</div>
+                </div>
+
+                <div class="mb-4 lg:flex lg:space-x-8 space-y-6 lg:space-y-0">
+
+                    <input type="text" id="name" name="name" class="w-full p-2 border border-gray-300  mt-1"
+                        placeholder="First Name" required>
+
+                    <input type="text" id="name" name="name" class="w-full p-2 border border-gray-300  mt-1 "
+                        placeholder="Last Name">
+                </div>
+
+                <div class="mb-4">
+
+                    <input type="email" id="email" name="email" class="w-full p-2 border border-gray-300  mt-1"
+                        placeholder="Email">
+                </div>
+                <div class="mb-4">
+
+                    <input type="tel" id="phone" name="phone" class="w-full p-2 border border-gray-300 mt-1"
+                        placeholder="Phone Number" required>
+                </div>
+                <div class="mb-4">
+                    <textarea id="message" name="message" class="w-full p-2 border border-gray-300  mt-1" rows="4" placeholder="Message"
+                        required></textarea>
+                </div>
+
+                <div class="tc text-xs flex items-start" style="font-family: Montserrat;">
+                    <input type="checkbox" id="consent" name="consent" class="m-1 rounded-none" required>
+                    <span>
+                        Here’s a revised version tailored for NCPR Homes, a real estate company in Maharashtra, India.
+                        It aligns with Indian practices and legal standards:
+
+                        By providing NCPR Homes your contact information, you acknowledge and agree to our Privacy
+                        Policy and consent to receiving marketing communications from us. These communications may
+                        include calls, texts, and emails, some of which may be automated or use prerecorded messages.
+                        Your consent to receive these communications is not a condition for purchasing any products or
+                        services.
+                    </span>
+                </div>
+                <div>
+                    <button type="submit"
+                        class="border-black border w-full lg:w-32 text-black lg:p-3 p-2 px-8 hover:text-white hover:bg-black duration-300 float-right lg:-mt-6">Submit</button>
+                </div>
+            </form>
+        </div>
+
+        <div class="lg:w-1/2 relative" style="font-family: Cinzel;">
+<img src="/media/photos/contactus-fin_upscale.jpeg"  alt="" class="object-cover h-full w-full">            <h1>NCPR HOMES</h1>
+<div class="bg-black absolute opacity-50 top-0 h-full w-full"></div>
+        </div>
+    </div>
+</body>
+
+</html>
