@@ -879,6 +879,10 @@ select {
   grid-column: span 2 / span 2;
 }
 
+.float-end {
+  float: inline-end;
+}
+
 .float-right {
   float: right;
 }
@@ -1055,6 +1059,50 @@ select {
   margin-top: 100%;
 }
 
+.ml-96 {
+  margin-left: 24rem;
+}
+
+.ml-16 {
+  margin-left: 4rem;
+}
+
+.ml-\[90vw\] {
+  margin-left: 90vw;
+}
+
+.ml-\[10vw\] {
+  margin-left: 10vw;
+}
+
+.ml-10 {
+  margin-left: 2.5rem;
+}
+
+.ml-20 {
+  margin-left: 5rem;
+}
+
+.ml-40 {
+  margin-left: 10rem;
+}
+
+.ml-\[90\%\] {
+  margin-left: 90%;
+}
+
+.ml-\[100rem\] {
+  margin-left: 100rem;
+}
+
+.ml-\[30rem\] {
+  margin-left: 30rem;
+}
+
+.ml-\[100\%\] {
+  margin-left: 100%;
+}
+
 .block {
   display: block;
 }
@@ -1087,10 +1135,6 @@ select {
   height: 0.25rem;
 }
 
-.h-1\/4 {
-  height: 25%;
-}
-
 .h-10 {
   height: 2.5rem;
 }
@@ -1113,6 +1157,10 @@ select {
 
 .h-64 {
   height: 16rem;
+}
+
+.h-7 {
+  height: 1.75rem;
 }
 
 .h-8 {
@@ -1199,6 +1247,10 @@ select {
   width: 100vw;
 }
 
+.w-2\/3 {
+  width: 66.666667%;
+}
+
 .max-w-2xl {
   max-width: 42rem;
 }
@@ -1270,8 +1322,16 @@ select {
   align-items: flex-start;
 }
 
+.items-end {
+  align-items: flex-end;
+}
+
 .items-center {
   align-items: center;
+}
+
+.justify-start {
+  justify-content: flex-start;
 }
 
 .justify-center {
@@ -1325,6 +1385,12 @@ select {
   margin-left: calc(1rem * calc(1 - var(--tw-space-x-reverse)));
 }
 
+.space-x-6 > :not([hidden]) ~ :not([hidden]) {
+  --tw-space-x-reverse: 0;
+  margin-right: calc(1.5rem * var(--tw-space-x-reverse));
+  margin-left: calc(1.5rem * calc(1 - var(--tw-space-x-reverse)));
+}
+
 .space-y-1 > :not([hidden]) ~ :not([hidden]) {
   --tw-space-y-reverse: 0;
   margin-top: calc(0.25rem * calc(1 - var(--tw-space-y-reverse)));
@@ -1353,6 +1419,16 @@ select {
   --tw-space-y-reverse: 0;
   margin-top: calc(2rem * calc(1 - var(--tw-space-y-reverse)));
   margin-bottom: calc(2rem * var(--tw-space-y-reverse));
+}
+
+.space-y-3 > :not([hidden]) ~ :not([hidden]) {
+  --tw-space-y-reverse: 0;
+  margin-top: calc(0.75rem * calc(1 - var(--tw-space-y-reverse)));
+  margin-bottom: calc(0.75rem * var(--tw-space-y-reverse));
+}
+
+.self-end {
+  align-self: flex-end;
 }
 
 .self-center {
@@ -2258,14 +2334,14 @@ select {
     margin: 0px;
   }
 
-  .lg\:mx-10 {
-    margin-left: 2.5rem;
-    margin-right: 2.5rem;
-  }
-
   .lg\:mx-20 {
     margin-left: 5rem;
     margin-right: 5rem;
+  }
+
+  .lg\:mx-7 {
+    margin-left: 1.75rem;
+    margin-right: 1.75rem;
   }
 
   .lg\:mx-8 {
@@ -2288,6 +2364,10 @@ select {
     margin-bottom: 4rem;
   }
 
+  .lg\:ml-12 {
+    margin-left: 3rem;
+  }
+
   .lg\:ml-2 {
     margin-left: 0.5rem;
   }
@@ -2300,8 +2380,16 @@ select {
     margin-top: 0.25rem;
   }
 
+  .lg\:mt-10 {
+    margin-top: 2.5rem;
+  }
+
   .lg\:mt-16 {
     margin-top: 4rem;
+  }
+
+  .lg\:mt-20 {
+    margin-top: 5rem;
   }
 
   .lg\:mt-40 {
@@ -2340,6 +2428,10 @@ select {
     height: 6rem;
   }
 
+  .lg\:h-8 {
+    height: 2rem;
+  }
+
   .lg\:h-\[190px\] {
     height: 190px;
   }
@@ -2368,8 +2460,12 @@ select {
     height: auto;
   }
 
-  .lg\:h-full {
-    height: 100%;
+  .lg\:h-screen {
+    height: 100vh;
+  }
+
+  .lg\:h-9 {
+    height: 2.25rem;
   }
 
   .lg\:w-1\/2 {
@@ -2429,8 +2525,18 @@ select {
     grid-template-rows: repeat(3, minmax(0, 1fr));
   }
 
+  .lg\:items-center {
+    align-items: center;
+  }
+
   .lg\:gap-1 {
     gap: 0.25rem;
+  }
+
+  .lg\:space-x-12 > :not([hidden]) ~ :not([hidden]) {
+    --tw-space-x-reverse: 0;
+    margin-right: calc(3rem * var(--tw-space-x-reverse));
+    margin-left: calc(3rem * calc(1 - var(--tw-space-x-reverse)));
   }
 
   .lg\:space-x-14 > :not([hidden]) ~ :not([hidden]) {
@@ -2475,6 +2581,12 @@ select {
     margin-bottom: calc(1.25rem * var(--tw-space-y-reverse));
   }
 
+  .lg\:space-x-0 > :not([hidden]) ~ :not([hidden]) {
+    --tw-space-x-reverse: 0;
+    margin-right: calc(0px * var(--tw-space-x-reverse));
+    margin-left: calc(0px * calc(1 - var(--tw-space-x-reverse)));
+  }
+
   .lg\:border-none {
     border-style: none;
   }
@@ -2509,8 +2621,8 @@ select {
     padding-left: 2.5rem;
   }
 
-  .lg\:pr-7 {
-    padding-right: 1.75rem;
+  .lg\:pr-2 {
+    padding-right: 0.5rem;
   }
 
   .lg\:text-center {

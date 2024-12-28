@@ -14,49 +14,45 @@
     </style>
 </head>
 
-<body class=" lg:m-0">
-    <div class="container lg:mx-10  lg:flex lg:space-x-3">
-        <div class=" lg:w-2/5 lg:pr-7 m-4 lg:m-0 ">
-            <form action="{% url 'contact_agent' %}" method="post" class=" space-y-6" style="font-family: Cinzel;">
-
+<body class="h-screen lg:m-0">
+    <div class="container h-screen lg:flex lg:space-x-0">
+        <div class="lg:w-2/5 lg:pr-2 m-4 lg:m-0">
+            <form action="{% url 'contact_agent' %}" method="post" class="space-y-6 lg:mx-7"
+                style="font-family: Cinzel;">
                 <div class="lg:w-full lg:text-center lg:my-10 w-full">
-                    <div for="" style="font-family: Cinzel;" class="text-xs font-light mt-12">Let me know how can I
-                        assit you</div>
+                    <div style="font-family: Cinzel;" class="text-xs font-light mt-12">
+                        Let me know how can I assist you
+                    </div>
                     <br>
-                    <div for="name" class="lg:text-5xl text-4xl uppercase tracking-wider font-light "
-                        style="font-family: Montserrat;"> GET IN TOUCH</div>
+                    <div class="lg:text-5xl text-4xl uppercase tracking-wider font-light"
+                        style="font-family: Montserrat;">
+                        GET IN TOUCH
+                    </div>
                 </div>
 
                 <div class="mb-4 lg:flex lg:space-x-8 space-y-6 lg:space-y-0">
-
-                    <input type="text" id="name" name="name" class="w-full p-2 border border-gray-300  mt-1"
+                    <input type="text" id="name" name="name" class="w-full p-2 border border-gray-300 mt-1"
                         placeholder="First Name" required>
-
-                    <input type="text" id="name" name="name" class="w-full p-2 border border-gray-300  mt-1 "
+                    <input type="text" id="last-name" name="last_name" class="w-full p-2 border border-gray-300 mt-1"
                         placeholder="Last Name">
                 </div>
 
                 <div class="mb-4">
-
-                    <input type="email" id="email" name="email" class="w-full p-2 border border-gray-300  mt-1"
+                    <input type="email" id="email" name="email" class="w-full p-2 border border-gray-300 mt-1"
                         placeholder="Email">
                 </div>
                 <div class="mb-4">
-
                     <input type="tel" id="phone" name="phone" class="w-full p-2 border border-gray-300 mt-1"
                         placeholder="Phone Number" required>
                 </div>
                 <div class="mb-4">
-                    <textarea id="message" name="message" class="w-full p-2 border border-gray-300  mt-1" rows="4"
+                    <textarea id="message" name="message" class="w-full p-2 border border-gray-300 mt-1" rows="4"
                         placeholder="Message" required></textarea>
                 </div>
 
                 <div class="tc text-xs flex items-start" style="font-family: Montserrat;">
                     <input type="checkbox" id="consent" name="consent" class="m-1 rounded-none" required>
                     <span class="text-justify">
-                        Here’s a revised version tailored for NCPR Homes, a real estate company in Maharashtra, India.
-                        It aligns with Indian practices and legal standards:
-
                         By providing NCPR Homes your contact information, you acknowledge and agree to our Privacy
                         Policy and consent to receiving marketing communications from us. These communications may
                         include calls, texts, and emails, some of which may be automated or use prerecorded messages.
@@ -64,24 +60,48 @@
                         services.
                     </span>
                 </div>
+
                 <div>
                     <button type="submit"
-                        class="border-black border w-full lg:w-32 text-black lg:p-3 p-2 px-8 hover:text-white hover:bg-black duration-300 float-right mb-4 ">Submit</button>
+                        class="border-black border w-full lg:w-32 text-black lg:p-3 p-2 px-8 hover:text-white hover:bg-black duration-300 float-right mb-4">
+                        Submit
+                    </button>
                 </div>
             </form>
         </div>
 
-        <div class="lg:w-3/5 h-1/4 lg:h-full relative lg:m-0 mt-20" style="font-family: Montserrat;">
+        <div class="lg:w-3/5 lg:h-screen relative lg:m-0 mt-20" style="font-family: Montserrat;">
             <img src="/media/photos/contactus-fin_upscale.jpeg" alt="" class="object-cover h-full w-full">
             <div class="bg-black absolute opacity-50 top-0 h-full w-full"></div>
-            <div class="absolute top-0 left-0 mx-6 space-y-8 mt-10">
-                <h1 class="text-white font-light text-3xl " style="font-family: Montserrat;">NCPR HOMES</h1>
-                <h1 class="text-white text-xs underline">ncpr.23realestate@gmail.com</h1>
-                <h1 class="text-white text-xs underline">+91 070456-26807</h1>
-            </div>
-        </div>
+            <div class="absolute top-0 left-0 mx-6 space-y-8 mt-10 lg:mt-20 lg:ml-12">
+                <h1 class="text-white font-light text-3xl lg:text-5xl" style="font-family: Montserrat;">NCPR HOMES</h1>
+                <h1 class="text-white text-xs lg:text-base">ncpr.23realestate@gmail.com</h1>
+                <h1 class="text-white text-xs lg:text-base">+91 070456-26807</h1>
+                <h1 class="text-white text-xs lg:text-base">Follow us on</h1>
+                <hr class="text-white lg:mt-10 w-2/3 hidden lg:block">
+                <div class="social-media flex justify-start items-center space-x-6 lg:space-x-12">
+                    <a href="https://www.facebook.com/people/NCPR-HOMES/61550468357089/" target="_blank">
+                        <img src="/media/icons/facebook.png" alt="" class=" h-6 lg:h-8">
+                    </a>
+                    <a href="https://www.youtube.com/channel/UCQ5ufNstvJGst642QJCFGwA" target="_blank">
+                        <img src="/media/icons/youtube.png" alt="" class=" h-7 lg:h-9   ">
+                    </a>
+                    <a href="https://www.linkedin.com/company/ncpr-homes/" target="_blank">
+                        <img src="/media/icons/linkedin.png" alt="" class=" h-7 lg:h-8">
+                </div>
 
-    </div>
+
+
+            </div>
+        
+                <!-- Company Info -->
+                <div class="mb-4 md:mb-0 absolute bottom-0 flex-col items-end text-white right-3 hidden lg:flex">
+                    <h2 class="text-xl font-bold">NCPR Homes</h2>
+                    <p class="mt-2">Your trusted partner in real estate.</p>
+                    <p class="mt-2">© 2024 NCPR Homes. All rights reserved.</p>
+                </div>
+
+            </div>
 
 </body>
 
