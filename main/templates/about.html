@@ -3,9 +3,16 @@
 {% load static tailwind_tags %}
 {% tailwind_css %}
 {%load static%}
+
+<style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400..900&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Luxurious+Roman&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700&display=swap');
+</style>
 <div class=" p-8 md:p-16 text-white lg:backdrop-blur-sm">
-    <h1 class="text-3xl md:text-5xl font-bold text-center">About Us</h1>
-    <div class=" rounded-2xl lg:p-4 ">
+    <h1 class="text-3xl md:text-5xl font-light text-center uppercase" style="font-family: Cinzel;">About Us</h1>
+    <div class=" rounded-2xl lg:p-4 font-light " style="font-family: Montserrat">
         <p class="mt-20 lg:mt-44 text-white text-justify  md:text-lg">NCPR Homes was established with a clear vision to
             revolutionize the real estate industry by offering unparalleled expertise and personalized service. Our
             mission is to guide clients through the complexities of real estate transactions, whether for investment or
@@ -30,7 +37,7 @@
 
 
         <!-- Social Media Links -->
-        <div class="flex justify-center space-x-12 mt-16">
+        <div class="flex justify-center space-x-12 mt-16 uppercase" style="font-family: Cinzel;">
             <a href="https://www.linkedin.com/company/ncpr-homes/"
                 class="text-blue-400 hover:text-white font-semibold ">LinkedIn</a>
             <a href="https://www.youtube.com/channel/UCQ5ufNstvJGst642QJCFGwA"

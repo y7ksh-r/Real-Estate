@@ -907,6 +907,10 @@ select {
   margin: 2rem;
 }
 
+.m-10 {
+  margin: 2.5rem;
+}
+
 .-mx-1 {
   margin-left: -0.25rem;
   margin-right: -0.25rem;
@@ -1201,6 +1205,10 @@ select {
 
 .h-screen {
   height: 100vh;
+}
+
+.h-2\/4 {
+  height: 50%;
 }
 
 .w-1\/2 {
@@ -2318,6 +2326,10 @@ select {
     position: static;
   }
 
+  .lg\:absolute {
+    position: absolute;
+  }
+
   .lg\:left-1\/4 {
     left: 25%;
   }
@@ -2651,6 +2663,10 @@ select {
 
   .lg\:font-semibold {
     font-weight: 600;
+  }
+
+  .lg\:font-light {
+    font-weight: 300;
   }
 
   .lg\:text-black {

@@ -17,7 +17,14 @@
 </head>
 
 <body class="bg-black">
-   <style>        /* Custom styles for fade-in and fade-out animations */
+   <style>/* Custom styles for fade-in and fade-out animations */
+
+
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400..900&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Luxurious+Roman&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700&display=swap');
+
     .fade-in {
         animation: fadeIn 0.3s forwards;
     }
@@ -49,16 +56,26 @@
             transform: scale(0.95);
         }
     }
+
+
+    html {
+    scrollbar-width: thin;
+    scrollbar-color: #888 #1e1e1e; /* Thumb color #888, track color #1e1e1e */
+  }
+  
+  html:hover {
+    scrollbar-color: #555 #1e1e1e; /* Change thumb color on hover */
+  }
 </style>
     
     <script src="{%static 'js/filter.js'%}"></script>
 
 
-    <div class="bg-image bg-[url('/media/icons/bgimage.jpg')] h-[20rem] lg:h-[35rem] bg-no-repeat bg-cover">
+    <div class="bg-image bg-[url('/media/icons/bgimage.jpg')] h-[20rem] lg:h-[35rem] bg-no-repeat bg-cover" >
 
 
-        <div class="navbar-lg lg:hidden hidden flex flex-col bg-transparent text-white font-medium shadow-lg rounded-lg p-4 absolute mt-12 lg:m-0 lg:w-fit w-1/2 space-y-4  lg:font-semibold "
-            id="menu">
+        <div class="navbar-lg lg:hidden hidden flex uppercase flex-col bg-transparent text-white font-light shadow-lg rounded-lg p-4 absolute mt-12 lg:m-0 lg:w-fit w-1/2 space-y-4  lg:font-light " style="font-family: Cinzel;"
+          id="menu">
             <a href="/"
                 class="border-b p-3 lg:border-none lg:text-lg rounded-xl hover:backdrop-blur-xl  hover:text-black">Home</a>
             <a href="/about"
@@ -72,7 +89,7 @@
         <div
             class="navbar flex justify-between bg-transparent p-2 w-screen items-center top-0 overflow-hidden">
             <div
-                class="navbar-lg hidden flex flex-col lg:bg-transparent lg:shadow-none rounded-lg lg:static lg:ml-2 lg:w-fit lg:space-x-14 lg:block lg:text-white lg:font-semibold overflow-hidden  ">
+                class="navbar-lg hidden flex flex-col lg:bg-transparent lg:shadow-none rounded-lg lg:static lg:ml-2 lg:w-fit lg:space-x-14 lg:block lg:text-white lg:font-light overflow-hidden uppercase" style="font-family: Cinzel;">
                 <a href=" /"
                     class=" lg:border-none rounded-xl  hover:text-black duration-300">Home</a>
                 <a href="/about"
@@ -100,18 +117,18 @@
         {% block body %}
         {% endblock %}  
 
-        <footer class="bg-gray-600 text-white p-8 mt-12">
+        <footer class="bg-gray-600 text-white p-8 mt-12" style="font-family: Montserrat;">
             <div class="container mx-auto flex flex-col md:flex-row justify-between">
               <!-- Company Info -->
               <div class="mb-4 md:mb-0">
-                <h2 class="text-xl font-bold">NCPR Homes</h2>
+                <h2 class="text-xl font-bold uppercase" style="font-family: Cinzel;">NCPR Homes</h2>
                 <p class="mt-2">Your trusted partner in real estate.</p>
                 <p class="mt-2">© 2024 NCPR Homes. All rights reserved.</p>
               </div>
           
               <!-- Quick Links -->
               <div class="mb-4 md:mb-0">
-                <h2 class="text-xl font-bold">Quick Links</h2>
+                <h2 class="text-xl font-bold uppercase" style="font-family: Cinzel;">Quick Links</h2>
                 <ul class="mt-2 space-y-2">
                   <li><a href="/" class="hover:underline">Home</a></li>
                   <li><a href="/about" class="hover:underline">About Us</a></li>
