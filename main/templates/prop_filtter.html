@@ -23,7 +23,7 @@
 </style>
 
 <div class="projects m-2">
-    <button class="bg-transparent hover:text-black border tracking-widest border-white hover:bg-white duration-300  text-white flex items-center justify-center mx-3 my-8 px-3" onclick="document.getElementById('filter-form').style.display='block'; console.log('clicked');">FILTERS 
+    <button class="bg-transparent hover:text-black border tracking-widest border-white hover:bg-white duration-300  text-white flex items-center justify-center mx-3 my-8 px-3 lg:text-black lg:hover:text-white lg:hover:bg-black lg:border-black" onclick="document.getElementById('filter-form').style.display='block'; console.log('clicked');">FILTERS 
     </button>
 <div class="cnt">
      <form method="get" id="filter-form" class="p-2 hidden mt-12 lg:mt-16 pt-10 space-y-6 backdrop-blur-xl bg-black bg-opacity-50 lg:bg-opacity-0 text-white lg:text-black max-md:text-white absolute inset-0 h-full w-full z-50 text-sm    " action="{%url 'filteroption'%}">
@@ -78,18 +78,18 @@
         </form>
     </div>
         
-    <h2 class=" text-lg ml-2 text-white my-6 ">Your Search Results > </h2>
+    <h2 class=" text-lg ml-2 text-white lg:text-black my-6 ">Your Search Results > </h2>
     <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 justify-center gap-2 lg:gap-1 overflow-y-scroll">
 
         {% for property in properties %}
         <a href="/prop_view/{{property.id}}">
-            <div class="property w-[200px] h-[345px] lg:w-[280px] lg:h-[475px] flex flex-col relative group">
-                <div class="display h-full w-full overflow-hidden rounded-3xl">
+            <div class="property w-[180px] h-[310px] lg:w-[250px] lg:h-[428px] flex flex-col relative group">
+                <div class="display h-full w-full overflow-hidden rounded-2xl">
                     <img src="/media/{{property.main_img}}" alt="Beautiful Family Home"
                         class="object-cover object-center w-full h-full group-hover:scale-110 duration-500">
                 </div>
                 <div
-                            class="description h-[41%] lg:h-[35%] lg:mt-[111%] w-full space-y-2 px-2 mt-[100%] absolute backdrop-blur-lg rounded-3xl lg:space-y-4">
+                            class="description h-[43%] lg:h-[37%] lg:mt-[111%] w-full space-y-2 px-2 py-1 mt-[100%] absolute backdrop-blur-lg rounded-2xl lg:space-y-4 text-sm">
                             <h2
                                 class="font-semibold bg-gradient-to-br from-white from-[-1rem] via-gray-900 via-50% to-black  bg-clip-text text-transparent text-2xl price">
                                 ₹ {{ property.price2 }}</h2>
@@ -100,8 +100,8 @@
                             </div>
                             <p class="text-white"> {{ property.city }}- {{property.zip_code }}</p>
                             <div
-                                class="flex justify-between items-center rounded-3xl border border-black px-2 -mx-1 py-[2px]">
-                                <span>
+                                class="flex justify-between items-center rounded-full border border-black px-2 -mx-1">
+                                <span class="text-xs">
                                     More details
                                 </span>
                                 <span class="group-hover:rotate-[360deg] duration-500">
