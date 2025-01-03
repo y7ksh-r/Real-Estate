@@ -23,56 +23,58 @@
 </style>
 
 <div class="projects m-2">
-    <button class="bg-transparent hover:text-white border border-orange-500 hover:bg-orange-500 duration-300 px-2 py-1 text-orange-500 flex items-center justify-center top-0 left-0 bottom-0 right-0 " onclick="document.getElementById('filter-form').style.display='block'; console.log('clicked');">F I L T E R S 
+    <button class="bg-transparent hover:text-black border tracking-widest border-white hover:bg-white duration-300  text-white flex items-center justify-center mx-3 my-8 px-3" onclick="document.getElementById('filter-form').style.display='block'; console.log('clicked');">FILTERS 
     </button>
 <div class="cnt">
-     <form method="get" id="filter-form" class="p-2 hidden mt-12 lg:mt-16 pt-10 space-y-4 backdrop-blur-xl bg-black bg-opacity-50 lg:bg-opacity-0 text-white lg:text-black max-md:text-white absolute inset-0 h-full w-full rounded-xl z-50    " action="{%url 'filteroption'%}">
-            <span class="close absolute cursor-pointer top-0 right-3 text-2xl font-black hover:text-red-600 text-gray-800" onclick="document.getElementById('filter-form').style.display='none';">&times;</span>
+     <form method="get" id="filter-form" class="p-2 hidden mt-12 lg:mt-16 pt-10 space-y-6 backdrop-blur-xl bg-black bg-opacity-50 lg:bg-opacity-0 text-white lg:text-black max-md:text-white absolute inset-0 h-full w-full z-50 text-sm    " action="{%url 'filteroption'%}">
+            <span class="close absolute cursor-pointer top-0 right-3 text-2xl duration-300 font-black hover:text-white m-3 px-3 hover:bg-red-600 text-red-600 border border-red-600" onclick="document.getElementById('filter-form').style.display='none';">&times;</span>
 
 
-            <div class="filter-section border-b pb-2 space-x-4 rounded-lg">
-                <h3 class="text-lg font-semibold pb-1 ">Projects in City</h3>
+            <div class="filter-section border-b pb-2 px-2">
+                <h3 class="text-lg font-semibold pb-2 ">Projects in City</h3>
                 {% for project in projects_in_city %}
-                <label>
-                    <input type="checkbox" class="bg-transparent border border-white custom-checkbox" name="projects_in_city" value="{{ project }}" {% if project in selected_project_in_city %}checked{% endif %}> {{ project|capfirst }}
-                </label>
+                <div class="">
+                    <div class="">
+                    <input type="checkbox" class="bg-transparent border border-white custom-checkbox my-1" name="projects_in_city" value="{{ project }}" {% if project in selected_project_in_city %}checked{% endif %}> {{ project|capfirst }}
+                </div>
+                </div>
                 {% endfor %}
             </div>
                 
-            <div class="filter-section border-b pb-2 rounded-lg space-x-4 ">
+            <div class="filter-section border-b pb-2 px-2">
                 <input type="hidden" name="city" value="{{ selected_city }}">
                 <input type="hidden" name="size" value="{{ selected_size }}">
                 <input type="hidden" name="price_range" value="{{ selected_price_range }}">
             
-                <h3 class="pb-1 text-lg font-semibold !ml-0 ">Property Type</h3>
+                <h3 class="pb-2 text-lg font-semibold !ml-0 ">Property Type</h3>
                 {% for option in property_type_options %}
-                <label class="">
-                    <input type="checkbox" class="bg-transparent border border-white custom-checkbox" name="property_type" value="{{ option }}" {% if option in selected_property_types %}checked{% endif %}> {{ option|capfirst }}
-                </label>
+                <div class="">
+                    <input type="checkbox" class="bg-transparent border border-white custom-checkbox my-1" name="property_type" value="{{ option }}" {% if option in selected_property_types %}checked{% endif %}> {{ option|capfirst }}
+                </div>
                 {% endfor %}
             </div>
         
-            <div class="filter-section border-b pb-2 space-x-4 rounded-lg">
-                <h3 class="pb-1 text-lg font-semibold ">Sort by Price</h3>
-                <label>
-                    <input type="radio" class="bg-transparent border border-white custom-checkbox" name="price_order" value="low_to_high" {% if selected_price_order == 'low_to_high' %}checked{% endif %}>
+            <div class="filter-section border-b pb-2 px-2">
+                <h3 class="pb-2 text-lg font-semibold ">Sort by Price</h3>
+                <div>
+                    <input type="radio" class="bg-transparent border border-white custom-checkbox my-1" name="price_order" value="low_to_high" {% if selected_price_order == 'low_to_high' %}checked{% endif %}>
                     Low to High
-                </label>
-                <label>
-                    <input type="radio" class="bg-transparent border border-white custom-checkbox" name="price_order" value="high_to_low" {% if selected_price_order == 'high_to_low' %}checked{% endif %}>
+                </div>
+                <div>
+                    <input type="radio" class="bg-transparent border border-white custom-checkbox my-1" name="price_order" value="high_to_low" {% if selected_price_order == 'high_to_low' %}checked{% endif %}>
                     High to Low
-                </label>
+                </div>
             </div>
         
-            <div class="filter-section space-x-4 border-b pb-2 rounded-lg">
-                <h3 class="pb-1 text-lg font-semibold">Project Status</h3>
+            <div class="filter-section  border-b pb-2 px-2 ">
+                <h3 class="pb-2 text-lg font-semibold">Project Status</h3>
                 {% for option in status_options %}
-                <label class="">
-                    <input type="checkbox" name="status" class="bg-transparent border border-white custom-checkbox" value="{{ option }}" {% if option in selected_status %}checked{% endif %}> {{ option|capfirst }}
-                </label>
+                <div class="">
+                    <input type="checkbox" name="status" class="bg-transparent border border-white custom-checkbox my-1" value="{{ option }}" {% if option in selected_status %}checked{% endif %}> {{ option|capfirst }}
+                </div>
                 {% endfor %}
             </div>
-            <button type="reset" >Reset</button>
+            <button type="reset" class=" px-2 py-1 duration-300 bg-black text-white hover:text-black hover:bg-white" >Reset</button>
         </form>
     </div>
         

@@ -66,7 +66,8 @@ document.addEventListener("DOMContentLoaded", function () {
                     <a href="prop_view/${property.id}"><img src="/media/${property.main_img}" alt="Beautiful Family Home"
                         class="object-cover object-center w-full h-full group-hover:scale-110 duration-500"></a>
                 </div>
-                <a href="prop_view/${property.id}"><div class="description h-[41%] lg:h-[35%] lg:mt-[111%] w-full space-y-2 px-2 mt-[100%] absolute backdrop-blur-lg rounded-3xl lg:space-y-4">
+                <a href="prop_view/${property.id}">
+                <div class="description h-[41%] lg:h-[35%] bottom-0 w-full space-y-2 px-2 absolute backdrop-blur-lg rounded-3xl lg:space-y-4">
                     <h2 class="font-semibold text-2xl price">₹ ${property.price2}</h2>
                     <div class="flex gap-x-5 h-6 overflow-hidden text-white">
                         <p>${property.title}</p>
