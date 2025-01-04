@@ -17,6 +17,38 @@
         @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400..900&display=swap');
         @import url('https://fonts.googleapis.com/css2?family=Luxurious+Roman&display=swap');
         @import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700&display=swap');
+ /* Custom styles for fade-in and fade-out animations */
+ .fade-in {
+    animation: fadeIn 0.3s forwards;
+}
+
+.fade-out {
+    animation: fadeOut 0.3s forwards;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    to {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+}
 
         /* Scrollbar styling for Chrome, Safari, and Edge */
         ::-webkit-scrollbar {
@@ -108,7 +140,7 @@
 
 <body class="bg-black mx-2">{% if messages %}
     <div id="message-bar"
-        class="fixed top-4 left-1/2 transform -translate-x-1/2 w-full max-w-md bg-green-500 text-white px-6 py-4 rounded-lg shadow-lg flex flex-col items-center">
+        class="fixed top-4 left-1/2 transform -translate-x-1/2 w-full max-w-md bg-green-500 text-white px-6 py-4 rounded-lg shadow-lg flex flex-col items-center" >
         <div class="flex justify-between items-center w-full">
 
             <button onclick="hideMessageBar()" class="text-white hover:text-red-500">&times;</button>
@@ -124,21 +156,21 @@
     {% endif %}
 
     <div class="navbar flex justify-between my-2">
-        <div class="navbar-lg lg:hidden hidden flex flex-col bg-transparent text-white font-medium shadow-lg rounded-lg p-4 absolute mt-12 lg:m-0 lg:w-fit w-1/2 space-y-4  lg:font-semibold "
-            id="menu">
+        <div class="navbar-lg lg:hidden hidden flex flex-col bg-transparent text-white font-medium shadow-lg p-4 absolute z-10 mt-12 lg:m-0 lg:w-fit w-1/2 space-y-4 uppercase w-full h-full"
+            id="menu" style="font-family: Cinzel;">
             <a href="/"
-                class="border-b p-3 lg:border-none lg:text-lg rounded-xl hover:backdrop-blur-xl  hover:text-black">Home</a>
+                class="border-b p-3 lg:border-none lg:text-lg  hover:backdrop-blur-xl">Home</a>
             <a href="/about"
-                class="border-b p-3 lg:border-none lg:text-lg rounded-xl hover:backdrop-blur-xl   hover:text-black">About</a>
+                class="border-b p-3 lg:border-none lg:text-lg  hover:backdrop-blur-xl">About</a>
             <a href="/services"
-                class="border-b p-3 lg:border-none lg:text-lg rounded-xl hover:backdrop-blur-xl hover:text-black">Services</a>
+                class="border-b p-3 lg:border-none lg:text-lg hover:backdrop-blur-xl">Services</a>
             <a href="/contact"
-                class="border-b p-3 lg:border-none  lg:text-lg rounded-xl hover:backdrop-blur-xl hover:text-black">Contact</a>
+                class="border-b p-3 lg:border-none  lg:text-lg  hover:backdrop-blur-xl">Contact</a>
         </div>
 
         <div class="navbar flex justify-between bg-transparent p-2 w-screen items-center top-0 overflow-hidden">
             <div
-                class="navbar-lg hidden flex flex-col lg:bg-transparent lg:shadow-none rounded-lg lg:static lg:ml-2 lg:w-fit lg:space-x-14 lg:block lg:text-white lg:font-semibold overflow-hidden  ">
+                class="navbar-lg hidden flex flex-col lg:bg-transparent lg:shadow-none rounded-lg lg:static lg:ml-2 lg:w-fit lg:space-x-14 lg:block lg:text-white overflow-hidden uppercase" style="font-family: Cinzel;">
                 <a href=" /" class=" lg:border-none rounded-xl  hover:text-black duration-300">Home</a>
                 <a href="/about" class="lg:border-none rounded-xl   hover:text-black duration-300">About</a>
                 <a href="/services" class=" lg:border-none rounded-xl  hover:text-black duration-300">Services</a>
@@ -152,7 +184,7 @@
                 </svg>
             </div>
             <div class="company-logo mr-[4vw] lg:ml-[8vw]  lg:order-2 md:m-0">
-                <a href="/ "><img src="/media/icons/image1.png" alt="harsh" class="h-10 lg:h-12"></a>
+                <a href="/ "><img src="/media/icons/image1.png" alt="harsh" class="h-8 lg:h-12"></a>
             </div>
             <div class="invisible lg:w-1/3 lg:order-3 ">
             </div>
@@ -328,141 +360,145 @@
             </div>
 
             <div class=" space-y-6" style="font-family: Cinzel;">
-                <h2 class=" text-2xl mt-3 text-white flex items-center">SUGGESTED ACCORDING TO
+                <h2 class=" text-xl my-3 text-white flex items-center">SUGGESTED ACCORDING TO
                 
                 </h2>
         
-                <h1 class=" text-xl text-white">Similar price</h1>
-                <div class="flex space-x-2 lg:space-x-4 overflow-x-scroll overflow-y-hidden ">
+                <h1 class=" text-lg text-white">Similar price</h1>
+                <div class="flex space-x-2 lg:space-x-4 overflow-x-scroll  ">
                     <a href="prop_view/{{sp.id}}">
-                        <div class="property w-[206px] h-[345px]  lg:w-[280px] lg:h-[475px] flex flex-col relative group ">
-                            <div class="display h-full w-full overflow-hidden rounded-3xl">
-                                <img src="/media/{{sp.main_img}}" alt="Beautiful Family Home"
+                        <div class="sp w-[180px] h-[310px] lg:w-[250px] lg:h-[428px] flex flex-col relative group">
+                            <div class="display h-full w-full overflow-hidden rounded-2xl">
+                                <img src="/media/{{ sp.main_img }}" alt="Beautiful Family Home"
                                     class="object-cover object-center w-full h-full group-hover:scale-110 duration-500">
                             </div>
+                        
                             <div
-                                class="description h-[41%] lg:h-[35%] lg:mt-[111%] w-full space-y-2 px-2 mt-[100%] absolute backdrop-blur-lg rounded-3xl lg:space-y-4">
-                                <h2
-                                    class="font-semibold bg-gradient-to-br from-white from-[-1rem] via-gray-900 via-50% to-black  bg-clip-text text-transparent text-2xl price">
-                                    ₹ {{ sp.price2 }}</h2>
+                                class="description h-[43%] lg:h-[37%] lg:mt-[111%] w-full space-y-2 px-2 py-1 mt-[100%] absolute backdrop-blur-lg rounded-2xl lg:space-y-4 text-sm">
+                                <h2 class="font-semibold !text-xl price">
+                                    ₹ {{ sp.price2 }}
+                                </h2>
                                 <div class="flex gap-x-5 h-6 overflow-hidden text-white">
-                                    <p> {{ sp.title }}</p>
+                                    <p>{{ sp.title }}</p>
                                     <p>|</p>
                                     <p>{{ sp.bedrooms }}BHK</p>
                                 </div>
-                                <p class="text-white"> {{ sp.city }}- {{sp.zip_code }}</p>
+                                <p class="text-white">{{ sp.city }}- {{ sp.zip_code }}</p>
                                 <div
-                                    class="flex justify-between items-center rounded-3xl border border-black px-2 -mx-1 py-[2px]">
-                                    <span>
+                                    class="flex justify-between items-center rounded-full border border-black px-2 -mx-1">
+                                    <span class="text-xs">
                                         More details
                                     </span>
                                     <span class="group-hover:rotate-[360deg] duration-500">
                                         <img src="/media/icons/arrow.png" alt="" class="h-6">
                                     </span>
                                 </div>
-        
                             </div>
                         </div>
+                        
                     </a>
                 </div>
         
-                <h1 class=" text-xl text-white">More in {{prop.bedrooms}} BHK</h1>
-                <div class="flex space-x-2 lg:space-x-4 overflow-x-scroll overflow-y-hidden ">
+                <h1 class=" text-lg text-white">More in {{prop.bedrooms}} BHK</h1>
+                <div class="flex space-x-2 lg:space-x-4 overflow-x-scroll ">
                     <a href="prop_view/{{ss.id}}">
-                        <div class="property w-[206px] h-[345px]  lg:w-[280px] lg:h-[475px] flex flex-col relative group ">
-                            <div class="display h-full w-full overflow-hidden rounded-3xl">
-                                <img src="/media/{{ss.main_img}}" alt="Beautiful Family Home"
+                        <div class="ss w-[180px] h-[310px] lg:w-[250px] lg:h-[428px] flex flex-col relative group">
+                            <div class="display h-full w-full overflow-hidden rounded-2xl">
+                                <img src="/media/{{ ss.main_img }}" alt="Beautiful Family Home"
                                     class="object-cover object-center w-full h-full group-hover:scale-110 duration-500">
                             </div>
+                        
                             <div
-                                class="description h-[41%] lg:h-[35%] lg:mt-[111%] w-full space-y-2 px-2 mt-[100%] absolute backdrop-blur-lg rounded-3xl lg:space-y-4">
-                                <h2
-                                    class="font-semibold text-2xl price">
-                                    ₹ {{ ss.price2 }}</h2>
+                                class="description h-[43%] lg:h-[37%] lg:mt-[111%] w-full space-y-2 px-2 py-1 mt-[100%] absolute backdrop-blur-lg rounded-2xl lg:space-y-4 text-sm">
+                                <h2 class="font-semibold !text-xl price">
+                                    ₹ {{ ss.price2 }}
+                                </h2>
                                 <div class="flex gap-x-5 h-6 overflow-hidden text-white">
-                                    <p> {{ ss.title }}</p>
+                                    <p>{{ ss.title }}</p>
                                     <p>|</p>
                                     <p>{{ ss.bedrooms }}BHK</p>
                                 </div>
-                                <p class="text-white"> {{ ss.city }}- {{ss.zip_code }}</p>
+                                <p class="text-white">{{ ss.city }}- {{ ss.zip_code }}</p>
                                 <div
-                                    class="flex justify-between items-center rounded-3xl border border-black px-2 -mx-1 py-[2px]">
-                                    <span>
+                                    class="flex justify-between items-center rounded-full border border-black px-2 -mx-1">
+                                    <span class="text-xs">
                                         More details
                                     </span>
                                     <span class="group-hover:rotate-[360deg] duration-500">
                                         <img src="/media/icons/arrow.png" alt="" class="h-6">
                                     </span>
                                 </div>
-        
                             </div>
                         </div>
+                        
                     </a>
                 </div>
-                <h1 class=" text-xl text-white">More from {{prop.city}}</h1>
-                <div class="flex space-x-2 lg:space-x-4 overflow-x-scroll overflow-y-hidden ">
+                <h1 class=" text-lg text-white">More from {{prop.city}}</h1>
+                <div class="flex space-x-2 lg:space-x-4 overflow-x-scroll ">
                     <a href="prop_view/{{sc.id}}">
-                        <div class="property w-[206px] h-[345px]  lg:w-[280px] lg:h-[475px] flex flex-col relative group ">
-                            <div class="display h-full w-full overflow-hidden rounded-3xl">
-                                <img src="/media/{{sc.main_img}}" alt="Beautiful Family Home"
+                        <div class="sc w-[180px] h-[310px] lg:w-[250px] lg:h-[428px] flex flex-col relative group">
+                            <div class="display h-full w-full overflow-hidden rounded-2xl">
+                                <img src="/media/{{ sc.main_img }}" alt="Beautiful Family Home"
                                     class="object-cover object-center w-full h-full group-hover:scale-110 duration-500">
                             </div>
+                        
                             <div
-                                class="description h-[41%] lg:h-[35%] lg:mt-[111%] w-full space-y-2 px-2 mt-[100%] absolute backdrop-blur-lg rounded-3xl lg:space-y-4">
-                                <h2
-                                    class="font-semibold text-2xl price">
-                                    ₹ {{ sc.price2 }}</h2>
+                                class="description h-[43%] lg:h-[37%] lg:mt-[111%] w-full space-y-2 px-2 py-1 mt-[100%] absolute backdrop-blur-lg rounded-2xl lg:space-y-4 text-sm">
+                                <h2 class="font-semibold !text-xl price">
+                                    ₹ {{ sc.price2 }}
+                                </h2>
                                 <div class="flex gap-x-5 h-6 overflow-hidden text-white">
-                                    <p> {{ sc.title }}</p>
+                                    <p>{{ sc.title }}</p>
                                     <p>|</p>
                                     <p>{{ sc.bedrooms }}BHK</p>
                                 </div>
-                                <p class="text-white"> {{ sc.city }}- {{sc.zip_code }}</p>
+                                <p class="text-white">{{ sc.city }}- {{ sc.zip_code }}</p>
                                 <div
-                                    class="flex justify-between items-center rounded-3xl border border-black px-2 -mx-1 py-[2px]">
-                                    <span>
+                                    class="flex justify-between items-center rounded-full border border-black px-2 -mx-1">
+                                    <span class="text-xs">
                                         More details
                                     </span>
                                     <span class="group-hover:rotate-[360deg] duration-500">
                                         <img src="/media/icons/arrow.png" alt="" class="h-6">
                                     </span>
                                 </div>
-        
                             </div>
                         </div>
+                        
                     </a>
                 </div>
-                <h1 class="text-xl text-white">More from {{prop.devloper}}</h1>
-                <div class="flex space-x-2 lg:space-x-4 overflow-x-scroll overflow-y-hidden ">
+                <h1 class="text-lg text-white">More from {{prop.devloper}}</h1>
+                <div class="flex space-x-2 lg:space-x-4 overflow-x-scroll  ">
                     <a href="prop_view/{{sd.id}}">
-                        <div class="property w-[206px] h-[345px]  lg:w-[280px] lg:h-[475px] flex flex-col relative group ">
-                            <div class="display h-full w-full overflow-hidden rounded-3xl">
-                                <img src="/media/{{sd.main_img}}" alt="Beautiful Family Home"
+                        <div class="sd w-[180px] h-[310px] lg:w-[250px] lg:h-[428px] flex flex-col relative group">
+                            <div class="display h-full w-full overflow-hidden rounded-2xl">
+                                <img src="/media/{{ sd.main_img }}" alt="Beautiful Family Home"
                                     class="object-cover object-center w-full h-full group-hover:scale-110 duration-500">
                             </div>
+                        
                             <div
-                                class="description h-[41%] lg:h-[35%] lg:mt-[111%] w-full space-y-2 px-2 mt-[100%] absolute backdrop-blur-lg rounded-3xl lg:space-y-4 "style="font-family: Montserrat;">
-                                <h2
-                                    class="font-semibold text-2xl price">
-                                    ₹ {{ sd.price2 }}</h2>
+                                class="description h-[43%] lg:h-[37%] lg:mt-[111%] w-full space-y-2 px-2 py-1 mt-[100%] absolute backdrop-blur-lg rounded-2xl lg:space-y-4 text-sm">
+                                <h2 class="font-semibold !text-xl price">
+                                    ₹ {{ sd.price2 }}
+                                </h2>
                                 <div class="flex gap-x-5 h-6 overflow-hidden text-white">
-                                    <p> {{ sd.title }}</p>
+                                    <p>{{ sd.title }}</p>
                                     <p>|</p>
                                     <p>{{ sd.bedrooms }}BHK</p>
                                 </div>
-                                <p class="text-white"> {{ sd.city }}- {{sd.zip_code }}</p>
+                                <p class="text-white">{{ sd.city }}- {{ sd.zip_code }}</p>
                                 <div
-                                    class="flex justify-between items-center rounded-3xl border border-black px-2 -mx-1 py-[2px]">
-                                    <span>
+                                    class="flex justify-between items-center rounded-full border border-black px-2 -mx-1">
+                                    <span class="text-xs">
                                         More details
                                     </span>
                                     <span class="group-hover:rotate-[360deg] duration-500">
                                         <img src="/media/icons/arrow.png" alt="" class="h-6">
                                     </span>
                                 </div>
-        
                             </div>
                         </div>
+                        
                     </a>
                 </div>
             </div>
@@ -828,7 +864,7 @@
 
 
     <footer class="bg-gray-900 text-sm bg-opacity-70 text-white p-8 mt-12 font-sans">
-        <div class="container mx-auto flex flex-col md:flex-row justify-between">
+        <div class=" mx-auto flex flex-col md:flex-row justify-between">
             <!-- Company Info -->
             <div class="mb-4 md:mb-0">
                 <h2 class="text-lg font-bold">NCPR Homes</h2>

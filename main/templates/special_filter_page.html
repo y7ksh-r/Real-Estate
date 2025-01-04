@@ -47,7 +47,7 @@
 <div class="text-xl lg:text-4xl lg:mt-28 mt-10 text-center uppercase mt" style="font-family: Cinzel;">Special Filter Name</div>
 <div
   class="mt-36 lg:mt-[22%] mx-4 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 justify-center gap-3 gap-y-4 uppercase"
-  style="font-family: Montserrat;">
+  style="font-family: Cinzel;">
   {% for property in properties%}
   <a href="prop_view/{{property.id}}">
     <div class="property w-[180px] h-[310px] lg:w-[250px] lg:h-[428px] flex flex-col relative group">
@@ -56,8 +56,8 @@
           class="object-cover object-center w-full h-full group-hover:scale-110 duration-500">
       </div>
       <div
-        class="description h-[43%] lg:h-[37%] lg:mt-[111%] w-full space-y-2 px-2 py-1 mt-[100%] absolute backdrop-blur-lg rounded-2xl lg:space-y-4 text-sm">
-        <h2 class="font-semibold !text-xl price">
+        class="description h-[43%] lg:h-[37%] lg:mt-[111%] w-full space-y-2 px-2 py-1 mt-[100%] absolute backdrop-blur-lg rounded-2xl lg:space-y-4 text-sm" style="font-family: Montserrat;">
+        <h2 class="font-semibold !text-xl price" style="font-family: Cinzel;">
           ₹ {{ property.price2 }}</h2>
         <div class="flex gap-x-5 h-6 overflow-hidden text-white">
           <p> {{ property.title }}</p>
