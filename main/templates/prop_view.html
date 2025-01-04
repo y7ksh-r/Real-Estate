@@ -228,6 +228,156 @@
                 
                 
             </div>
+
+            <p class="text-2xl uppercase ml-2 text-white mt-2" style="font-family: Montserrat;">Google map</p>
+            <div class="google-map overflow-hidden relative mt-4 lg:hidden " name="mobile">
+                <iframe src="{{prop.map_url}}" width="450" height="250" allowfullscreen="" loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+            <div class="google-map overflow-hidden lg:block hidden relative mt-4 mx-2" name="desktop">
+                <iframe src="{{prop.map_url}}" width="2000" height="500" allowfullscreen="" loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+
+            <div class=" space-y-6" style="font-family: Cinzel;">
+                <h2 class=" text-2xl mt-3 text-white flex items-center">SUGGESTED ACCORDING TO
+                
+                </h2>
+        
+                <h1 class=" text-xl text-white">Similar price</h1>
+                <div class="flex space-x-2 lg:space-x-4 overflow-x-scroll overflow-y-hidden ">
+                    <a href="prop_view/{{sp.id}}">
+                        <div class="property w-[206px] h-[345px]  lg:w-[280px] lg:h-[475px] flex flex-col relative group ">
+                            <div class="display h-full w-full overflow-hidden rounded-3xl">
+                                <img src="/media/{{sp.main_img}}" alt="Beautiful Family Home"
+                                    class="object-cover object-center w-full h-full group-hover:scale-110 duration-500">
+                            </div>
+                            <div
+                                class="description h-[41%] lg:h-[35%] lg:mt-[111%] w-full space-y-2 px-2 mt-[100%] absolute backdrop-blur-lg rounded-3xl lg:space-y-4">
+                                <h2
+                                    class="font-semibold bg-gradient-to-br from-white from-[-1rem] via-gray-900 via-50% to-black  bg-clip-text text-transparent text-2xl price">
+                                    ₹ {{ sp.price2 }}</h2>
+                                <div class="flex gap-x-5 h-6 overflow-hidden text-white">
+                                    <p> {{ sp.title }}</p>
+                                    <p>|</p>
+                                    <p>{{ sp.bedrooms }}BHK</p>
+                                </div>
+                                <p class="text-white"> {{ sp.city }}- {{sp.zip_code }}</p>
+                                <div
+                                    class="flex justify-between items-center rounded-3xl border border-black px-2 -mx-1 py-[2px]">
+                                    <span>
+                                        More details
+                                    </span>
+                                    <span class="group-hover:rotate-[360deg] duration-500">
+                                        <img src="/media/icons/arrow.png" alt="" class="h-6">
+                                    </span>
+                                </div>
+        
+                            </div>
+                        </div>
+                    </a>
+                </div>
+        
+                <h1 class=" text-xl text-white">More in {{prop.bedrooms}} BHK</h1>
+                <div class="flex space-x-2 lg:space-x-4 overflow-x-scroll overflow-y-hidden ">
+                    <a href="prop_view/{{ss.id}}">
+                        <div class="property w-[206px] h-[345px]  lg:w-[280px] lg:h-[475px] flex flex-col relative group ">
+                            <div class="display h-full w-full overflow-hidden rounded-3xl">
+                                <img src="/media/{{ss.main_img}}" alt="Beautiful Family Home"
+                                    class="object-cover object-center w-full h-full group-hover:scale-110 duration-500">
+                            </div>
+                            <div
+                                class="description h-[41%] lg:h-[35%] lg:mt-[111%] w-full space-y-2 px-2 mt-[100%] absolute backdrop-blur-lg rounded-3xl lg:space-y-4">
+                                <h2
+                                    class="font-semibold text-2xl price">
+                                    ₹ {{ ss.price2 }}</h2>
+                                <div class="flex gap-x-5 h-6 overflow-hidden text-white">
+                                    <p> {{ ss.title }}</p>
+                                    <p>|</p>
+                                    <p>{{ ss.bedrooms }}BHK</p>
+                                </div>
+                                <p class="text-white"> {{ ss.city }}- {{ss.zip_code }}</p>
+                                <div
+                                    class="flex justify-between items-center rounded-3xl border border-black px-2 -mx-1 py-[2px]">
+                                    <span>
+                                        More details
+                                    </span>
+                                    <span class="group-hover:rotate-[360deg] duration-500">
+                                        <img src="/media/icons/arrow.png" alt="" class="h-6">
+                                    </span>
+                                </div>
+        
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <h1 class=" text-xl text-white">More from {{prop.city}}</h1>
+                <div class="flex space-x-2 lg:space-x-4 overflow-x-scroll overflow-y-hidden ">
+                    <a href="prop_view/{{sc.id}}">
+                        <div class="property w-[206px] h-[345px]  lg:w-[280px] lg:h-[475px] flex flex-col relative group ">
+                            <div class="display h-full w-full overflow-hidden rounded-3xl">
+                                <img src="/media/{{sc.main_img}}" alt="Beautiful Family Home"
+                                    class="object-cover object-center w-full h-full group-hover:scale-110 duration-500">
+                            </div>
+                            <div
+                                class="description h-[41%] lg:h-[35%] lg:mt-[111%] w-full space-y-2 px-2 mt-[100%] absolute backdrop-blur-lg rounded-3xl lg:space-y-4">
+                                <h2
+                                    class="font-semibold text-2xl price">
+                                    ₹ {{ sc.price2 }}</h2>
+                                <div class="flex gap-x-5 h-6 overflow-hidden text-white">
+                                    <p> {{ sc.title }}</p>
+                                    <p>|</p>
+                                    <p>{{ sc.bedrooms }}BHK</p>
+                                </div>
+                                <p class="text-white"> {{ sc.city }}- {{sc.zip_code }}</p>
+                                <div
+                                    class="flex justify-between items-center rounded-3xl border border-black px-2 -mx-1 py-[2px]">
+                                    <span>
+                                        More details
+                                    </span>
+                                    <span class="group-hover:rotate-[360deg] duration-500">
+                                        <img src="/media/icons/arrow.png" alt="" class="h-6">
+                                    </span>
+                                </div>
+        
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <h1 class="text-xl text-white">More from {{prop.devloper}}</h1>
+                <div class="flex space-x-2 lg:space-x-4 overflow-x-scroll overflow-y-hidden ">
+                    <a href="prop_view/{{sd.id}}">
+                        <div class="property w-[206px] h-[345px]  lg:w-[280px] lg:h-[475px] flex flex-col relative group ">
+                            <div class="display h-full w-full overflow-hidden rounded-3xl">
+                                <img src="/media/{{sd.main_img}}" alt="Beautiful Family Home"
+                                    class="object-cover object-center w-full h-full group-hover:scale-110 duration-500">
+                            </div>
+                            <div
+                                class="description h-[41%] lg:h-[35%] lg:mt-[111%] w-full space-y-2 px-2 mt-[100%] absolute backdrop-blur-lg rounded-3xl lg:space-y-4 "style="font-family: Montserrat;">
+                                <h2
+                                    class="font-semibold text-2xl price">
+                                    ₹ {{ sd.price2 }}</h2>
+                                <div class="flex gap-x-5 h-6 overflow-hidden text-white">
+                                    <p> {{ sd.title }}</p>
+                                    <p>|</p>
+                                    <p>{{ sd.bedrooms }}BHK</p>
+                                </div>
+                                <p class="text-white"> {{ sd.city }}- {{sd.zip_code }}</p>
+                                <div
+                                    class="flex justify-between items-center rounded-3xl border border-black px-2 -mx-1 py-[2px]">
+                                    <span>
+                                        More details
+                                    </span>
+                                    <span class="group-hover:rotate-[360deg] duration-500">
+                                        <img src="/media/icons/arrow.png" alt="" class="h-6">
+                                    </span>
+                                </div>
+        
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
             
             
             <div class="owner-details bg-orange-400 bg-opacity-10 w-full mt-8 lg:hidden" name="mobile">
@@ -325,6 +475,46 @@
                 </div>
             </div>
 
+            
+        <footer class="bg-gray-900 text-sm bg-opacity-70 text-white p-8 mt-12 font-sans">
+            <div class="container mx-auto flex flex-col md:flex-row justify-between">
+                <!-- Company Info -->
+                <div class="mb-4 md:mb-0">
+                    <h2 class="text-lg font-bold">NCPR Homes</h2>
+                    <p class="mt-2">Your trusted partner in real estate.</p>
+                    <p class="mt-2">© 2024 NCPR Homes. All rights reserved.</p>
+                </div>
+
+                <!-- Quick Links -->
+                <div class="mb-4 md:mb-0">
+                    <h2 class="text-lg font-bold">Quick Links</h2>
+                    <ul class="mt-2 space-y-2">
+                        <li><a href="/" class="hover:underline">Home</a></li>
+                        <li><a href="/about" class="hover:underline">About Us</a></li>
+                        <li><a href="/services" class="hover:underline">Services</a></li>
+                        <li><a href="/contact" class="hover:underline">Contact</a></li>
+                    </ul>
+                </div>
+
+                <!-- Social Media Links -->
+                <div class="mb-4 md:mb-0">
+                    <h2 class="text-lg font-bold">Follow Us</h2>
+                    <div class="social-media flex flex-col lg:justify-center lg:items-center space-y-1 mt-2">
+                        <a href="https://www.facebook.com/people/NCPR-HOMES/61550468357089/" target="_blank">
+                            <img src="/media/icons/facebook.png" alt="" class=" h-6 lg:h-8">
+                        </a>
+                        <a href="https://www.youtube.com/channel/UCQ5ufNstvJGst642QJCFGwA" target="_blank">
+                            <img src="/media/icons/youtube.png" alt="" class=" h-7 lg:h-9   ">
+                        </a>
+                        <a href="https://www.linkedin.com/company/ncpr-homes/" target="_blank">
+                            <img src="/media/icons/linkedin.png" alt="" class=" h-7 lg:h-8">
+                    </div>
+    
+                </div>
+            </div>
+        </footer>
+
+
 
         </div>
     </div>
@@ -332,159 +522,15 @@
 
 
 
-    <p class="text-2xl uppercase ml-2 text-white mt-2" style="font-family: Montserrat;">Google map</p>
-    <div class="google-map overflow-hidden relative mt-4 lg:hidden " name="mobile">
-        <iframe src="{{prop.map_url}}" width="450" height="250" allowfullscreen="" loading="lazy"
-            referrerpolicy="no-referrer-when-downgrade"></iframe>
-    </div>
-    <div class="google-map overflow-hidden lg:block hidden relative mt-4 mx-2" name="desktop">
-        <iframe src="{{prop.map_url}}" width="2000" height="500" allowfullscreen="" loading="lazy"
-            referrerpolicy="no-referrer-when-downgrade"></iframe>
-    </div>
+
   
 
 
 
 
-    <div class=" space-y-6" style="font-family: Cinzel;">
-        <h2 class=" text-2xl mt-3 text-white flex items-center">SUGGESTED ACCORDING TO
-        
-        </h2>
+    
 
-        <h1 class=" text-xl text-white">Similar price</h1>
-        <div class="flex space-x-2 lg:space-x-4 overflow-x-scroll overflow-y-hidden ">
-            <a href="prop_view/{{sp.id}}">
-                <div class="property w-[206px] h-[345px]  lg:w-[280px] lg:h-[475px] flex flex-col relative group ">
-                    <div class="display h-full w-full overflow-hidden rounded-3xl">
-                        <img src="/media/{{sp.main_img}}" alt="Beautiful Family Home"
-                            class="object-cover object-center w-full h-full group-hover:scale-110 duration-500">
-                    </div>
-                    <div
-                        class="description h-[41%] lg:h-[35%] lg:mt-[111%] w-full space-y-2 px-2 mt-[100%] absolute backdrop-blur-lg rounded-3xl lg:space-y-4">
-                        <h2
-                            class="font-semibold bg-gradient-to-br from-white from-[-1rem] via-gray-900 via-50% to-black  bg-clip-text text-transparent text-2xl price">
-                            ₹ {{ sp.price2 }}</h2>
-                        <div class="flex gap-x-5 h-6 overflow-hidden text-white">
-                            <p> {{ sp.title }}</p>
-                            <p>|</p>
-                            <p>{{ sp.bedrooms }}BHK</p>
-                        </div>
-                        <p class="text-white"> {{ sp.city }}- {{sp.zip_code }}</p>
-                        <div
-                            class="flex justify-between items-center rounded-3xl border border-black px-2 -mx-1 py-[2px]">
-                            <span>
-                                More details
-                            </span>
-                            <span class="group-hover:rotate-[360deg] duration-500">
-                                <img src="/media/icons/arrow.png" alt="" class="h-6">
-                            </span>
-                        </div>
-
-                    </div>
-                </div>
-            </a>
-        </div>
-
-        <h1 class=" text-xl text-white">More in {{prop.bedrooms}} BHK</h1>
-        <div class="flex space-x-2 lg:space-x-4 overflow-x-scroll overflow-y-hidden ">
-            <a href="prop_view/{{ss.id}}">
-                <div class="property w-[206px] h-[345px]  lg:w-[280px] lg:h-[475px] flex flex-col relative group ">
-                    <div class="display h-full w-full overflow-hidden rounded-3xl">
-                        <img src="/media/{{ss.main_img}}" alt="Beautiful Family Home"
-                            class="object-cover object-center w-full h-full group-hover:scale-110 duration-500">
-                    </div>
-                    <div
-                        class="description h-[41%] lg:h-[35%] lg:mt-[111%] w-full space-y-2 px-2 mt-[100%] absolute backdrop-blur-lg rounded-3xl lg:space-y-4">
-                        <h2
-                            class="font-semibold text-2xl price">
-                            ₹ {{ ss.price2 }}</h2>
-                        <div class="flex gap-x-5 h-6 overflow-hidden text-white">
-                            <p> {{ ss.title }}</p>
-                            <p>|</p>
-                            <p>{{ ss.bedrooms }}BHK</p>
-                        </div>
-                        <p class="text-white"> {{ ss.city }}- {{ss.zip_code }}</p>
-                        <div
-                            class="flex justify-between items-center rounded-3xl border border-black px-2 -mx-1 py-[2px]">
-                            <span>
-                                More details
-                            </span>
-                            <span class="group-hover:rotate-[360deg] duration-500">
-                                <img src="/media/icons/arrow.png" alt="" class="h-6">
-                            </span>
-                        </div>
-
-                    </div>
-                </div>
-            </a>
-        </div>
-        <h1 class=" text-xl text-white">More from {{prop.city}}</h1>
-        <div class="flex space-x-2 lg:space-x-4 overflow-x-scroll overflow-y-hidden ">
-            <a href="prop_view/{{sc.id}}">
-                <div class="property w-[206px] h-[345px]  lg:w-[280px] lg:h-[475px] flex flex-col relative group ">
-                    <div class="display h-full w-full overflow-hidden rounded-3xl">
-                        <img src="/media/{{sc.main_img}}" alt="Beautiful Family Home"
-                            class="object-cover object-center w-full h-full group-hover:scale-110 duration-500">
-                    </div>
-                    <div
-                        class="description h-[41%] lg:h-[35%] lg:mt-[111%] w-full space-y-2 px-2 mt-[100%] absolute backdrop-blur-lg rounded-3xl lg:space-y-4">
-                        <h2
-                            class="font-semibold text-2xl price">
-                            ₹ {{ sc.price2 }}</h2>
-                        <div class="flex gap-x-5 h-6 overflow-hidden text-white">
-                            <p> {{ sc.title }}</p>
-                            <p>|</p>
-                            <p>{{ sc.bedrooms }}BHK</p>
-                        </div>
-                        <p class="text-white"> {{ sc.city }}- {{sc.zip_code }}</p>
-                        <div
-                            class="flex justify-between items-center rounded-3xl border border-black px-2 -mx-1 py-[2px]">
-                            <span>
-                                More details
-                            </span>
-                            <span class="group-hover:rotate-[360deg] duration-500">
-                                <img src="/media/icons/arrow.png" alt="" class="h-6">
-                            </span>
-                        </div>
-
-                    </div>
-                </div>
-            </a>
-        </div>
-        <h1 class="text-xl text-white">More from {{prop.devloper}}</h1>
-        <div class="flex space-x-2 lg:space-x-4 overflow-x-scroll overflow-y-hidden ">
-            <a href="prop_view/{{sd.id}}">
-                <div class="property w-[206px] h-[345px]  lg:w-[280px] lg:h-[475px] flex flex-col relative group ">
-                    <div class="display h-full w-full overflow-hidden rounded-3xl">
-                        <img src="/media/{{sd.main_img}}" alt="Beautiful Family Home"
-                            class="object-cover object-center w-full h-full group-hover:scale-110 duration-500">
-                    </div>
-                    <div
-                        class="description h-[41%] lg:h-[35%] lg:mt-[111%] w-full space-y-2 px-2 mt-[100%] absolute backdrop-blur-lg rounded-3xl lg:space-y-4 "style="font-family: Montserrat;">
-                        <h2
-                            class="font-semibold text-2xl price">
-                            ₹ {{ sd.price2 }}</h2>
-                        <div class="flex gap-x-5 h-6 overflow-hidden text-white">
-                            <p> {{ sd.title }}</p>
-                            <p>|</p>
-                            <p>{{ sd.bedrooms }}BHK</p>
-                        </div>
-                        <p class="text-white"> {{ sd.city }}- {{sd.zip_code }}</p>
-                        <div
-                            class="flex justify-between items-center rounded-3xl border border-black px-2 -mx-1 py-[2px]">
-                            <span>
-                                More details
-                            </span>
-                            <span class="group-hover:rotate-[360deg] duration-500">
-                                <img src="/media/icons/arrow.png" alt="" class="h-6">
-                            </span>
-                        </div>
-
-                    </div>
-                </div>
-            </a>
-        </div>
-    </div>
+    
 
     <style>
         /* Scrollbar styling for Chrome, Safari, and Edge */
