@@ -184,13 +184,37 @@
                 <a href="/services" class=" lg:border-none   hover:text-black duration-300 uppercase">Services</a>
                 <a href="/contact" class=" lg:border-none    hover:text-black duration-300 uppercase">Contact</a>
             </div>
-            <div class="hamburger lg:hidden " id="hamburger">
-                <svg class="w-8 h-8 text-white duration-300 cursor-pointer" fill="none" stroke="currentColor"
-                    viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16">
-                    </path>
+            <div class="hamburger lg:hidden flex items-center" id="hamburger">
+                <!-- Default Image -->
+                <svg id="hamburger-img" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24">
+                    <path fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 5L12 5L19 5M5 12H19M5 19L12 19L19 19"></path>
+                  </svg>
+                  
+                  
+                <!-- SVG (hidden initially) -->
+                <svg xmlns="http://www.w3.org/2000/svg" id="hamburger-svg" class="h-8 hidden" viewBox="0 0 24 24">
+                  <path
+                    fill="none"
+                    stroke="#fff"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M5 5L12 5L19 5M5 12H19M5 19L12 19L19 19"
+                    id="hamburger-path"
+                  >
+                    <animate
+                      id="svg-animation"
+                      fill="freeze"
+                      attributeName="d"
+                      dur="0.4s"
+                      values="M5 5L12 5L19 5M5 12H19M5 19L12 19L19 19;
+                              M5 5L12 12L19 5M12 12H12M5 19L12 12L19 19"
+                      begin="indefinite"
+                    />
+                  </path>
                 </svg>
-            </div>
+              </div>
+            
             <div class="company-logo mr-[4vw] lg:ml-[8vw]  lg:order-2 md:m-0">
                 <img src="/media/icons/image1.png" alt="harsh" class="h-8 lg:h-12">
             </div>
@@ -486,26 +510,53 @@
         </footer>
 
         <script defer>
+
+            //hamburger code
             document.addEventListener("DOMContentLoaded", function () {
-                const hamburger = document.getElementById('hamburger');
-                const menu = document.getElementById('menu');
-
-
-                hamburger.addEventListener('click', function () {
-                    menu.classList.toggle('backdrop-blur-lg');
-                    if (menu.classList.contains('hidden')) {
-                        menu.classList.remove('hidden');
-                        menu.classList.remove('fade-out');
-                        menu.classList.add('fade-in');
-                    } else {
-                        menu.classList.remove('fade-in');
-                        menu.classList.add('fade-out');
-                        setTimeout(() => {
-                            menu.classList.add('hidden');
-                        }, 300); // Match the duration of the fade-out animation
-                    }
+                const hamburger = document.getElementById("hamburger");
+                const hamburgerImg = document.getElementById("hamburger-img");
+                const hamburgerSvg = document.getElementById("hamburger-svg");
+                const svgAnimation = document.getElementById("svg-animation");
+                const menu = document.getElementById("menu");
+              
+                let menuOpen = false; // Track menu state
+              
+                hamburger.addEventListener("click", function () {
+                  if (!menuOpen) {
+                    // Open menu with animation
+                    menu.classList.remove("hidden");
+                    menu.classList.add("fade-in", "backdrop-blur-lg");
+              
+                    // Switch to SVG and play open animation
+                    hamburgerImg.classList.add("hidden");
+                    hamburgerSvg.classList.remove("hidden");
+                    svgAnimation.setAttribute(
+                      "values",
+                      "M5 5L12 5L19 5M5 12H19M5 19L12 19L19 19; M5 5L12 12L19 5M12 12H12M5 19L12 12L19 19"
+                    );
+                    svgAnimation.beginElement();
+                  } else {
+                    // Close menu with reverse animation
+                    menu.classList.add("fade-out");
+                    menu.classList.remove("fade-in");
+                    setTimeout(() => {
+                      menu.classList.add("hidden");
+                      menu.classList.remove("fade-out", "backdrop-blur-lg");
+                    }, 300); // Match the fade-out animation duration
+              
+                    // Switch to SVG and play reverse animation
+                    svgAnimation.setAttribute(
+                      "values",
+                      "M5 5L12 12L19 5M12 12H12M5 19L12 12L19 19; M5 5L12 5L19 5M5 12H19M5 19L12 19L19 19"
+                    );
+                    svgAnimation.beginElement();
+                  }
+              
+                  // Toggle menu state
+                  menuOpen = !menuOpen;
                 });
-            });
+              });
+              
 
             //animated text code 
 
