@@ -5,7 +5,7 @@ from django.db.models import F, ExpressionWrapper, FloatField
 from django.db.models.functions import Abs
 from django.contrib import messages
 import boto3
-
+from django.utils.http import url_has_allowed_host_and_scheme
 from datetime import datetime,timedelta
 from django.core.validators import RegexValidator
 from django.core.exceptions import ValidationError
@@ -68,10 +68,13 @@ def fetch_nearby_properties(request):
 
 def special_page_filter(request,fid):
     if fid ==1:
+     filter_name="Under Construction"
      properties=Property.objects.filter(property_status="underconstrution")
     if fid ==2:
+     filter_name="Ready to Move"
      properties=Property.objects.filter(property_status="readytomove")
     if fid ==3:
+        filter_name="Cost Efficient"
         list_proj=Property.objects.all()
         properties_with_efficiency = []
         for property in list_proj:
@@ -84,7 +87,39 @@ def special_page_filter(request,fid):
     
     # Extract sorted properties
         properties = [property for property, efficiency in properties_with_efficiency]
-    return render(request,'special_filter_page.html',{'properties':properties})
+    return render(request,'special_filter_page.html',{'properties':properties,'filter_name':filter_name})
+def contact_agent(request):
+    if request.method == "GET":
+        # Render the contact form page
+        return render(request, 'contact_agent.html')
+
+    if request.method == "POST":
+        # Extract form data
+        name = request.POST.get("name")
+        email = request.POST.get("email")
+        phone = request.POST.get("phone")
+        message = request.POST.get("message")
+
+        # Check if a record with the same phone number already exists
+        if agent_inquiry.objects.filter(phone=phone).exists():
+            # Add an error message and redirect back
+            messages.error(request, "OUR AGENT HAS ALREADY RECEIVED YOUR INQUIRY, PLEASE WAIT FOR THE RESPONSE.")
+        else:
+            # Save the inquiry
+            inquiry = agent_inquiry(name=name, email=email, phone=phone, message=message)
+            inquiry.save()
+
+            # Add a success message
+            messages.success(request, "OUR AGENT WILL CONTACT YOU SOON!")
+
+        # Get the next_url (previous page)
+        next_url = request.POST.get('next_url', '/')
+        
+        # Redirect back to the previous page or fallback to home
+        return redirect(next_url)
+
+    # Handle other HTTP methods
+    return JsonResponse({'success': False, 'error': 'Invalid request method.'}, status=405)
 def load_projects(request):
     city_id = request.GET.get('city_id')
     projects = Property.objects.filter(city=city_id).all()

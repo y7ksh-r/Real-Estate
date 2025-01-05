@@ -140,7 +140,7 @@
 
 <body class="bg-black mx-2">{% if messages %}
     <div id="message-bar"
-        class="fixed top-4 left-1/2 transform -translate-x-1/2 w-full max-w-md bg-green-500 text-white px-6 py-4 rounded-lg shadow-lg flex flex-col items-center" >
+        class="fixed top-0 left-1/2 transform -translate-x-1/2 w-full max-w-md bg-green-500 text-white px-6 py-4 rounded-lg shadow-lg flex flex-col items-center absolute z-30" >
         <div class="flex justify-between items-center w-full">
 
             <button onclick="hideMessageBar()" class="text-white hover:text-red-500">&times;</button>
@@ -569,9 +569,9 @@
                 </div>
 
                 <div class="mx-6 mt-6 pb-12" style="font-family: Montserrat;">
-                    <button onclick="document.querySelector('.container').style.display='flex';"
+                    <a href="{%url 'contact_agent'%}"><button
                         class="border border-white text-white hover:bg-white hover:text-black duration-300 p-2 font-light w-full">CONTACT
-                        AGENT</button>
+                        AGENT</button></a>
                 </div>
             </div>
 
@@ -598,9 +598,9 @@
                     </div>
                     
                     <div class="mr-44 mt-6 pb-12" style="font-family: Montserrat;">
-                        <button onclick="document.querySelector('.container').style.display='flex';"
+                        <a href="{%url 'contact_agent'%}"><button 
                             class="border border-white text-white hover:bg-white hover:text-black duration-300 p-2 font-light w-full">CONTACT
-                            AGENT</button>
+                            AGENT</button></a>
 
                     </div>
                 </div>

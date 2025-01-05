@@ -155,11 +155,58 @@
     <script src="{% static 'js/pincode.js' %}"></script>
   
 </head>
+<script>document.addEventListener('DOMContentLoaded', function () {
+    // Find the message bar and progress bar elements
+    var messageBar = document.getElementById('message-bar');
+    var progressBar = document.getElementById('progress-bar');
 
+    if (messageBar && progressBar) {
+        // Set initial width of the progress bar to 100%
+        progressBar.style.width = '100%';
+
+        // Duration for how long the message bar will be visible (5 seconds)
+        var duration = 5000;
+
+        // Use CSS transitions to animate the progress bar in reverse
+        progressBar.style.transition = `width ${duration}ms linear`;
+        setTimeout(() => {
+            progressBar.style.width = '0%';
+        }, 0);
+
+        // Hide the message bar after the duration
+        setTimeout(function () {
+            messageBar.style.display = 'none';
+        }, duration);
+    }
+});
+
+// Function to manually hide the message bar when close button is clicked
+function hideMessageBar() {
+    var messageBar = document.getElementById('message-bar');
+    if (messageBar) {
+        messageBar.style.display = 'none';
+    }
+}
+</script>
 <body class="bg-black uppercase"  style="font-family: Cinzel;">
 
 
+    >{% if messages %}
+    <div id="message-bar"
+        class="fixed top-4 left-1/2 transform -translate-x-1/2 w-full max-w-md bg-green-500 text-white px-6 py-4 rounded-lg shadow-lg flex flex-col items-center" >
+        <div class="flex justify-between items-center w-full">
 
+            <button onclick="hideMessageBar()" class="text-white hover:text-red-500">&times;</button>
+        </div>
+        {% for message in messages %}
+        <p class="mt-2 text-center">{{ message }}</p>
+        {% endfor %}
+        <div class="relative w-full h-1 bg-white mt-4 rounded-full">
+            <!-- Progress Bar that runs in reverse -->
+            <div id="progress-bar" class="absolute left-0 top-0 h-full bg-orange-400 rounded-full"></div>
+        </div>
+    </div>
+    {% endif %}
 
     <div class="bg-image bg-[url('/media/icons/bgimage.jpg')] h-[20rem] lg:h-[40rem] w-full bg-no-repeat bg-cover">
 
@@ -172,7 +219,7 @@
                 class="border-b p-3 lg:border-none lg:text-lg  hover:backdrop-blur-xl ">About</a>
             <a href="/services"
                 class="border-b p-3 lg:border-none lg:text-lg  hover:backdrop-blur-xl ">Services</a>
-            <a href="/contact"
+            <a href="/contact_agent"
                 class="border-b p-3 lg:border-none  lg:text-lg  hover:backdrop-blur-xl ">Contact</a>
         </div>
 
@@ -182,7 +229,7 @@
                 <a href=" " class=" lg:border-none   hover:text-black duration-300">HOME</a>
                 <a href="/about" class="lg:border-none    hover:text-black duration-300 uppercase">About</a>
                 <a href="/services" class=" lg:border-none   hover:text-black duration-300 uppercase">Services</a>
-                <a href="/contact" class=" lg:border-none    hover:text-black duration-300 uppercase">Contact</a>
+                <a href="/contact_agent" class=" lg:border-none    hover:text-black duration-300 uppercase">Contact</a>
             </div>
             <div class="hamburger lg:hidden flex items-center" id="hamburger">
                 <!-- Default Image -->

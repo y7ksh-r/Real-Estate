@@ -7,8 +7,14 @@ class Amenity(models.Model):
 
     def __str__(self):
         return self.title
-
-
+class agent_inquiry(models.Model):
+    name = models.CharField(max_length=200)
+    email = models.EmailField()
+    phone = models.CharField(max_length=15)
+    message = models.TextField()
+    date=models.DateTimeField(auto_now_add=True)
+    def __str__(self):
+        return f"{self.name} for {self.date.strftime('%d/%m/%Y')}"
 class Property(models.Model):
     PROPERTY_TYPES = [
         ('house', 'House'),
