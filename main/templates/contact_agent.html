@@ -17,53 +17,46 @@
 <body class="h-screen lg:m-0">
     <div class="container h-screen lg:flex lg:space-x-0">
         <div class="lg:w-2/5 lg:pr-2 m-4 lg:m-0">
-            <form action="{% url 'contact_agent' %}" method="post" class="space-y-6 lg:mx-7"
-                style="font-family: Cinzel;">
+            
+            <form action="{% url 'contact_agent' %}" method="post" class="space-y-6 lg:mx-7" style="font-family: Cinzel;">
                 <div class="lg:w-full lg:text-center lg:my-10 w-full">
                     <div style="font-family: Cinzel;" class="text-xs font-light mt-12">
                         Let me know how can I assist you
                     </div>
                     <br>
-                    <div class="lg:text-5xl text-4xl uppercase tracking-wider font-light"
-                        style="font-family: Montserrat;">
+                    {% csrf_token %}
+                    <div class="lg:text-5xl text-4xl uppercase tracking-wider font-light" style="font-family: Montserrat;">
                         GET IN TOUCH
                     </div>
                 </div>
-
+            
+                <!-- Include hidden next_url field -->
+                <input type="hidden" name="next_url" value="{{ request.META.HTTP_REFERER }}">
+            
                 <div class="mb-4 lg:flex lg:space-x-8 space-y-6 lg:space-y-0">
-                    <input type="text" id="name" name="name" class="w-full p-2 border border-gray-300 mt-1"
-                        placeholder="First Name" required>
-                    <input type="text" id="last-name" name="last_name" class="w-full p-2 border border-gray-300 mt-1"
-                        placeholder="Last Name">
+                    <input type="text" id="name" name="name" class="w-full p-2 border border-gray-300 mt-1" placeholder="First Name" required>
+                    <input type="text" id="last-name" name="last_name" class="w-full p-2 border border-gray-300 mt-1" placeholder="Last Name">
                 </div>
-
+            
                 <div class="mb-4">
-                    <input type="email" id="email" name="email" class="w-full p-2 border border-gray-300 mt-1"
-                        placeholder="Email">
+                    <input type="email" id="email" name="email" class="w-full p-2 border border-gray-300 mt-1" placeholder="Email">
                 </div>
                 <div class="mb-4">
-                    <input type="tel" id="phone" name="phone" class="w-full p-2 border border-gray-300 mt-1"
-                        placeholder="Phone Number" required>
+                    <input type="tel" id="phone" name="phone" class="w-full p-2 border border-gray-300 mt-1" placeholder="Phone Number" required>
                 </div>
                 <div class="mb-4">
-                    <textarea id="message" name="message" class="w-full p-2 border border-gray-300 mt-1" rows="4"
-                        placeholder="Message" required></textarea>
+                    <textarea id="message" name="message" class="w-full p-2 border border-gray-300 mt-1" rows="4" placeholder="Message" required></textarea>
                 </div>
-
+            
                 <div class="tc text-xs flex items-start" style="font-family: Montserrat;">
                     <input type="checkbox" id="consent" name="consent" class="m-1 rounded-none" required>
                     <span class="text-justify">
-                        By providing NCPR Homes your contact information, you acknowledge and agree to our Privacy
-                        Policy and consent to receiving marketing communications from us. These communications may
-                        include calls, texts, and emails, some of which may be automated or use prerecorded messages.
-                        Your consent to receive these communications is not a condition for purchasing any products or
-                        services.
+                        By providing NCPR Homes your contact information, you acknowledge and agree to our Privacy Policy and consent to receiving marketing communications from us. These communications may include calls, texts, and emails, some of which may be automated or use prerecorded messages. Your consent to receive these communications is not a condition for purchasing any products or services.
                     </span>
                 </div>
-
+            
                 <div>
-                    <button type="submit"
-                        class="border-black border w-full lg:w-32 text-black lg:p-3 p-2 px-8 hover:text-white hover:bg-black duration-300 float-right mb-4">
+                    <button type="submit" class="border-black border w-full lg:w-32 text-black lg:p-3 p-2 px-8 hover:text-white hover:bg-black duration-300 float-right mb-4">
                         Submit
                     </button>
                 </div>
