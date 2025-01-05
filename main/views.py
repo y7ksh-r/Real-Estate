@@ -103,14 +103,14 @@ def contact_agent(request):
         # Check if a record with the same phone number already exists
         if agent_inquiry.objects.filter(phone=phone).exists():
             # Add an error message and redirect back
-            messages.error(request, "Our agent will contact you soon!")
+            messages.error(request, "OUR AGENT HAS ALREADY RECEIVED YOUR INQUIRY, PLEASE WAIT FOR THE RESPONSE.")
         else:
             # Save the inquiry
             inquiry = agent_inquiry(name=name, email=email, phone=phone, message=message)
             inquiry.save()
 
             # Add a success message
-            messages.success(request, "our agent will contact you soon!")
+            messages.success(request, "OUR AGENT WILL CONTACT YOU SOON!")
 
         # Get the next_url (previous page)
         next_url = request.POST.get('next_url', '/')
