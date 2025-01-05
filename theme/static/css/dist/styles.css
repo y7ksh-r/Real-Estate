@@ -1226,6 +1226,10 @@ select {
   width: 100vw;
 }
 
+.w-\[100\%\] {
+  width: 100%;
+}
+
 .max-w-2xl {
   max-width: 42rem;
 }
@@ -1416,6 +1420,10 @@ select {
 
 .self-center {
   align-self: center;
+}
+
+.overflow-auto {
+  overflow: auto;
 }
 
 .overflow-hidden {
