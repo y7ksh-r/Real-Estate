@@ -36,7 +36,3 @@ Optimizing Docker images ensures **faster deployments, lower storage costs, and 
    ```sh
    dive real-estate-app
    ```
-
-## Future Enhancements
-- Implement **Docker Slim** for even smaller images.
-- Enable **CI/CD with GitHub Actions** for automated builds.
