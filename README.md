@@ -4,8 +4,8 @@
 This repository contains a **Docker-optimized** version of the Real Estate App, ensuring **faster builds, reduced image size, and improved security.**
 
 ## Architecture Diagram
-![Docker Optimization](https://raw.githubusercontent.com/y7ksh-r/Real-Estate/main/docs/docker_optimization.png)  
-*Multi-stage build to keep image size minimal and remove unnecessary dependencies.*
+![XPD1RZ~1](https://github.com/user-attachments/assets/d306a927-31a4-46ca-8599-cfbbea27f43a)
+
 
 ## Optimizations Applied
 - **Multi-Stage Builds**: Reduces image size by separating dependency installation.
