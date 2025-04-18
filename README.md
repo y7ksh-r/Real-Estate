@@ -12,8 +12,8 @@ This repository contains a **Docker-optimized** version of the Real Estate App, 
 - **Alpine-based Slim Image**: Uses `python:3.10-slim` for minimal footprint.
 - **Layer Minimization**: Removes unnecessary files to reduce build context.
 - **Dive Analysis Results**:
-  - **Before Optimization**: `359 MB`
-  - **After Optimization**: `280 MB` (22% reduction)
+  - **Before Optimization**: `1.6 GB`
+  - **After Optimization**: `280 MB` (83% reduction)
 
 ## Real-World Use Case
 Optimizing Docker images ensures **faster deployments, lower storage costs, and quicker scaling.** This is crucial for microservices and cloud-based deployments where **every MB matters.**
