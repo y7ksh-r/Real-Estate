@@ -29,6 +29,8 @@ You can find the **architecture diagram** of the entire setup below, which outli
 ## Real-World Use Case
 Optimizing Docker images ensures **faster deployments, lower storage costs, and quicker scaling.** This is crucial for microservices and cloud-based deployments where **every MB matters.**
 
+**This is Step 1 out of 3, please visit the provided link at the end to complete the entire project installation.**
+
 ## Usage
 1. Clone the repository:
    ```sh
@@ -47,3 +49,5 @@ Optimizing Docker images ensures **faster deployments, lower storage costs, and 
    ```sh
    dive real-estate-app
    ```
+
+**Now head over to [Terraform Infrastructure Repo](https://github.com/y7ksh-r/Real-estate-app-infra) & continue the further steps to deploy the entire Application!**
