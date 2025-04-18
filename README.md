@@ -1,7 +1,18 @@
 # Real Estate App - Docker Optimization
 
-## Overview
+## Details of the Project
+The **Real Estate App** is a full-stack web application collaboratively built by me and my friends. My primary role was to handle the **complete DevOps automation and deployment pipeline** using modern tools like **Docker**, **Kubernetes**, and **Terraform**, all while staying within the **AWS Free Tier** limits.
+
+The infrastructure is fully managed with Terraform, provisioning resources like EC2, IAM, S3, and DynamoDB. I've also implemented **Terraform remote state locking** using S3 and DynamoDB to ensure safe and consistent deployments across environments.
+
+This project is structured across three repositories:
+- [App Deployment Repo](https://github.com/y7ksh-r/Real-Estate) – includes Docker-related files and CI/CD workflows (The current Repo)
+- [Terraform Infrastructure Repo](https://github.com/y7ksh-r/Real-estate-app-infra) – for provisioning AWS infrastructure and managing remote backend state.
+- [Kubernetes Manifests Repo](https://github.com/y7ksh-r/Real-estate-app) – includes all necessary manifests for deploying the app on a Kubernetes cluster.
+
 This repository contains a **Docker-optimized** version of the Real Estate App, ensuring **faster builds, reduced image size, and improved security.**
+
+You can find the **architecture diagram** of the entire setup below, which outlines how the components integrate in a production-like DevOps pipeline.
 
 ## Architecture Diagram
 ![XPD1RZ~1](https://github.com/user-attachments/assets/d306a927-31a4-46ca-8599-cfbbea27f43a)
