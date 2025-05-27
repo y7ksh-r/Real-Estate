@@ -1,4 +1,4 @@
-# Real Estate App - Docker Optimization
+# Real Estate App
 
 ## Details of the Project
 The **Real Estate App** is a full-stack web application collaboratively built by me and my friends. My primary role was to handle the **complete DevOps automation and deployment pipeline** using modern tools like **Docker**, **Kubernetes**, and **Terraform**, all while staying within the **AWS Free Tier** limits.
