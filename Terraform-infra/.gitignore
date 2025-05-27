@@ -1,0 +1,22 @@
+# Ignore the AWS CLI zip file
+awscliv2.zip
+
+# Ignore the AWS directory
+aws/
+
+# Ignore Terraform local files
+*.tfstate
+*.tfstate.backup
+.terraform/
+.terraform.lock.hcl
+
+# Ignore any temporary or log files
+*.log
+*.tmp
+
+# Ignore system-specific files (optional)
+.DS_Store
+Thumbs.db
+
+
+.variables.tf.swp
