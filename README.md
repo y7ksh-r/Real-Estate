@@ -31,7 +31,6 @@ This [folder](https://github.com/y7ksh-r/Real-Estate/tree/main/Docker) contains 
 ## Real-World Use Case
 Optimizing Docker images ensures **faster deployments, lower storage costs, and quicker scaling.** This is crucial for microservices and cloud-based deployments where **every MB matters.**
 
-**This is Step 1 out of 3, please visit the provided link at the end to complete the entire project installation.**
 
 ## Usage
 1. Clone the repository:
