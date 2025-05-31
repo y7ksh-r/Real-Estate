@@ -36,7 +36,7 @@ Optimizing Docker images ensures **faster deployments, lower storage costs, and 
 1. Clone the repository:
    ```sh
    git clone https://github.com/y7ksh-r/Real-Estate.git
-   cd Real-Estate
+   cd Docker
    ```
 2. Build the Docker image:
    ```sh
