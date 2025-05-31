@@ -1,14 +1,15 @@
 # Real Estate App
 
 ## Details of the Project
-The **Real Estate App** is a full-stack web application collaboratively built by me and my friends. My primary role was to handle the **complete DevOps automation and deployment pipeline** using modern tools like **Docker**, **Kubernetes**, and **Terraform**, all while staying within the **AWS Free Tier** limits.
+The **Real Estate App** is a full-stack web application collaboratively built by me and my friends. My primary role was to handle the **complete DevOps automation and deployment** using modern tools like **Docker**, **Kubernetes**, and **Terraform**, all while staying within the **AWS Free Tier** limits.
 
 The infrastructure is fully managed with Terraform, provisioning resources like EC2, IAM, S3, and DynamoDB. I've also implemented **Terraform remote state locking** using S3 and DynamoDB to ensure safe and consistent deployments across environments.
 
 This project is structured across three repositories:
-- [App Deployment Repo](https://github.com/y7ksh-r/Real-Estate) – includes Docker-related files and CI/CD workflows (The current Repo)
-- [Terraform Infrastructure Repo](https://github.com/y7ksh-r/Real-estate-app-infra) – for provisioning AWS infrastructure and managing remote backend state.
-- [Kubernetes Manifests Repo](https://github.com/y7ksh-r/Real-estate-app) – includes all necessary manifests for deploying the app on a Kubernetes cluster.
+- [App](https://github.com/y7ksh-r/Real-Estate/tree/main/App) – includes all the necessary files of the Real Estate App.
+- [Docker](https://github.com/y7ksh-r/Real-Estate/tree/main/Docker) – includes Docker-related files.
+- [Terraform Infrastructure](https://github.com/y7ksh-r/Real-Estate/tree/main/Terraform-infra) – for provisioning AWS infrastructure and managing remote backend state.
+- [Kubernetes Manifests](https://github.com/y7ksh-r/Real-Estate/tree/main/K8s-manifests) – includes all necessary manifests for deploying the app on a Kubernetes cluster.
 
 This repository contains a **Docker-optimized** version of the Real Estate App, ensuring **faster builds, reduced image size, and improved security.**
 
