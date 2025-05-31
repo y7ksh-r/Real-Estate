@@ -11,13 +11,12 @@ This project is structured across three repositories:
 - [Terraform Infrastructure](https://github.com/y7ksh-r/Real-Estate/tree/main/Terraform-infra) – for provisioning AWS infrastructure and managing remote backend state.
 - [Kubernetes Manifests](https://github.com/y7ksh-r/Real-Estate/tree/main/K8s-manifests) – includes all necessary manifests for deploying the app on a Kubernetes cluster.
 
-This repository contains a **Docker-optimized** version of the Real Estate App, ensuring **faster builds, reduced image size, and improved security.**
-
 You can find the **architecture diagram** of the entire setup below, which outlines how the components integrate in a production-like DevOps pipeline.
 
 ## Architecture Diagram
 ![XPD1RZ~1](https://github.com/user-attachments/assets/d306a927-31a4-46ca-8599-cfbbea27f43a)
 
+This [folder](https://github.com/y7ksh-r/Real-Estate/tree/main/Docker) contains a **Docker-optimized** version of the Real Estate App, ensuring **faster builds, reduced image size, and improved security.**
 
 ## Optimizations Applied
 - **Multi-Stage Builds**: Reduces image size by separating dependency installation.
