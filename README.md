@@ -16,6 +16,7 @@ You can find the **architecture diagram** of the entire setup below, which outli
 ## Architecture Diagram
 ![XPD1RZ~1](https://github.com/user-attachments/assets/d306a927-31a4-46ca-8599-cfbbea27f43a)
 
+## Docker
 This [folder](https://github.com/y7ksh-r/Real-Estate/tree/main/Docker) contains a **Docker-optimized** version of the Real Estate App, ensuring **faster builds, reduced image size, and improved security.**
 
 ## Optimizations Applied
