@@ -55,7 +55,7 @@ Optimizing Docker images ensures **faster deployments, lower storage costs, and 
 # 2. Terraform Infrastructure
 
 ## Overview
-This repository contains the Terraform code for deploying the Real Estate App infrastructure on AWS, which can be found [here](https://github.com/y7ksh-r/Real-Estate) The infrastructure includes compute instances, networking, storage, and IAM roles, ensuring a secure and scalable deployment.
+This infrastructure demonstrates the complete DevOps pipeline and automation for a cloud-native Real Estate web application, optimized for AWS Free Tier usage. It uses Terraform to provision and manage scalable, secure cloud resources on AWS, including the following features:
 
 ## Features
 - **State Locking with S3 & DynamoDB**: Prevents race conditions in Terraform deployments.
@@ -67,10 +67,9 @@ This repository contains the Terraform code for deploying the Real Estate App in
 This Terraform setup allows teams to **quickly provision and manage cloud infrastructure** without manual intervention. It's especially useful for **DevOps workflows** where infrastructure needs to be **version-controlled, auditable, and automated.**
 
 ## Deployment Steps
-1. Clone the repository:
+1. Navigate to your respective terraform folder:
    ```sh
-   git clone https://github.com/y7ksh-r/Real-estate-app-infra.git
-   cd Real-estate-app-infra
+   cd Terraform-infra
    ```
 2. Initialize Terraform:
    ```sh
@@ -97,8 +96,7 @@ This Terraform setup allows teams to **quickly provision and manage cloud infras
 # 3. Kubernetes Manifests
 
   ## Overview
-This repository contains **Kubernetes manifests** for deploying the Real Estate App on a **K3s cluster hosted on AWS.** 
-
+This directory contains the Kubernetes manifests required to deploy the Real Estate web application on a lightweight K3s cluster hosted on AWS EC2, optimized for Free Tier usage. These manifests define the application's:
 
 ## Features
 - **Declarative Configuration**: All K8s resources are managed via YAML files.
@@ -112,8 +110,7 @@ Deploying via Kubernetes allows the app to **scale efficiently**, handle high tr
 ## Deployment Steps
 1. Clone the repository:
    ```sh
-   git clone https://github.com/y7ksh-r/Real-estate-app.git
-   cd real-estate-app/real-estate-k8s
+   cd K8s-manifests
    ```
 2. Deploy the application:
    ```sh
