@@ -16,7 +16,8 @@ You can find the **architecture diagram** of the entire setup below, which outli
 ## Architecture Diagram
 ![XPD1RZ~1](https://github.com/user-attachments/assets/d306a927-31a4-46ca-8599-cfbbea27f43a)
 
-## Docker
+
+# 1. Docker
 This [folder](https://github.com/y7ksh-r/Real-Estate/tree/main/Docker) contains a **Docker-optimized** version of the Real Estate App, ensuring **faster builds, reduced image size, and improved security.**
 
 ## Optimizations Applied
@@ -51,4 +52,79 @@ Optimizing Docker images ensures **faster deployments, lower storage costs, and 
    dive real-estate-app
    ```
 
-**Now head over to [Terraform Infrastructure Repo](https://github.com/y7ksh-r/Real-estate-app-infra) & continue the further steps to deploy the entire Application!**
+# 2. Terraform Infrastructure
+
+## Overview
+This repository contains the Terraform code for deploying the Real Estate App infrastructure on AWS, which can be found [here](https://github.com/y7ksh-r/Real-Estate) The infrastructure includes compute instances, networking, storage, and IAM roles, ensuring a secure and scalable deployment.
+
+## Features
+- **State Locking with S3 & DynamoDB**: Prevents race conditions in Terraform deployments.
+- **Infrastructure as Code (IaC)**: Enables reproducible and version-controlled deployments.
+- **Secure Access Control**: IAM roles and security groups restrict access.
+- **Scalability & Modularity**: Easily extendable to accommodate future changes.
+
+## Real-World Use Case
+This Terraform setup allows teams to **quickly provision and manage cloud infrastructure** without manual intervention. It's especially useful for **DevOps workflows** where infrastructure needs to be **version-controlled, auditable, and automated.**
+
+## Deployment Steps
+1. Clone the repository:
+   ```sh
+   git clone https://github.com/y7ksh-r/Real-estate-app-infra.git
+   cd Real-estate-app-infra
+   ```
+2. Initialize Terraform:
+   ```sh
+   terraform init
+   ```
+3. Plan the deployment:
+   ```sh
+   terraform plan
+   ```
+4. Apply changes:
+   ```sh
+   terraform apply -auto-approve
+   ```
+5. Destroy infrastructure (if needed):
+   ```sh
+   terraform destroy -auto-approve
+   ```
+
+## Future Enhancements
+- Implement **Terraform modules** for better reusability.
+- Integrate **AWS Lambda for automated scaling.**
+- Add **monitoring with Prometheus & Grafana.**
+
+# 3. Kubernetes Manifests
+
+  ## Overview
+This repository contains **Kubernetes manifests** for deploying the Real Estate App on a **K3s cluster hosted on AWS.** 
+
+
+## Features
+- **Declarative Configuration**: All K8s resources are managed via YAML files.
+- **Load Balancing**: Uses a Kubernetes **Ingress Controller**.
+- **Auto-Healing & Scaling**: Ensures high availability.
+- **Monitoring with Prometheus & Grafana**.
+
+## Real-World Use Case
+Deploying via Kubernetes allows the app to **scale efficiently**, handle high traffic loads, and maintain **zero-downtime deployments.**
+
+## Deployment Steps
+1. Clone the repository:
+   ```sh
+   git clone https://github.com/y7ksh-r/Real-estate-app.git
+   cd real-estate-app/real-estate-k8s
+   ```
+2. Deploy the application:
+   ```sh
+   kubectl apply -f deployment.yaml
+   ```
+3. Verify pod status:
+   ```sh
+   kubectl get pods
+   ```
+4. Access the application via the **LoadBalancer or Ingress Controller**.
+
+## Future Enhancements
+- Integrate **ArgoCD for GitOps-based deployments**.
+- Implement **service mesh (Istio or Linkerd) for better traffic control.**
